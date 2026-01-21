@@ -1,4 +1,4 @@
-# 🚀 Antigravity Vibe Coding Suite v3.4 (Ultimate Edition)
+# 🚀 Antigravity Vibe Coding Suite v1.0 (Ultimate Edition)
 
 **Hệ thống Workflow TOÀN DIỆN cho Vibe Coders** - Chỉ cần có ý tưởng, AI lo trọn gói.
 
@@ -21,6 +21,7 @@
 | `/plan` | Thiết kế tính năng toàn diện | Auth, DB, Charts, PDF, Maps, Scheduled Tasks |
 | `/visualize` | Thiết kế UI/UX đẹp | Loading/Error states, Accessibility, Dark mode |
 | `/code` | Viết code chất lượng | Security, Validation, Error handling |
+| `/mock-api` | Giả lập Backend API | Frontend độc lập, Data đa dạng, Edge cases |
 
 ### ⚙️ Vận hành
 | Lệnh | Mô tả | Điểm mù được xử lý |
@@ -92,16 +93,16 @@
 
 ---
 
-## 🚀 Auto Workflow - v3.4 (MỚI!)
+## 🚀 Auto Workflow - v1.0 (MỚI!)
 
-### Vấn đề v3.3
+### Vấn đề cũ
 - `/plan` chỉ tạo 1 file spec, phải tự chia phases
 - `/code` không tự test, phải gọi `/test` thủ công
 - Mất context khi compact, không auto-save progress
 
-### Giải pháp v3.4
+### Giải pháp v1.0
 
-#### 1. `/plan` v2 - Auto Phase Generation
+#### 1. `/plan` v1.0 - Auto Phase Generation
 ```
 /plan "Order management"
     ↓
@@ -116,7 +117,7 @@
 └── phase-05-testing.md
 ```
 
-#### 2. `/code` v2 - Auto Test Loop
+#### 2. `/code` v1.0 - Auto Test Loop
 ```
 /code phase-01
     ↓
@@ -134,7 +135,7 @@
 [AUTO] Save context vào session.json
 ```
 
-#### 3. `/next` v2 - Phase Progress Display
+#### 3. `/next` v1.0 - Phase Progress Display
 ```
 📊 Progress:
 ████████░░░░░░░░░░░░ 40% (2/5 phases)
@@ -156,14 +157,14 @@ Sau mỗi phase/5 tasks:
 
 ---
 
-## 🧠 Structured Context - v3.3 (Tách brain + session)
+## 🧠 Structured Context - v1.0 (Tách brain + session)
 
-### Vấn đề v3.2
+### Vấn đề cũ
 - `brain.json` chứa cả static và dynamic data
 - Mỗi lần save phải update toàn bộ file
 - Session state lẫn với project knowledge
 
-### Giải pháp v3.3: Tách thành 2 files
+### Giải pháp v1.0: Tách thành 2 files
 ```
 .brain/                            # LOCAL (per-project)
 ├── brain.json                     # 🧠 Static knowledge (ít thay đổi)
@@ -176,7 +177,7 @@ Sau mỗi phase/5 tasks:
 ```
 
 ### Lợi ích
-| Metric | v3.2 | v3.3 |
+| Metric | Legacy | v1.0 |
 |--------|------|------|
 | Files để scan | 1 (brain.json) | 2 (brain + session) |
 | Token usage | ~3KB | ~3KB (tương đương) |
@@ -224,7 +225,7 @@ Sau mỗi phase/5 tasks:
 
 ---
 
-## 🛡️ Resilience Patterns - v3.3 (Ẩn khỏi User)
+## 🛡️ Resilience Patterns - v1.0 (Ẩn khỏi User)
 
 > **Nguyên tắc:** User không cần biết về retry, timeout, fallback. AI xử lý ngầm.
 
@@ -303,7 +304,7 @@ AI hỏi bằng tiếng Việt:
 
 ---
 
-## 📊 Thống kê hệ thống v3.4
+## 📊 Thống kê hệ thống v1.0
 
 | Workflow | Size | Chất lượng |
 |----------|------|------------|
@@ -321,6 +322,7 @@ AI hỏi bằng tiếng Việt:
 | `/test` | 2.4KB | ⭐⭐⭐⭐ Good |
 | `/recap` | 2.4KB | ⭐⭐⭐⭐ Good |
 | `/rollback` | 2.2KB | ⭐⭐⭐⭐ Good |
+| `/mock-api` | 2.0KB | ⭐⭐⭐⭐⭐ Complete |
 
 **Tổng:** 14 workflows | **~60KB** instructions | **50+ điểm mù** được xử lý
 
@@ -336,4 +338,4 @@ AI hỏi bằng tiếng Việt:
 
 ---
 
-*Antigravity Vibe Coding Suite v3.4 - Your dreams, our engineering.*
+*Antigravity Vibe Coding Suite v1.0 - Your dreams, our engineering.*

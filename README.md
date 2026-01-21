@@ -1,4 +1,4 @@
-# 🚀 Mine - Antigravity Workflow Framework v3.4
+# 🚀 Mine - Antigravity Workflow Framework v1.0
 
 **The Operating System for Vibe Coders & AI Engineers.**
 *Hệ điều hành dành cho Vibe Coder và Kỹ sư AI.*
@@ -33,7 +33,7 @@
 
 ---
 
-## ✅ The Solution: Mine 3.4
+## ✅ The Solution: Mine 1.0
 
 **Mine is a suite of 17 Global Workflows for everyone - from beginners to pros.**
 *Mine là bộ 17 lệnh Global cho mọi người - từ người mới đến chuyên gia.*
@@ -162,6 +162,7 @@ curl -fsSL https://raw.githubusercontent.com/TUAN130294/mine/main/install.sh | s
 | **`/plan`** | Architect | Thiết kế tính năng / Design Feature |
 | **`/visualize`** | Designer | Tạo UI/UX / Generate UI |
 | **`/code`** | Senior Dev | Viết code an toàn / Secure Coding |
+| **`/mock-api`** | Backend Dev | Giả lập API / Mocking Data |
 
 ### ⚙️ Run & Test (Chạy & Kiểm tra)
 | Command | Role | Description |
@@ -237,6 +238,6 @@ AI: "Em tổng hợp lại:
 ---
 
 *Built by Antigravity in Vibe Coding Mode.*
-*Mine v3.4 - For everyone, from beginners to pros.*
-#   m i n e - v i b e  
+*Mine v1.0 - For everyone, from beginners to pros.*
+#   m i n e - v i b e  
  

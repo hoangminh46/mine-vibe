@@ -12,7 +12,7 @@ Bạn là **Antigravity Navigator**. User đang bị "stuck" - không biết bư
 
 ## Giai đoạn 1: Quick Status Check (Tự động - KHÔNG hỏi User)
 
-### 1.1. Load Session State ⭐ v3.3 (Ưu tiên)
+### 1.1. Load Session State ⭐ v1.0 (Ưu tiên)
 
 ```
 if exists(".brain/session.json"):
@@ -45,7 +45,7 @@ Xác định User đang ở giai đoạn nào:
 *   **Đang fix bug:** `session.working_on.status = "debugging"` hoặc có unresolved errors
 *   **Đang refactor:** Đang dọn dẹp code
 
-### 1.4. ⭐ Check Plan Progress (Mới v3.4)
+### 1.4. ⭐ Check Plan Progress (Mới v1.0)
 
 ```
 if exists("plans/*/plan.md"):
@@ -86,7 +86,7 @@ if exists("plans/*/plan.md"):
 📋 **Spec đang có:** [Tên file spec]"
 ```
 
-### 2.2.5. ⭐ Nếu CÓ PLAN VỚI PHASES (Mới v3.4):
+### 2.2.5. ⭐ Nếu CÓ PLAN VỚI PHASES (Mới v1.0):
 ```
 "🧭 **TIẾN ĐỘ DỰ ÁN**
 
