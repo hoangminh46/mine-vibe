@@ -1,14 +1,14 @@
 # Mine Installer for Windows (PowerShell)
 # Tự động detect Antigravity Global Workflows
 
-$RepoBase = "https://raw.githubusercontent.com/TUAN130294/mine/main"
+$RepoBase = "https://raw.githubusercontent.com/hoangminh46/mine-vibe/main"
 $RepoUrl = "$RepoBase/workflows"
 $Workflows = @(
     "plan.md", "code.md", "visualize.md", "deploy.md",
     "debug.md", "refactor.md", "test.md", "run.md",
     "init.md", "recap.md", "rollback.md", "save_brain.md",
     "audit.md", "cloudflare-tunnel.md", "mine-update.md",
-    "brainstorm.md", "next.md", "customize.md", "README.md"
+    "brainstorm.md", "next.md", "customize.md", "mock-api.md", "README.md"
 )
 
 # Schemas and Templates (v3.3+)
@@ -134,6 +134,7 @@ Bạn PHẢI đọc file workflow tương ứng và thực hiện theo hướng 
 | ``/rollback`` | ~/.gemini/antigravity/global_workflows/rollback.md | Rollback deployment |
 | ``/cloudflare-tunnel`` | ~/.gemini/antigravity/global_workflows/cloudflare-tunnel.md | Quản lý tunnel |
 | ``/mine-update`` | ~/.gemini/antigravity/global_workflows/mine-update.md | Cập nhật Mine |
+| ``/mock-api`` | ~/.gemini/antigravity/global_workflows/mock-api.md | 💃 Giả lập Backend API |
 
 ## Resource Locations (v3.3+):
 - Schemas: ~/.gemini/antigravity/schemas/

@@ -66,12 +66,12 @@ Open Terminal in Antigravity/Cursor (Ctrl + `) and paste:
 *Mở Terminal và dán lệnh sau:*
 
 ```powershell
-iex "& { $(irm https://raw.githubusercontent.com/TUAN130294/mine/main/install.ps1) }"
+iex "& { $(irm https://raw.githubusercontent.com/hoangminh46/mine-vibe/main/install.ps1) }"
 ```
 
 ### 🍎 Mac / Linux (Terminal)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/TUAN130294/mine/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/hoangminh46/mine-vibe/main/install.sh | sh
 ```
 
 > **Restart your IDE after installation.**  
