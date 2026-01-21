@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mine - Antigravity Workflow Framework</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg: #0f172a;
+            --bg-card: #1e293b;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--bg) 0%, #1e1b4b 100%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .hero-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Scenario Tabs */
+        .scenarios {
+            padding: 60px 20px;
+        }
+
+        .scenarios h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            color: var(--text);
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--primary);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Workflow Steps */
+        .workflow {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .workflow::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .step {
+            position: relative;
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .step:hover {
+            border-color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 28px;
+            width: 16px;
+            height: 16px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 3px solid var(--bg);
+        }
+
+        .step-number {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .step-title {
+            display: inline;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .step-command {
+            display: inline-block;
+            background: var(--bg);
+            color: var(--secondary);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin-left: 10px;
+        }
+
+        .step-description {
+            color: var(--text-muted);
+            margin-top: 12px;
+        }
+
+        .step-details {
+            margin-top: 16px;
+            padding: 16px;
+            background: var(--bg);
+            border-radius: 8px;
+        }
+
+        .step-details h4 {
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .step-details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-details li {
+            padding: 4px 0;
+            color: var(--text-muted);
+        }
+
+        .step-details li::before {
+            content: '→';
+            color: var(--secondary);
+            margin-right: 8px;
+        }
+
+        .step-output {
+            margin-top: 12px;
+            padding: 12px;
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 3px solid var(--secondary);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .step-output strong {
+            color: var(--secondary);
+        }
+
+        /* Command Grid */
+        .commands {
+            padding: 60px 20px;
+            background: var(--bg-card);
+        }
+
+        .commands h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .command-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .command-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .command-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .command-card .icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .command-card h3 {
+            font-family: monospace;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+
+        .command-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .command-category {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-top: 12px;
+        }
+
+        .cat-start { background: rgba(99, 102, 241, 0.2); color: var(--primary); }
+        .cat-design { background: rgba(16, 185, 129, 0.2); color: var(--secondary); }
+        .cat-code { background: rgba(245, 158, 11, 0.2); color: var(--warning); }
+        .cat-maintain { background: rgba(239, 68, 68, 0.2); color: var(--danger); }
+
+        /* Interactive Flow */
+        .flow-section {
+            padding: 60px 20px;
+        }
+
+        .flow-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .flow-diagram {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .flow-item {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 30px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .flow-item:hover {
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .flow-item.active {
+            border-color: var(--secondary);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .flow-arrow {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .flow-item .icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .flow-item h4 {
+            font-family: monospace;
+            color: var(--secondary);
+        }
+
+        .flow-item p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Help Section */
+        .help {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #1e1b4b 0%, var(--bg) 100%);
+        }
+
+        .help h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .help-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .help-card .icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .help-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .help-card p {
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .help-card code {
+            display: inline-block;
+            background: var(--bg);
+            color: var(--secondary);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .flow-diagram {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+
+            .workflow {
+                padding-left: 30px;
+            }
+
+            .workflow::before {
+                left: 10px;
+            }
+
+            .step::before {
+                left: -28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Mine - Antigravity Workflow</h1>
+            <p>Biến ý tưởng thành App mà không cần biết code. Chỉ cần nói, AI lo trọn gói.</p>
+            <a href="#scenarios" class="hero-cta">Bắt đầu ngay</a>
+        </div>
+    </section>
+
+    <!-- Quick Flow -->
+    <section class="flow-section">
+        <div class="container">
+            <h2>Luồng Làm Việc Cơ Bản</h2>
+            <div class="flow-diagram">
+                <div class="flow-item" onclick="showStep('brainstorm')">
+                    <div class="icon">💡</div>
+                    <h4>/brainstorm</h4>
+                    <p>Bàn ý tưởng</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-item" onclick="showStep('plan')">
+                    <div class="icon">📋</div>
+                    <h4>/plan</h4>
+                    <p>Lên kế hoạch</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-item" onclick="showStep('visualize')">
+                    <div class="icon">🎨</div>
+                    <h4>/visualize</h4>
+                    <p>Thiết kế UI</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-item" onclick="showStep('code')">
+                    <div class="icon">💻</div>
+                    <h4>/code</h4>
+                    <p>Viết code</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-item" onclick="showStep('deploy')">
+                    <div class="icon">🚀</div>
+                    <h4>/deploy</h4>
+                    <p>Đưa lên mạng</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scenarios -->
+    <section class="scenarios" id="scenarios">
+        <div class="container">
+            <h2>Chọn Kịch Bản Của Bạn</h2>
+
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="showTab('new')">🆕 Làm App Mới</button>
+                <button class="tab-btn" onclick="showTab('existing')">📦 Có App Sẵn</button>
+                <button class="tab-btn" onclick="showTab('feature')">➕ Thêm Tính Năng</button>
+            </div>
+
+            <!-- Tab 1: New App -->
+            <div id="tab-new" class="tab-content active">
+                <div class="workflow">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <span class="step-title">Bàn ý tưởng</span>
+                        <span class="step-command">/brainstorm</span>
+                        <p class="step-description">Nếu ý tưởng còn mơ hồ, AI sẽ giúp bạn làm rõ.</p>
+                        <div class="step-details">
+                            <h4>AI sẽ hỏi bạn:</h4>
+                            <ul>
+                                <li>"App giải quyết vấn đề gì?"</li>
+                                <li>"Ai sẽ dùng app này?"</li>
+                                <li>"Có muốn em tìm xem đối thủ làm gì không?"</li>
+                            </ul>
+                        </div>
+                        <div class="step-output">
+                            <strong>Output:</strong> BRIEF.md - Tóm tắt ý tưởng rõ ràng
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <span class="step-title">Tạo dự án</span>
+                        <span class="step-command">/init</span>
+                        <p class="step-description">AI tự động thiết lập mọi thứ kỹ thuật.</p>
+                        <div class="step-details">
+                            <h4>AI tự động làm (bạn không cần biết):</h4>
+                            <ul>
+                                <li>Chọn công nghệ phù hợp</li>
+                                <li>Tạo cấu trúc thư mục</li>
+                                <li>Cài đặt Git, ESLint, Prettier</li>
+                                <li>Tạo file môi trường</li>
+                            </ul>
+                        </div>
+                        <div class="step-output">
+                            <strong>Output:</strong> Project sẵn sàng để code
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <span class="step-title">Lên kế hoạch</span>
+                        <span class="step-command">/plan</span>
+                        <p class="step-description">AI thiết kế chi tiết từng tính năng.</p>
+                        <div class="step-details">
+                            <h4>AI sẽ hỏi bạn:</h4>
+                            <ul>
+                                <li>"Có cần đăng nhập không?"</li>
+                                <li>"Quản lý những gì? (Nhân viên, đơn hàng...)"</li>
+                                <li>"Có cần báo cáo, biểu đồ không?"</li>
+                            </ul>
+                        </div>
+                        <div class="step-output">
+                            <strong>Output:</strong> PRD + Database Schema
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <span class="step-title">Thiết kế giao diện</span>
+                        <span class="step-command">/visualize</span>
+                        <p class="step-description">AI tạo giao diện đẹp cho từng màn hình.</p>
+                        <div class="step-details">
+                            <h4>AI sẽ hỏi bạn:</h4>
+                            <ul>
+                                <li>"Màn hình này hiển thị gì?"</li>
+                                <li>"Có những nút nào?"</li>
+                                <li>"Click vào thì đi đâu?"</li>
+                            </ul>
+                        </div>
+                        <div class="step-output">
+                            <strong>Output:</strong> File UI code hoàn chỉnh
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">5</span>
+                        <span class="step-title">Viết code</span>
+                        <span class="step-command">/code</span>
+                        <p class="step-description">AI viết logic xử lý, kết nối database.</p>
+                        <div class="step-details">
+                            <h4>AI tự động làm:</h4>
+                            <ul>
+                                <li>Viết backend (xử lý dữ liệu)</li>
+                                <li>Kết nối database</li>
+                                <li>Xử lý đăng nhập, bảo mật</li>
+                            </ul>
+                        </div>
+                        <div class="step-output">
+                            <strong>Quy tắc vàng:</strong> Chỉ làm những gì bạn yêu cầu
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">6</span>
+                        <span class="step-title">Chạy & Kiểm tra</span>
+                        <span class="step-command">/run</span> <span class="step-command">/test</span>
+                        <p class="step-description">Chạy thử và kiểm tra lỗi.</p>
+                        <div class="step-details">
+                            <h4>Nếu có lỗi:</h4>
+                            <ul>
+                                <li>Gõ /debug để AI tìm và sửa</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">7</span>
+                        <span class="step-title">Đưa lên internet</span>
+                        <span class="step-command">/deploy</span>
+                        <p class="step-description">AI cấu hình và đẩy app lên server.</p>
+                        <div class="step-details">
+                            <h4>AI tự động làm:</h4>
+                            <ul>
+                                <li>Cấu hình hosting</li>
+                                <li>Thiết lập domain</li>
+                                <li>SEO, Analytics, bảo mật</li>
+                            </ul>
+                        </div>
+                        <div class="step-output">
+                            <strong>Output:</strong> App live trên internet!
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">8</span>
+                        <span class="step-title">Lưu kiến thức</span>
+                        <span class="step-command">/save-brain</span>
+                        <p class="step-description">Lưu lại để mai còn nhớ.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: Existing App -->
+            <div id="tab-existing" class="tab-content">
+                <div class="workflow">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <span class="step-title">Cài đặt Mine</span>
+                        <p class="step-description">Chạy lệnh cài đặt trong thư mục project.</p>
+                        <div class="step-details">
+                            <h4>Lệnh cài đặt:</h4>
+                            <ul>
+                                <li>curl -fsSL https://raw.githubusercontent.com/.../install.sh | bash</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <span class="step-title">Cho AI hiểu app</span>
+                        <span class="step-command">/recap</span>
+                        <p class="step-description">AI tự động đọc và hiểu code của bạn.</p>
+                        <div class="step-details">
+                            <h4>AI sẽ tự động:</h4>
+                            <ul>
+                                <li>Đọc cấu trúc thư mục</li>
+                                <li>Phân tích code hiện có</li>
+                                <li>Hiểu tech stack</li>
+                                <li>Xem git history</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <span class="step-title">Lưu kiến thức</span>
+                        <span class="step-command">/save-brain</span>
+                        <p class="step-description">Quan trọng! Để AI "nhớ" app của bạn.</p>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <span class="step-title">Sẵn sàng!</span>
+                        <p class="step-description">Giờ bạn có thể dùng tất cả các lệnh Mine.</p>
+                        <div class="step-details">
+                            <h4>Các lệnh hay dùng:</h4>
+                            <ul>
+                                <li>/plan - Thêm tính năng mới</li>
+                                <li>/debug - Sửa lỗi</li>
+                                <li>/refactor - Dọn dẹp code cũ</li>
+                                <li>/audit - Kiểm tra bảo mật</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 3: Add Feature -->
+            <div id="tab-feature" class="tab-content">
+                <div class="workflow">
+                    <div class="step">
+                        <span class="step-number">0</span>
+                        <span class="step-title">Nhớ lại context</span>
+                        <span class="step-command">/recap</span>
+                        <p class="step-description">Nếu lâu không làm việc với app.</p>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <span class="step-title">Lên ý tưởng</span>
+                        <span class="step-command">/brainstorm</span> hoặc <span class="step-command">/plan</span>
+                        <p class="step-description">Thảo luận hoặc thiết kế tính năng mới.</p>
+                        <div class="step-details">
+                            <h4>Chọn /brainstorm nếu:</h4>
+                            <ul>
+                                <li>Chưa chắc tính năng cần gì</li>
+                                <li>Muốn thảo luận nhiều hướng</li>
+                            </ul>
+                            <h4>Chọn /plan nếu:</h4>
+                            <ul>
+                                <li>Đã biết rõ cần làm gì</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <span class="step-title">Thiết kế UI</span>
+                        <span class="step-command">/visualize</span>
+                        <p class="step-description">Nếu tính năng có giao diện.</p>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <span class="step-title">Viết code</span>
+                        <span class="step-command">/code</span>
+                        <p class="step-description">AI viết code và kết nối với code cũ.</p>
+                        <div class="step-output">
+                            <strong>Quy tắc:</strong> Thay đổi tối thiểu, không phá code đang chạy
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <span class="step-title">Kiểm tra</span>
+                        <span class="step-command">/run</span> <span class="step-command">/test</span>
+                        <p class="step-description">Test tính năng mới VÀ tính năng cũ.</p>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">5</span>
+                        <span class="step-title">Cập nhật server</span>
+                        <span class="step-command">/deploy</span>
+                        <p class="step-description">Đẩy code mới, không downtime.</p>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">6</span>
+                        <span class="step-title">Lưu kiến thức</span>
+                        <span class="step-command">/save-brain</span>
+                        <p class="step-description">Cập nhật kiến thức về tính năng mới.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Commands -->
+    <section class="commands">
+        <div class="container">
+            <h2>Tất Cả Các Lệnh</h2>
+            <div class="command-grid">
+                <div class="command-card">
+                    <div class="icon">💡</div>
+                    <h3>/brainstorm</h3>
+                    <p>Bàn ý tưởng, thảo luận, research thị trường</p>
+                    <span class="command-category cat-start">Khởi đầu</span>
+                </div>
+
+                <div class="command-card">
+                    <div class="icon">✨</div>
+                    <h3>/init</h3>
+                    <p>Tạo dự án mới từ đầu</p>
+                    <span class="command-category cat-start">Khởi đầu</span>
+                </div>
+
+                <div class="command-card">
+                    <div class="icon">🧠</div>
+                    <h3>/recap</h3>
+                    <p>Nhớ lại đang làm gì</p>
+                    <span class="command-category cat-start">Khởi đầu</span>
+                </div>
+
+                <div class="command-card">
+                    <div class="icon">➡️</div>
+                    <h3>/next</h3>
+                    <p>Gợi ý bước tiếp theo</p>
+                    <span class="command-category cat-start">Khởi đầu</span>
+                </div>
+
+                <div class="command-card">
+                    <div class="icon">📋</div>
+                    <h3>/plan</h3>
+                    <p>Lên kế hoạch tính năng</p>
+                    <span class="command-category cat-design">Thiết kế</span>
+                </div>
+
+                <div class="command-card">
+                    <div class="icon">🎨</div>
+                    <h3>/visualize</h3>
+                    <p>Thiết kế giao diện</p>
+                    <span class="command-category cat-design">Thiết kế</span>
+                </div>
+
+                <div class="command-card">
+                    <div class="icon">💻</div>
+                    <h3>/code</h3>
+                    <p>Viết code</p>
+                    <span class="command-category cat-code">Code</span>
+                </div>
+
+                <div class="command-card">
+                    <div class="icon">▶️</div>
+                    <h3>/run</h3>
+                    <p>Chạy app</p>
+                    <span class="command-category cat-code">Code</span>
+                </div>
+
+                <div class="command-card">
+                    <div class="icon">🧪</div>
+                    <h3>/test</h3>
+                    <p>Kiểm tra lỗi</p>
+                    <span class="command-category cat-code">Code</span>
+                </div>
+
+                <div class="command-card">
+                    <div class="icon">🐛</div>
+                    <h3>/debug</h3>
+                    <p>Tìm và sửa lỗi</p>
+                    <span class="command-category cat-maintain">Bảo trì</span>
+                </div>
+
+                <div class="command-card">
+                    <div class="icon">🚀</div>
+                    <h3>/deploy</h3>
+                    <p>Đưa lên internet</p>
+                    <span class="command-category cat-code">Code</span>
+                </div>
+
+                <div class="command-card">
+                    <div class="icon">🔧</div>
+                    <h3>/refactor</h3>
+                    <p>Dọn dẹp code</p>
+                    <span class="command-category cat-maintain">Bảo trì</span>
+                </div>
+
+                <div class="command-card">
+                    <div class="icon">🔍</div>
+                    <h3>/audit</h3>
+                    <p>Kiểm tra bảo mật</p>
+                    <span class="command-category cat-maintain">Bảo trì</span>
+                </div>
+
+                <div class="command-card">
+                    <div class="icon">⏪</div>
+                    <h3>/rollback</h3>
+                    <p>Quay về phiên bản cũ</p>
+                    <span class="command-category cat-maintain">Bảo trì</span>
+                </div>
+
+                <div class="command-card">
+                    <div class="icon">💾</div>
+                    <h3>/save-brain</h3>
+                    <p>Lưu kiến thức</p>
+                    <span class="command-category cat-maintain">Bảo trì</span>
+                </div>
+
+                <div class="command-card">
+                    <div class="icon">🔄</div>
+                    <h3>/mine-update</h3>
+                    <p>Cập nhật Mine</p>
+                    <span class="command-category cat-maintain">Bảo trì</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Help Section -->
+    <section class="help">
+        <div class="container">
+            <h2>Khi Gặp Khó Khăn</h2>
+            <div class="help-grid">
+                <div class="help-card">
+                    <div class="icon">😕</div>
+                    <h3>Không biết làm gì?</h3>
+                    <p>AI sẽ phân tích và gợi ý bước tiếp theo</p>
+                    <code>/next</code>
+                </div>
+
+                <div class="help-card">
+                    <div class="icon">🐛</div>
+                    <h3>App bị lỗi?</h3>
+                    <p>AI sẽ tìm và sửa lỗi cho bạn</p>
+                    <code>/debug</code>
+                </div>
+
+                <div class="help-card">
+                    <div class="icon">😱</div>
+                    <h3>Làm hỏng gì đó?</h3>
+                    <p>Quay về phiên bản trước đó</p>
+                    <code>/rollback</code>
+                </div>
+
+                <div class="help-card">
+                    <div class="icon">🤔</div>
+                    <h3>Quên mất đang làm gì?</h3>
+                    <p>AI sẽ nhắc lại cho bạn</p>
+                    <code>/recap</code>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Mine - Antigravity Workflow Framework</p>
+            <p>Your ideas, our engineering.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Remove active from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById('tab-' + tabName).classList.add('active');
+
+            // Add active to clicked button
+            event.target.classList.add('active');
+        }
+
+        function showStep(step) {
+            // Remove active from all flow items
+            document.querySelectorAll('.flow-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Add active to clicked item
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
