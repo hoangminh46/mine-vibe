@@ -185,5 +185,7 @@ Write-Host "👉 Thử gõ '/plan' để kiểm tra." -ForegroundColor White
 Write-Host "👉 Kiểm tra update: '/mine-update'" -ForegroundColor White
 Write-Host ""
 
-# Exit cleanly
-exit 0
+# Pause to let user read output
+Write-Host "Press Enter to exit..." -ForegroundColor Gray
+Read-Host
+
