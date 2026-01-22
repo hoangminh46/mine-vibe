@@ -14,7 +14,7 @@ January 2026
 
 ## Abstract
 
-Comprehensive performance optimization guide for React and Next.js applications, designed for AI agents and LLMs. Contains 40+ rules across 8 categories, prioritized by impact from critical (eliminating waterfalls, reducing bundle size) to incremental (advanced patterns). Each rule includes detailed explanations, real-world examples comparing incorrect vs. correct implementations, and specific impact metrics to guide automated refactoring and code generation.
+Comprehensive performance optimization guide for React and Next.js applications, designed for AI agents and LLMs. Contains 45 rules across 8 categories, prioritized by impact from critical (eliminating waterfalls, reducing bundle size) to incremental (advanced patterns). Each rule includes detailed explanations, real-world examples comparing incorrect vs. correct implementations, and specific impact metrics to guide automated refactoring and code generation.
 
 ---
 
@@ -1074,7 +1074,7 @@ Subscribe to derived boolean state instead of continuous values to reduce re-ren
 function Sidebar() {
   const width = useWindowWidth()  // updates continuously
   const isMobile = width < 768
-  return <nav className={isMobile ? 'mobile' : 'desktop'}>
+  return <nav className={isMobile ? 'mobile' : 'desktop'}></nav>
 }
 ```
 
@@ -1083,7 +1083,7 @@ function Sidebar() {
 ```tsx
 function Sidebar() {
   const isMobile = useMediaQuery('(max-width: 767px)')
-  return <nav className={isMobile ? 'mobile' : 'desktop'}>
+  return <nav className={isMobile ? 'mobile' : 'desktop'}></nav>
 }
 ```
 
