@@ -20,6 +20,11 @@ TEMPLATES=(
     "brain.example.json" "session.example.json" "preferences.example.json"
 )
 
+# Skills
+SKILLS=(
+    "vercel-react-best-practices"
+)
+
 # Detect paths
 ANTIGRAVITY_GLOBAL="$HOME/.gemini/antigravity/global_workflows"
 SCHEMAS_DIR="$HOME/.gemini/antigravity/schemas"
@@ -59,7 +64,7 @@ for wf in "${WORKFLOWS[@]}"; do
     fi
 done
 
-# 2. Download Schemas (v3.3+)
+# 2. Download Schemas
 mkdir -p "$SCHEMAS_DIR"
 echo "⏳ Đang tải schemas..."
 for schema in "${SCHEMAS[@]}"; do
@@ -71,7 +76,7 @@ for schema in "${SCHEMAS[@]}"; do
     fi
 done
 
-# 3. Download Templates (v3.3+)
+# 3. Download Templates
 mkdir -p "$TEMPLATES_DIR"
 echo "⏳ Đang tải templates..."
 for template in "${TEMPLATES[@]}"; do
@@ -83,7 +88,28 @@ for template in "${TEMPLATES[@]}"; do
     fi
 done
 
-# 4. Save version
+# 4. Install Skills
+mkdir -p "$HOME/.gemini/antigravity/skills"
+SKILLS_DIR="$HOME/.gemini/antigravity/skills"
+echo "⏳ Đang tải skills..."
+for skill in "${SKILLS[@]}"; do
+    skill_path="$SKILLS_DIR/$skill"
+    mkdir -p "$skill_path"
+    
+    if curl -f -s -o "$skill_path/SKILL.md" "$REPO_BASE/skills/$skill/SKILL.md"; then
+        echo "   ✅ Skill: $skill"
+        ((success++))
+        
+        # Optional AGENTS.md for this specific skill
+        if [ "$skill" == "vercel-react-best-practices" ]; then
+            curl -f -s -o "$skill_path/AGENTS.md" "$REPO_BASE/skills/$skill/AGENTS.md" || true
+        fi
+    else
+        echo "   ❌ Skill: $skill"
+    fi
+done
+
+# 5. Save version
 mkdir -p "$HOME/.gemini"
 echo "$CURRENT_VERSION" > "$MINE_VERSION_FILE"
 echo "✅ Đã lưu version: $CURRENT_VERSION"
@@ -195,6 +221,7 @@ echo ""
 echo "📂 Workflows: $ANTIGRAVITY_GLOBAL"
 echo "📂 Schemas:   $SCHEMAS_DIR"
 echo "📂 Templates: $TEMPLATES_DIR"
+echo "📂 Skills:    $SKILLS_DIR"
 echo ""
 echo "👉 Bạn có thể dùng Mine ở BẤT KỲ project nào ngay lập tức!"
 echo "👉 Thử gõ '/plan' để kiểm tra."

@@ -19,10 +19,16 @@ $Templates = @(
     "brain.example.json", "session.example.json", "preferences.example.json"
 )
 
+# Skills
+$Skills = @(
+    "vercel-react-best-practices"
+)
+
 # Detect Antigravity Global Path
 $AntigravityGlobal = "$env:USERPROFILE\.gemini\antigravity\global_workflows"
 $SchemasDir = "$env:USERPROFILE\.gemini\antigravity\schemas"
 $TemplatesDir = "$env:USERPROFILE\.gemini\antigravity\templates"
+$SkillsDir = "$env:USERPROFILE\.gemini\antigravity\skills"
 $GeminiMd = "$env:USERPROFILE\.gemini\GEMINI.md"
 $MineVersionFile = "$env:USERPROFILE\.gemini\mine_version"
 
@@ -67,7 +73,7 @@ foreach ($wf in $Workflows) {
     }
 }
 
-# 2. Download Schemas (v3.3+)
+# 2. Download Schemas
 if (-not (Test-Path $SchemasDir)) {
     New-Item -ItemType Directory -Force -Path $SchemasDir | Out-Null
 }
@@ -82,7 +88,7 @@ foreach ($schema in $Schemas) {
     }
 }
 
-# 3. Download Templates (v3.3+)
+# 3. Download Templates
 if (-not (Test-Path $TemplatesDir)) {
     New-Item -ItemType Directory -Force -Path $TemplatesDir | Out-Null
 }
@@ -97,7 +103,34 @@ foreach ($template in $Templates) {
     }
 }
 
-# 4. Save version
+# 4. Install Skills
+if (-not (Test-Path $SkillsDir)) {
+    New-Item -ItemType Directory -Force -Path $SkillsDir | Out-Null
+}
+Write-Host "⏳ Đang tải skills..." -ForegroundColor Cyan
+foreach ($skill in $Skills) {
+    try {
+        $SkillPath = "$SkillsDir\$skill"
+        if (-not (Test-Path $SkillPath)) {
+            New-Item -ItemType Directory -Force -Path $SkillPath | Out-Null
+        }
+        
+        # Download SKILL.md
+        Invoke-WebRequest -Uri "$RepoBase/skills/$skill/SKILL.md" -OutFile "$SkillPath\SKILL.md" -ErrorAction Stop
+        Write-Host "   ✅ Skill: $skill" -ForegroundColor Green
+        
+        # Optional: Download AGENTS.md if it exists for vercel-react-best-practices
+        if ($skill -eq "vercel-react-best-practices") {
+             Invoke-WebRequest -Uri "$RepoBase/skills/$skill/AGENTS.md" -OutFile "$SkillPath\AGENTS.md" -ErrorAction SilentlyContinue
+        }
+        
+        $success++
+    } catch {
+        Write-Host "   ❌ Skill: $skill" -ForegroundColor Red
+    }
+}
+
+# 5. Save version
 if (-not (Test-Path "$env:USERPROFILE\.gemini")) {
     New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.gemini" | Out-Null
 }
@@ -217,6 +250,7 @@ Write-Host ""
 Write-Host "📂 Workflows: $AntigravityGlobal" -ForegroundColor DarkGray
 Write-Host "📂 Schemas:   $SchemasDir" -ForegroundColor DarkGray
 Write-Host "📂 Templates: $TemplatesDir" -ForegroundColor DarkGray
+Write-Host "📂 Skills:    $SkillsDir" -ForegroundColor DarkGray
 Write-Host ""
 Write-Host "👉 Bạn có thể dùng Mine ở BẤT KỲ project nào ngay lập tức!" -ForegroundColor Cyan
 Write-Host "👉 Thử gõ '/plan' để kiểm tra." -ForegroundColor White
