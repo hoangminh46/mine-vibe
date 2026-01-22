@@ -89,8 +89,8 @@ for template in "${TEMPLATES[@]}"; do
 done
 
 # 4. Install Skills
-mkdir -p "$HOME/.gemini/antigravity/skills"
-SKILLS_DIR="$HOME/.gemini/antigravity/skills"
+mkdir -p "$HOME/.gemini/antigravity/global_skills"
+SKILLS_DIR="$HOME/.gemini/antigravity/global_skills"
 echo "⏳ Đang tải skills..."
 for skill in "${SKILLS[@]}"; do
     skill_path="$SKILLS_DIR/$skill"

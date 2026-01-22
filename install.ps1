@@ -28,7 +28,7 @@ $Skills = @(
 $AntigravityGlobal = "$env:USERPROFILE\.gemini\antigravity\global_workflows"
 $SchemasDir = "$env:USERPROFILE\.gemini\antigravity\schemas"
 $TemplatesDir = "$env:USERPROFILE\.gemini\antigravity\templates"
-$SkillsDir = "$env:USERPROFILE\.gemini\antigravity\skills"
+$SkillsDir = "$env:USERPROFILE\.gemini\antigravity\global_skills"
 $GeminiMd = "$env:USERPROFILE\.gemini\GEMINI.md"
 $MineVersionFile = "$env:USERPROFILE\.gemini\mine_version"
 
