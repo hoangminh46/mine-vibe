@@ -21,7 +21,9 @@ $Templates = @(
 
 # Skills
 $Skills = @(
-    "vercel-react-best-practices"
+    "vercel-react-best-practices",
+    "nodejs-best-practices",
+    "vuejs-best-practices"
 )
 
 # Detect Antigravity Global Path
@@ -119,10 +121,8 @@ foreach ($skill in $Skills) {
         Invoke-WebRequest -Uri "$RepoBase/skills/$skill/SKILL.md" -OutFile "$SkillPath\SKILL.md" -ErrorAction Stop
         Write-Host "   ✅ Skill: $skill" -ForegroundColor Green
         
-        # Optional: Download AGENTS.md if it exists for vercel-react-best-practices
-        if ($skill -eq "vercel-react-best-practices") {
-             Invoke-WebRequest -Uri "$RepoBase/skills/$skill/AGENTS.md" -OutFile "$SkillPath\AGENTS.md" -ErrorAction SilentlyContinue
-        }
+        # Download AGENTS.md if it exists
+        Invoke-WebRequest -Uri "$RepoBase/skills/$skill/AGENTS.md" -OutFile "$SkillPath\AGENTS.md" -ErrorAction SilentlyContinue
         
         $success++
     } catch {

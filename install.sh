@@ -23,6 +23,8 @@ TEMPLATES=(
 # Skills
 SKILLS=(
     "vercel-react-best-practices"
+    "nodejs-best-practices"
+    "vuejs-best-practices"
 )
 
 # Detect paths
@@ -100,10 +102,8 @@ for skill in "${SKILLS[@]}"; do
         echo "   ✅ Skill: $skill"
         ((success++))
         
-        # Optional AGENTS.md for this specific skill
-        if [ "$skill" == "vercel-react-best-practices" ]; then
-            curl -f -s -o "$skill_path/AGENTS.md" "$REPO_BASE/skills/$skill/AGENTS.md" || true
-        fi
+        # Download AGENTS.md if it exists
+        curl -f -s -o "$skill_path/AGENTS.md" "$REPO_BASE/skills/$skill/AGENTS.md" || true
     else
         echo "   ❌ Skill: $skill"
     fi
