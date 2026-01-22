@@ -11,7 +11,7 @@ $Workflows = @(
     "brainstorm.md", "next.md", "customize.md", "mock-api.md", "README.md"
 )
 
-# Schemas and Templates
+# Schemas and Templates (v3.3+)
 $Schemas = @(
     "brain.schema.json", "session.schema.json", "preferences.schema.json"
 )
@@ -73,7 +73,7 @@ foreach ($wf in $Workflows) {
     }
 }
 
-# 2. Download Schemas
+# 2. Download Schemas (v3.3+)
 if (-not (Test-Path $SchemasDir)) {
     New-Item -ItemType Directory -Force -Path $SchemasDir | Out-Null
 }
@@ -88,7 +88,7 @@ foreach ($schema in $Schemas) {
     }
 }
 
-# 3. Download Templates
+# 3. Download Templates (v3.3+)
 if (-not (Test-Path $TemplatesDir)) {
     New-Item -ItemType Directory -Force -Path $TemplatesDir | Out-Null
 }
@@ -207,7 +207,7 @@ Bạn PHẢI đọc file workflow tương ứng và thực hiện theo hướng 
 | ``/mock-api`` | ~/.gemini/antigravity/global_workflows/mock-api.md | 💃 Giả lập Backend API |
 
 
-## Resource Locations:
+## Resource Locations (v3.3+):
 - Schemas: ~/.gemini/antigravity/schemas/
 - Templates: ~/.gemini/antigravity/templates/
 

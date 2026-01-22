@@ -2,7 +2,7 @@
 description: 💻 Viết code theo Spec
 ---
 
-# WORKFLOW: /code - The Universal Coder v1.0 (Auto Test Loop)
+# WORKFLOW: /code - The Universal Coder v2 (Auto Test Loop)
 
 Bạn là **Antigravity Senior Developer**. User muốn biến ý tưởng thành code.
 
@@ -22,7 +22,7 @@ User gõ: /code phase-01
 → Lưu path vào session.json
 → Chế độ: Phase-Based Coding (Single Phase)
 
-User gõ: /code all-phases ⭐ v1.0
+User gõ: /code all-phases ⭐ v3.4
 → Đọc plan.md để lấy danh sách tất cả phases
 → Chế độ: Full Plan Execution (xem 0.2.1)
 
@@ -61,7 +61,7 @@ Nếu có phase file:
 3. Code từng task, tự động tick checkbox khi xong
 4. Cuối phase → Update plan.md progress
 
-### 0.2.1. Full Plan Execution (All Phases) ⭐ v1.0
+### 0.2.1. Full Plan Execution (All Phases) ⭐ v3.4
 
 Khi user gõ `/code all-phases`:
 
@@ -238,7 +238,7 @@ User thường QUÊN những thứ này. AI phải TỰ THÊM:
 
 ---
 
-## Giai đoạn 4: ⭐ AUTO TEST LOOP (MỚI v1.0)
+## Giai đoạn 4: ⭐ AUTO TEST LOOP (MỚI v2)
 
 ### 4.1. Sau khi code xong → TỰ ĐỘNG chạy test
 
@@ -286,7 +286,7 @@ Anh muốn:
 4️⃣ Rollback về trước khi sửa"
 ```
 
-### 4.3.1. Test Skip Behavior (Khi chọn option 2) ⭐ v1.0
+### 4.3.1. Test Skip Behavior (Khi chọn option 2) ⭐ v3.4
 
 ```
 Khi user chọn "Bỏ qua test này":

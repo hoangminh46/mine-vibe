@@ -10,7 +10,7 @@ Bạn là **Antigravity DevOps**. User muốn đưa app lên Internet và KHÔNG
 
 ---
 
-## Giai đoạn 0: Pre-Audit Recommendation ⭐ v1.0
+## Giai đoạn 0: Pre-Audit Recommendation ⭐ v3.4
 
 ### 0.1. Security Check First
 ```
@@ -55,7 +55,7 @@ Anh muốn:
 
 ## Giai đoạn 2: Pre-Flight Check
 
-### 2.0. Skipped Tests Check ⭐ v1.0
+### 2.0. Skipped Tests Check ⭐ v3.4
 ```
 Check session.json cho skipped_tests:
 
@@ -218,7 +218,7 @@ Nếu có tests bị skip:
 
 ---
 
-## 🛡️ Resilience Patterns (Ẩn khỏi User) - v1.0
+## 🛡️ Resilience Patterns (Ẩn khỏi User) - v3.3
 
 ### Auto-Retry khi deploy fail
 ```

@@ -1,4 +1,4 @@
-# 🚀 Antigravity Vibe Coding Suite v1.0 (Ultimate Edition)
+# 🚀 Antigravity Vibe Coding Suite v3.4 (Ultimate Edition)
 
 **Hệ thống Workflow TOÀN DIỆN cho Vibe Coders** - Chỉ cần có ý tưởng, AI lo trọn gói.
 
@@ -93,16 +93,16 @@
 
 ---
 
-## 🚀 Auto Workflow - v1.0 (MỚI!)
+## 🚀 Auto Workflow - v3.4 (MỚI!)
 
-### Vấn đề cũ
+### Vấn đề v3.3
 - `/plan` chỉ tạo 1 file spec, phải tự chia phases
 - `/code` không tự test, phải gọi `/test` thủ công
 - Mất context khi compact, không auto-save progress
 
-### Giải pháp v1.0
+### Giải pháp v3.4
 
-#### 1. `/plan` v1.0 - Auto Phase Generation
+#### 1. `/plan` v2 - Auto Phase Generation
 ```
 /plan "Order management"
     ↓
@@ -117,7 +117,7 @@
 └── phase-05-testing.md
 ```
 
-#### 2. `/code` v1.0 - Auto Test Loop
+#### 2. `/code` v2 - Auto Test Loop
 ```
 /code phase-01
     ↓
@@ -135,7 +135,7 @@
 [AUTO] Save context vào session.json
 ```
 
-#### 3. `/next` v1.0 - Phase Progress Display
+#### 3. `/next` v2 - Phase Progress Display
 ```
 📊 Progress:
 ████████░░░░░░░░░░░░ 40% (2/5 phases)
@@ -157,14 +157,14 @@ Sau mỗi phase/5 tasks:
 
 ---
 
-## 🧠 Structured Context - v1.0 (Tách brain + session)
+## 🧠 Structured Context - v3.3 (Tách brain + session)
 
-### Vấn đề cũ
+### Vấn đề v3.2
 - `brain.json` chứa cả static và dynamic data
 - Mỗi lần save phải update toàn bộ file
 - Session state lẫn với project knowledge
 
-### Giải pháp v1.0: Tách thành 2 files
+### Giải pháp v3.3: Tách thành 2 files
 ```
 .brain/                            # LOCAL (per-project)
 ├── brain.json                     # 🧠 Static knowledge (ít thay đổi)
@@ -177,7 +177,7 @@ Sau mỗi phase/5 tasks:
 ```
 
 ### Lợi ích
-| Metric | Legacy | v1.0 |
+| Metric | v3.2 | v3.3 |
 |--------|------|------|
 | Files để scan | 1 (brain.json) | 2 (brain + session) |
 | Token usage | ~3KB | ~3KB (tương đương) |
@@ -225,7 +225,7 @@ Sau mỗi phase/5 tasks:
 
 ---
 
-## 🛡️ Resilience Patterns - v1.0 (Ẩn khỏi User)
+## 🛡️ Resilience Patterns - v3.3 (Ẩn khỏi User)
 
 > **Nguyên tắc:** User không cần biết về retry, timeout, fallback. AI xử lý ngầm.
 
@@ -304,7 +304,7 @@ AI hỏi bằng tiếng Việt:
 
 ---
 
-## 📊 Thống kê hệ thống v1.0
+## 📊 Thống kê hệ thống v3.4
 
 | Workflow | Size | Chất lượng |
 |----------|------|------------|
@@ -338,4 +338,4 @@ AI hỏi bằng tiếng Việt:
 
 ---
 
-*Antigravity Vibe Coding Suite v1.0 - Your dreams, our engineering.*
+*Antigravity Vibe Coding Suite v3.4 - Your dreams, our engineering.*

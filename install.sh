@@ -12,7 +12,7 @@ WORKFLOWS=(
     "brainstorm.md" "next.md" "customize.md" "mock-api.md" "README.md"
 )
 
-# Schemas and Templates
+# Schemas and Templates (v3.3+)
 SCHEMAS=(
     "brain.schema.json" "session.schema.json" "preferences.schema.json"
 )
@@ -64,7 +64,7 @@ for wf in "${WORKFLOWS[@]}"; do
     fi
 done
 
-# 2. Download Schemas
+# 2. Download Schemas (v3.3+)
 mkdir -p "$SCHEMAS_DIR"
 echo "⏳ Đang tải schemas..."
 for schema in "${SCHEMAS[@]}"; do
@@ -76,7 +76,7 @@ for schema in "${SCHEMAS[@]}"; do
     fi
 done
 
-# 3. Download Templates
+# 3. Download Templates (v3.3+)
 mkdir -p "$TEMPLATES_DIR"
 echo "⏳ Đang tải templates..."
 for template in "${TEMPLATES[@]}"; do
@@ -182,7 +182,7 @@ Bạn PHẢI đọc file workflow tương ứng và thực hiện theo hướng 
 | `/mine-update` | ~/.gemini/antigravity/global_workflows/mine-update.md | Cập nhật Mine |
 | `/mock-api` | ~/.gemini/antigravity/global_workflows/mock-api.md | 💃 Giả lập Backend API |
 
-
+## Resource Locations (v3.3+):
 - Schemas: ~/.gemini/antigravity/schemas/
 - Templates: ~/.gemini/antigravity/templates/
 
