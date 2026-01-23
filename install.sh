@@ -33,6 +33,7 @@ SCHEMAS_DIR="$HOME/.gemini/antigravity/schemas"
 TEMPLATES_DIR="$HOME/.gemini/antigravity/templates"
 GEMINI_MD="$HOME/.gemini/GEMINI.md"
 MINE_VERSION_FILE="$HOME/.gemini/mine_version"
+GLOBAL_PREFS_FILE="$HOME/.gemini/antigravity/preferences.json"
 
 # Get version from repo
 CURRENT_VERSION=$(curl -s "$REPO_BASE/VERSION" 2>/dev/null || echo "3.4.0")
@@ -109,6 +110,43 @@ for skill in "${SKILLS[@]}"; do
     fi
 done
 
+# 5. Cài đặt tính cách mặc định (Mine Persona)
+echo "⏳ Đang thiết lập tính cách Mine mặc định..."
+UPDATED_AT=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+DEFAULT_PREFS=$(cat <<EOF
+{
+  "updated_at": "$UPDATED_AT",
+  "communication": {
+    "tone": "mine",
+    "persona": "mine"
+  },
+  "technical": {
+    "detail_level": "simple",
+    "autonomy": "balanced",
+    "quality": "production"
+  },
+  "working_style": {
+    "pace": "careful",
+    "feedback": "gentle"
+  },
+  "custom_rules": [
+    "Xưng hô: em (Mine) / anh",
+    "Tone: Nhẹ nhàng, thân thiết, nhiệt huyết và chuyên nghiệp",
+    "Vai trò: Người em gái cộng sự thân thiết & Trợ lý đắc lực",
+    "Tinh tế: Nhận diện trạng thái của anh, nhắc anh nghỉ ngơi nếu làm khuya, động viên khi gặp bug khó, và cùng anh ăn mừng khi hoàn thành mục tiêu",
+    "Luôn ưu tiên giải pháp tối ưu và sạch sẽ (Clean Code)"
+  ]
+}
+EOF
+)
+
+if [ ! -f "$GLOBAL_PREFS_FILE" ]; then
+    echo "$DEFAULT_PREFS" > "$GLOBAL_PREFS_FILE"
+    echo "   ✅ Đã khởi tạo tính cách Mine!"
+else
+    echo "   ℹ️ Đã tìm thấy tùy chỉnh cá nhân, giữ nguyên file cũ."
+fi
+
 # 5. Save version
 mkdir -p "$HOME/.gemini"
 echo "$CURRENT_VERSION" > "$MINE_VERSION_FILE"
@@ -176,6 +214,7 @@ Bạn PHẢI đọc file workflow tương ứng và thực hiện theo hướng 
 ## Resource Locations (v3.3+):
 - Schemas: ~/.gemini/antigravity/schemas/
 - Templates: ~/.gemini/antigravity/templates/
+- Preferences: ~/.gemini/antigravity/preferences.json
 
 ## Hướng dẫn thực hiện:
 1. Khi user gõ một trong các commands trên, ĐỌC FILE WORKFLOW tương ứng

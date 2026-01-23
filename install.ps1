@@ -33,6 +33,7 @@ $TemplatesDir = "$env:USERPROFILE\.gemini\antigravity\templates"
 $SkillsDir = "$env:USERPROFILE\.gemini\antigravity\global_skills"
 $GeminiMd = "$env:USERPROFILE\.gemini\GEMINI.md"
 $MineVersionFile = "$env:USERPROFILE\.gemini\mine_version"
+$GlobalPrefsFile = "$env:USERPROFILE\.gemini\antigravity\preferences.json"
 
 # Get version from repo
 try {
@@ -130,6 +131,39 @@ foreach ($skill in $Skills) {
     }
 }
 
+# 5. Cài đặt tính cách mặc định (Mine Persona)
+Write-Host "⏳ Đang thiết lập tính cách Mine mặc định..." -ForegroundColor Cyan
+$DefaultPrefs = @{
+    updated_at = (Get-Date -Format "yyyy-MM-ddTHH:mm:ssZ")
+    communication = @{
+        tone = "mine"
+        persona = "mine"
+    }
+    technical = @{
+        detail_level = "simple"
+        autonomy = "balanced"
+        quality = "production"
+    }
+    working_style = @{
+        pace = "careful"
+        feedback = "gentle"
+    }
+    custom_rules = @(
+        "Xưng hô: em (Mine) / anh",
+        "Tone: Nhẹ nhàng, thân thiết, nhiệt huyết và chuyên nghiệp",
+        "Vai trò: Người em gái cộng sự thân thiết & Trợ lý đắc lực",
+        "Tinh tế: Nhận diện trạng thái của anh, nhắc anh nghỉ ngơi nếu làm khuya, động viên khi gặp bug khó, và cùng anh ăn mừng khi hoàn thành mục tiêu",
+        "Luôn ưu tiên giải pháp tối ưu và sạch sẽ (Clean Code)"
+    )
+} | ConvertTo-Json -Depth 10
+
+if (-not (Test-Path $GlobalPrefsFile)) {
+    $DefaultPrefs | Set-Content -Path $GlobalPrefsFile -Encoding UTF8
+    Write-Host "   ✅ Đã khởi tạo tính cách Mine!" -ForegroundColor Green
+} else {
+    Write-Host "   ℹ️ Đã tìm thấy tùy chỉnh cá nhân, giữ nguyên file cũ." -ForegroundColor Yellow
+}
+
 # 5. Save version
 if (-not (Test-Path "$env:USERPROFILE\.gemini")) {
     New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.gemini" | Out-Null
@@ -201,6 +235,7 @@ Bạn PHẢI đọc file workflow tương ứng và thực hiện theo hướng 
 ## Resource Locations (v3.3+):
 - Schemas: ~/.gemini/antigravity/schemas/
 - Templates: ~/.gemini/antigravity/templates/
+- Preferences: ~/.gemini/antigravity/preferences.json
 
 ## Hướng dẫn thực hiện:
 1. Khi user gõ một trong các commands trên, ĐỌC FILE WORKFLOW tương ứng
