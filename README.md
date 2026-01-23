@@ -86,12 +86,12 @@ curl -fsSL https://raw.githubusercontent.com/hoangminh46/mine-vibe/main/install.
 
 ### 🪟 Windows (PowerShell)
 ```powershell
-powershell -ExecutionPolicy Bypass -File ./uninstall.ps1
+iex "& { $(irm https://raw.githubusercontent.com/hoangminh46/mine-vibe/main/uninstall.ps1) }"
 ```
 
 ### 🍎 Mac / Linux (Terminal)
 ```bash
-./uninstall.sh
+curl -fsSL https://raw.githubusercontent.com/hoangminh46/mine-vibe/main/uninstall.sh | bash
 ```
 
 ## 🎮 How to Use (Hướng dẫn)

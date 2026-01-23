@@ -2,7 +2,9 @@
 # Mine Uninstaller for Mac/Linux
 # Gỡ bỏ toàn bộ Antigravity Global Workflows và cấu hình
 
-ANTIGRAVITY_DIR="$HOME/.gemini/antigravity"
+ANTIGRAVITY_BASE="$HOME/.gemini/antigravity"
+SUB_DIRS=("global_workflows" "schemas" "templates" "global_skills")
+PREFS_FILE="$HOME/.gemini/antigravity/preferences.json"
 GEMINI_MD="$HOME/.gemini/GEMINI.md"
 MINE_VERSION_FILE="$HOME/.gemini/mine_version"
 
@@ -21,10 +23,20 @@ fi
 
 echo -e "\033[0;36m⏳ Đang gỡ bỏ...\033[0m"
 
-# 2. Xoá thư mục antigravity
-if [ -d "$ANTIGRAVITY_DIR" ]; then
-    rm -rf "$ANTIGRAVITY_DIR"
-    echo -e "\033[0;32m   ✅ Đã xoá thư mục dữ liệu: $ANTIGRAVITY_DIR\033[0m"
+# 2. Xoá các thư mục và file cấu hình cụ thể
+echo -e "\033[0;36m⏳ Đang xoá các thành phần của Mine...\033[0m"
+
+for dir in "${SUB_DIRS[@]}"; do
+    path="$ANTIGRAVITY_BASE/$dir"
+    if [ -d "$path" ]; then
+        rm -rf "$path"
+        echo -e "\033[0;32m   ✅ Đã xoá: $dir\033[0m"
+    fi
+done
+
+if [ -f "$PREFS_FILE" ]; then
+    rm "$PREFS_FILE"
+    echo -e "\033[0;32m   ✅ Đã xoá config: preferences.json\033[0m"
 fi
 
 # 3. Xoá file phiên bản
@@ -33,22 +45,10 @@ if [ -f "$MINE_VERSION_FILE" ]; then
     echo -e "\033[0;32m   ✅ Đã xoá file version.\033[0m"
 fi
 
-# 4. Dọn dẹp GEMINI.md
+# 4. Làm rỗng GEMINI.md (Không xoá hẳn)
 if [ -f "$GEMINI_MD" ]; then
-    # Tìm dòng bắt đầu của Mine section
-    marker="# Mine - Antigravity Workflow Framework"
-    if grep -q "$marker" "$GEMINI_MD"; then
-        # Xoá từ marker đến hết file
-        sed -i "/$marker/,\$d" "$GEMINI_MD"
-        
-        # Nếu file trống thì xoá luôn
-        if [ ! -s "$GEMINI_MD" ]; then
-            rm "$GEMINI_MD"
-            echo -e "\033[0;32m   ✅ Đã xoá file GEMINI.md (vì không còn nội dung khác).\033[0m"
-        else
-            echo -e "\033[0;32m   ✅ Đã gỡ bỏ quy tắc Mine khỏi GEMINI.md.\033[0m"
-        fi
-    fi
+    > "$GEMINI_MD"
+    echo -e "\033[0;32m   ✅ Đã làm rỗng file GEMINI.md.\033[0m"
 fi
 
 echo ""

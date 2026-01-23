@@ -1,7 +1,9 @@
 # Mine Uninstaller for Windows (PowerShell)
 # Gỡ bỏ toàn bộ Antigravity Global Workflows và cấu hình
 
-$AntigravityDir = "$env:USERPROFILE\.gemini\antigravity"
+$AntigravityBase = "$env:USERPROFILE\.gemini\antigravity"
+$SubDirs = @("global_workflows", "schemas", "templates", "global_skills")
+$PrefsFile = "$env:USERPROFILE\.gemini\antigravity\preferences.json"
 $GeminiMd = "$env:USERPROFILE\.gemini\GEMINI.md"
 $MineVersionFile = "$env:USERPROFILE\.gemini\mine_version"
 
@@ -20,10 +22,20 @@ if ($Confirm -ne "y") {
 
 Write-Host "⏳ Đang gỡ bỏ..." -ForegroundColor Cyan
 
-# 2. Xoá thư mục antigravity (Workflows, Schemas, Templates, Skills)
-if (Test-Path $AntigravityDir) {
-    Remove-Item -Path $AntigravityDir -Recurse -Force
-    Write-Host "   ✅ Đã xoá thư mục dữ liệu: $AntigravityDir" -ForegroundColor Green
+# 2. Xoá các thư mục và file cấu hình cụ thể
+Write-Host "⏳ Đang xoá các thành phần của Mine..." -ForegroundColor Cyan
+
+foreach ($dir in $SubDirs) {
+    $Path = Join-Path $AntigravityBase $dir
+    if (Test-Path $Path) {
+        Remove-Item -Path $Path -Recurse -Force
+        Write-Host "   ✅ Đã xoá: $dir" -ForegroundColor Green
+    }
+}
+
+if (Test-Path $PrefsFile) {
+    Remove-Item -Path $PrefsFile -Force
+    Write-Host "   ✅ Đã xoá config: preferences.json" -ForegroundColor Green
 }
 
 # 3. Xoá file phiên bản
@@ -32,23 +44,10 @@ if (Test-Path $MineVersionFile) {
     Write-Host "   ✅ Đã xoá file version." -ForegroundColor Green
 }
 
-# 4. Dọn dẹp GEMINI.md (Xoá phần quy tắc của Mine)
+# 4. Làm rỗng GEMINI.md (Không xoá hẳn)
 if (Test-Path $GeminiMd) {
-    $content = Get-Content $GeminiMd -Raw -ErrorAction SilentlyContinue
-    if ($null -ne $content) {
-        $mineMarker = "# Mine - Antigravity Workflow Framework"
-        $markerIndex = $content.IndexOf($mineMarker)
-        if ($markerIndex -ge 0) {
-            $cleanedContent = $content.Substring(0, $markerIndex).TrimEnd()
-            if ([string]::IsNullOrWhiteSpace($cleanedContent)) {
-                Remove-Item -Path $GeminiMd -Force
-                Write-Host "   ✅ Đã xoá file GEMINI.md (vì không còn nội dung khác)." -ForegroundColor Green
-            } else {
-                Set-Content -Path $GeminiMd -Value $cleanedContent -Encoding UTF8
-                Write-Host "   ✅ Đã gỡ bỏ quy tắc Mine khỏi GEMINI.md." -ForegroundColor Green
-            }
-        }
-    }
+    Clear-Content -Path $GeminiMd
+    Write-Host "   ✅ Đã làm rỗng file GEMINI.md." -ForegroundColor Green
 }
 
 Write-Host ""
