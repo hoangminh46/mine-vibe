@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "schema_version": "1.1.0",
+    "mine_version": "3.4.1",
+    "updated_at": "2026-01-23T06:04:18Z"
+  },
+  "project": {
+    "name": "mine-vibe",
+    "type": "Framework / Toolset",
+    "status": "production",
+    "description": "Operating System for Vibe Coders & AI Engineers"
+  },
+  "tech_stack": {
+    "frontend": "Vanilla HTML/CSS/JS (Visualization)",
+    "scripts": ["PowerShell", "Bash"],
+    "documentation": "Markdown (Workflows)",
+    "ai_engine": "Antigravity/Cursor"
+  },
+  "database_schema": {
+    "tables": [],
+    "relationships": []
+  },
+  "api_endpoints": [],
+  "business_rules": [
+    "KISS & YAGNI: Keep it simple.",
+    "DRY: Don't repeat logic.",
+    "Single Source of Truth: Data in one place.",
+    "One Function, One Job: Keep functions focused.",
+    "Fail Fast & Loud: Catch and log errors immediately."
+  ],
+  "features": [
+    { "name": "/brainstorm", "status": "implemented", "description": "Market research & idea discussion" },
+    { "name": "/init", "status": "implemented", "description": "Project initialization" },
+    { "name": "/plan", "status": "implemented", "description": "Feature design & spec generation" },
+    { "name": "/visualize", "status": "implemented", "description": "UI/UX design" },
+    { "name": "/code", "status": "implemented", "description": "Secure coding" },
+    { "name": "/run", "status": "implemented", "description": "Application execution" },
+    { "name": "/test", "status": "implemented", "description": "QA testing" },
+    { "name": "/debug", "status": "implemented", "description": "Root cause analysis" },
+    { "name": "/audit", "status": "implemented", "description": "Security & health check" },
+    { "name": "/deploy", "status": "implemented", "description": "Production setup" },
+    { "name": "/recap", "status": "implemented", "description": "Context restoration" },
+    { "name": "/next", "status": "implemented", "description": "Step-by-step guidance" },
+    { "name": "/refactor", "status": "implemented", "description": "Code cleaning" },
+    { "name": "/rollback", "status": "implemented", "description": "Version revert" },
+    { "name": "/save-brain", "status": "implemented", "description": "Memory management" },
+    { "name": "/customize", "status": "implemented", "description": "AI personalization" },
+    { "name": "/mock-api", "status": "implemented", "description": "API mocking" },
+    { "name": "Uninstall Scripts", "status": "implemented", "description": "Complete framework removal (PS1/SH)" }
+  ],
+  "knowledge_items": {
+    "patterns": ["Workflow-based development", "Structured memory with .brain/"],
+    "gotchas": ["PowerShell alias 'dir' vs cmd 'dir /a:d'"],
+    "conventions": ["Semantic versioning", "Bilingual documentation"]
+  }
+}

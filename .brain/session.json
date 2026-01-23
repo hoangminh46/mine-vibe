@@ -1,0 +1,25 @@
+{
+  "updated_at": "2026-01-23T06:04:18Z",
+  "working_on": {
+    "feature": "Uninstaller Scripts",
+    "task": "Memory sync and documentation update",
+    "status": "completed",
+    "files": ["uninstall.ps1", "uninstall.sh", "README.md", "CHANGELOG.md", "VERSION"],
+    "blockers": [],
+    "notes": "Finished creating uninstallers and updating project version to 3.4.1."
+  },
+  "pending_tasks": [
+    { "task": "Verify uninstall.sh on Linux environment", "priority": "low", "notes": "Tested ps1 on Windows, sh needs validation" },
+    { "task": "Add more global skills", "priority": "medium", "notes": "Expand Python/Rust best practices" }
+  ],
+  "recent_changes": [
+    { "timestamp": "2026-01-23T06:00:00Z", "type": "feature", "description": "Added Windows and Mac/Linux uninstall scripts.", "files": ["uninstall.ps1", "uninstall.sh"] },
+    { "timestamp": "2026-01-23T06:10:00Z", "type": "docs", "description": "Updated README with uninstallation guide.", "files": ["README.md"] }
+  ],
+  "errors_encountered": [
+    { "error": "PowerShell dir flag /a:d not working in GCI alias", "solution": "Use Test-Path or GCI -Hidden", "resolved": true }
+  ],
+  "decisions_made": [
+    { "decision": "Version bump to 3.4.1", "reason": "Added maintenance tools (uninstaller)" }
+  ]
+}

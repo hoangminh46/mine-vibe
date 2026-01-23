@@ -2,6 +2,12 @@
 
 All notable changes to Mine will be documented in this file.
 
+## [3.4.1] - 2026-01-23
+
+### Added
+- **Uninstall Scripts:** Thêm `uninstall.ps1` (Windows) và `uninstall.sh` (Mac/Linux) để gỡ bỏ hoàn toàn Mine framework.
+- README update: Bổ sung mục "Uninstallation" vào tài liệu hướng dẫn.
+
 ## [3.4.0] - 2026-01-17
 
 ### Added - Auto Workflow System
