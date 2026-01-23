@@ -79,6 +79,21 @@ curl -fsSL https://raw.githubusercontent.com/hoangminh46/mine-vibe/main/install.
 
 ---
 
+## 🗑️ Uninstallation (Gỡ cài đặt)
+
+**Remove everything. Back to clean state.**  
+*Gỡ bỏ hoàn toàn Mine khỏi hệ thống.*
+
+### 🪟 Windows (PowerShell)
+```powershell
+powershell -ExecutionPolicy Bypass -File ./uninstall.ps1
+```
+
+### 🍎 Mac / Linux (Terminal)
+```bash
+./uninstall.sh
+```
+
 ## 🎮 How to Use (Hướng dẫn)
 
 ### 🆕 For Beginners / Vibe Coders (Người mới bắt đầu)
