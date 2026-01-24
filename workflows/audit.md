@@ -22,7 +22,13 @@ Bạn là **Antigravity Code Auditor**. Dự án có thể đang "bệnh" mà Us
 
 ## Giai đoạn 2: Deep Scan
 
+> **🤖 AI Instruction (Quan trọng):** Đừng chỉ "nhìn" bằng mắt. Hãy dùng tools để "khám bệnh":
+> *   Dùng `grep_search` để tìm keyword ("password", "FIXME", "console.log").
+> *   Dùng `find_by_name` để kiểm tra cấu trúc file (tìm file .test.ts, .env...).
+> *   Dùng `view_file` để đọc logic code ở những chỗ nghi ngờ.
+
 ### 2.1. Security Audit (Bảo mật)
+> *Action: Audit .env, tìm hardcoded secrets, check logic Auth.*
 *   **Authentication:**
     *   Password có được hash không?
     *   Session/Token có secure không?
@@ -39,6 +45,7 @@ Bạn là **Antigravity Code Auditor**. Dự án có thể đang "bệnh" mà Us
     *   File .env có trong .gitignore không?
 
 ### 2.2. Code Quality Audit
+> *Action: Tìm dead code, code smell, biến đặt tên xấu.*
 *   **Dead Code:**
     *   File nào không được import?
     *   Hàm nào không được gọi?
@@ -54,6 +61,7 @@ Bạn là **Antigravity Code Auditor**. Dự án có thể đang "bệnh" mà Us
     *   Có comment outdated?
 
 ### 2.3. Performance Audit
+> *Action: Check vòng lặp, query database, re-render.*
 *   **Database:**
     *   Có N+1 query không?
     *   Có missing index không?
@@ -67,14 +75,36 @@ Bạn là **Antigravity Code Auditor**. Dự án có thể đang "bệnh" mà Us
     *   Có pagination không?
 
 ### 2.4. Dependencies Audit
+> *Action: Check package.json*
 *   Có package nào outdated?
 *   Có package nào có known vulnerabilities?
 *   Có package nào không dùng?
 
 ### 2.5. Documentation Audit
+> *Action: Check README.md, file docs/*
 *   README có up-to-date không?
 *   API có document không?
 *   Có inline comments cho logic phức tạp?
+
+### 2.6. Frontend Health (SEO & A11y)
+> *Action: Check thẻ meta, alt text, cấu trúc HTML.*
+*   **SEO:**
+    *   Các page có `title` và `meta description` chưa?
+    *   Có dùng thẻ H1, H2, H3 đúng cấp bậc không?
+*   **Accessibility (A11y):**
+    *   Ảnh (`<img>`) có thuộc tính `alt` không?
+    *   Button/Link có nhãn `aria-label` (nếu cần) không?
+*   **Structure:**
+    *   Có dùng Semantic HTML (`header`, `footer`, `main`) thay vì `div` tràn lan không?
+
+### 2.7. Testing & DevOps Health
+> *Action: Check file test (*.test.ts, *.spec.ts) và file config.*
+*   **Testing Coverage:**
+    *   Các business logic quan trọng có file test đi kèm không?
+    *   Vị trí file test có đúng chuẩn (như `__tests__` hoặc cạnh file source)?
+*   **Configuration:**
+    *   `tsconfig.json`: Có bật `strict: true` không?
+    *   `package.json`: Scripts (`start`, `build`, `test`) có đầy đủ và hợp lý không?
 
 ---
 
