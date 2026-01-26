@@ -6,7 +6,7 @@
 
 ---
 
-## 📋 Danh sách lệnh (14 Workflows)
+## 📋 Danh sách lệnh (15 Workflows)
 
 ### 🌟 Khởi động & Ngữ cảnh
 | Lệnh | Mô tả | Điểm mù được xử lý |
@@ -18,6 +18,8 @@
 ### 🎯 Phát triển tính năng
 | Lệnh | Mô tả | Điểm mù được xử lý |
 |------|-------|-------------------|
+| `/brainstorm` | Bàn ý tưởng, research thị trường | MVP prioritization, Market research |
+| `/requirements` | Phân tích & Đặc tả Yêu cầu ⭐ NEW | Use Cases, NFRs, Acceptance Criteria |
 | `/plan` | Thiết kế tính năng toàn diện | Auth, DB, Charts, PDF, Maps, Scheduled Tasks |
 | `/visualize` | Thiết kế UI/UX đẹp | Loading/Error states, Accessibility, Dark mode |
 | `/code` | Viết code chất lượng | Security, Validation, Error handling |
@@ -28,7 +30,7 @@
 |------|-------|-------------------|
 | `/run` | Khởi động app | Environment detection, Port conflicts |
 | `/test` | Kiểm tra logic | Auto-generate tests nếu thiếu |
-| `/deploy` | Đưa lên production | SEO, Analytics, Legal, Backup, Monitoring |
+| `/deploy` | CI/CD + Deploy Production ⭐ UPGRADED | Auto CI setup, SEO, Analytics, Legal, Monitoring |
 
 ### 🔧 Bảo trì
 | Lệnh | Mô tả | Điểm mù được xử lý |

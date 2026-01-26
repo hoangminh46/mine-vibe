@@ -2,6 +2,32 @@
 
 All notable changes to Mine will be documented in this file.
 
+## [3.5.0] - 2026-01-26
+
+### Added
+- **`/requirements` Workflow:** Thêm workflow mới cho Requirements Engineering theo chuẩn IEEE 830 SRS.
+  - Use Cases với Preconditions, Main Flow, Alternate Flows, Exceptions
+  - User Stories với INVEST validation
+  - Non-Functional Requirements (NFRs): Performance, Security, Reliability, Usability
+  - Acceptance Criteria theo Gherkin syntax (Given/When/Then)
+  - MoSCoW prioritization (Must/Should/Could/Won't)
+  - Requirements Traceability Matrix (RTM)
+
+### Changed
+- **`/deploy` v3 - Unified CI/CD:** Gộp workflow `/ci` vào `/deploy` với 5 phases rõ ràng:
+  1. Pre-flight Check (audit, tests, build)
+  2. CI/CD Setup (smart detection, auto-generate GitHub Actions)
+  3. Deployment Preparation (env, hosting, domain)
+  4. Production Essentials (SEO, Analytics, Legal, Monitoring)
+  5. Deploy & Verify (execute, verify, handover)
+- **`/brainstorm` - Flexible Flow:** Sau khi hoàn thành Brief, user có thể chọn:
+  - Quick Start → `/plan` (Solo/MVP)
+  - Enterprise → `/requirements` (Team/Client)
+- **Workflow Count:** Giảm từ 16 xuống 15 workflows (đã gộp /ci vào /deploy)
+
+### Removed
+- **`/ci` Workflow:** Đã gộp hoàn toàn vào `/deploy` để tránh overlap và giảm confusion.
+
 ## [3.4.2] - 2026-01-26
 
 ### Changed

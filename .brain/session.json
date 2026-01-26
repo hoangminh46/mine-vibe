@@ -1,22 +1,55 @@
 {
-  "updated_at": "2026-01-26T03:31:00Z",
+  "updated_at": "2026-01-26T09:49:00Z",
   "working_on": {
-    "feature": "Installer Maintenance",
-    "task": "Fix AGENTS.md optional download error display",
+    "feature": "Workflow Optimization + Installer Update",
+    "task": "Add /requirements, merge /ci into /deploy, update installer scripts",
     "status": "completed",
-    "files": ["install.ps1", "install.sh", "CHANGELOG.md"],
+    "files": [
+      "workflows/requirements.md",
+      "workflows/deploy.md",
+      "workflows/brainstorm.md",
+      "workflows/README.md",
+      "install.ps1",
+      "install.sh"
+    ],
     "blockers": [],
-    "notes": "Fixed visual bug where optional file download failure showed as error X"
+    "notes": "v3.5.0 release complete - all files updated including installers"
   },
   "pending_tasks": [
-    { "task": "Add more global skills", "priority": "medium", "notes": "Expand Python/Rust best practices" }
+    { "task": "Add more global skills (Python/Rust best practices)", "priority": "medium", "notes": "Expand skill library" },
+    { "task": "Consider /monitor, /incident, /perf if needed later", "priority": "low", "notes": "Decided not needed for now" }
   ],
   "recent_changes": [
-    { "timestamp": "2026-01-26T03:31:00Z", "type": "fix", "description": "Fixed installer script UI glitch for optional files.", "files": ["install.ps1", "install.sh", "CHANGELOG.md"] },
-    { "timestamp": "2026-01-26T02:59:30Z", "type": "docs", "description": "Bumped version to 3.4.2 and updated metadata.", "files": ["CHANGELOG.md", "VERSION", ".brain/brain.json"] }
+    {
+      "timestamp": "2026-01-26T09:49:00Z",
+      "type": "chore",
+      "description": "Updated install.ps1 and install.sh with requirements.md workflow and /requirements command",
+      "files": ["install.ps1", "install.sh"]
+    },
+    {
+      "timestamp": "2026-01-26T09:41:00Z",
+      "type": "feature",
+      "description": "Added /requirements workflow - IEEE 830 SRS with Use Cases, NFRs, Acceptance Criteria",
+      "files": ["workflows/requirements.md"]
+    },
+    {
+      "timestamp": "2026-01-26T09:35:00Z",
+      "type": "refactor",
+      "description": "Merged /ci into /deploy - now 5 phases: Pre-flight, CI/CD Setup, Preparation, Production Essentials, Deploy & Verify",
+      "files": ["workflows/deploy.md"]
+    },
+    {
+      "timestamp": "2026-01-26T09:38:00Z",
+      "type": "improvement",
+      "description": "Updated /brainstorm to offer choice between /requirements (Enterprise) or /plan (Quick Start)",
+      "files": ["workflows/brainstorm.md"]
+    }
   ],
   "errors_encountered": [],
   "decisions_made": [
-    { "decision": "Treat AGENTS.md as strictly optional in installer", "reason": "Avoid false negative error display for users" }
+    { "decision": "Keep /requirements and /plan separate", "reason": "Different purposes - WHAT vs HOW" },
+    { "decision": "Merge /ci into /deploy", "reason": "80% overlap, reduce user confusion" },
+    { "decision": "Don't create /monitor, /incident, /perf", "reason": "Already covered in /deploy + /audit" },
+    { "decision": "Let user choose Quick Start vs Enterprise after /brainstorm", "reason": "Flexible flow based on project needs" }
   ]
 }

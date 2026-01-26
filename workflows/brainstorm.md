@@ -277,37 +277,96 @@ Tạo file `docs/BRIEF.md`:
    [Hiển thị summary của Brief]
 
    Anh xem có cần sửa gì không?
-   1️⃣ OK - Lên plan luôn (/plan)
+   1️⃣ OK - Tiếp tục bước tiếp theo
    2️⃣ Sửa - Em cần điều chỉnh [phần nào]
    3️⃣ Lưu lại - Anh cần suy nghĩ thêm"
 ```
 
 ---
 
-## Giai đoạn 6: Handoff to /plan
+## Giai đoạn 6: Handoff - Chọn Bước Tiếp Theo
 
-### 6.1. Nếu User chọn "Lên plan luôn"
+### 6.1. Hỏi User về Nhu Cầu
+```
+"📋 **BƯỚC TIẾP THEO?**
+
+Dựa trên Brief, anh muốn tiến hành theo hướng nào?
+
+1️⃣ **Quick Start** → `/plan` (Recommended cho solo/MVP)
+   └── Từ Brief → Technical Design → Phases → Code
+   └── Phù hợp: Cá nhân, startup, prototype
+   └── Output: phases/, spec file
+
+2️⃣ **Enterprise** → `/requirements` (Cho team/client)
+   └── Từ Brief → SRS → Approval → Technical Design
+   └── Phù hợp: Team project, có stakeholders, cần sign-off
+   └── Output: SRS.md (Use Cases, NFRs, Acceptance Criteria)
+
+3️⃣ **Chưa chắc** - Em giúp anh chọn
+   └── Em sẽ hỏi thêm vài câu để gợi ý"
+```
+
+### 6.2. Logic Gợi Ý (Nếu chọn 3)
+```
+"🤔 Để em hỏi thêm:
+
+1. Có ai khác (PM, client, team) cần review trước khi code không?
+   → Có: Gợi ý /requirements
+   → Không: Gợi ý /plan
+
+2. Dự án có yêu cầu đặc biệt về performance/security không?
+   → Có NFRs rõ ràng: Gợi ý /requirements
+   → Không: Gợi ý /plan
+
+3. Có cần Acceptance Criteria chi tiết để test không?
+   → Có: Gợi ý /requirements
+   → Không: Gợi ý /plan"
+```
+
+### 6.3. Nếu User chọn `/plan` (Quick Start)
 ```
 "🎯 Perfect! Em sẽ chuyển sang /plan với Brief này.
 
-📌 Lưu ý: /plan sẽ tạo thiết kế chi tiết gồm:
-   • Sơ đồ database
-   • Phân chia Frontend/Backend
-   • Task list cho từng phần
+📌 /plan sẽ tạo:
+   • Database Schema
+   • API Design
+   • Phases với tasks cụ thể
+   • Files cần tạo/sửa
 
 Bắt đầu nhé!"
 ```
 
 **Tự động xử lý:**
-1. Nếu chưa có project → Tự động chạy `/init` trước (User không cần biết)
-2. Sau đó trigger `/plan` workflow với context từ Brief
-3. User chỉ thấy flow mượt mà, không cần quan tâm kỹ thuật
+1. Nếu chưa có project → Tự động chạy `/init` trước
+2. Trigger `/plan` workflow với context từ Brief
+3. User chỉ thấy flow mượt mà
 
-### 6.2. Nếu User muốn dừng
+### 6.4. Nếu User chọn `/requirements` (Enterprise)
+```
+"📋 Good choice! Em sẽ chuyển sang /requirements.
+
+📌 /requirements sẽ tạo:
+   • Use Cases chi tiết
+   • User Stories (INVEST validated)
+   • Non-Functional Requirements (NFRs)
+   • Acceptance Criteria (Gherkin)
+   • Traceability Matrix
+
+Sau khi hoàn thành SRS, anh có thể:
+   • Cho stakeholders review & approve
+   • Sau đó chạy /plan để technical design
+
+Bắt đầu nhé!"
+```
+
+### 6.5. Nếu User muốn dừng
 ```
 "👍 Em đã lưu Brief vào docs/BRIEF.md
 
-Khi nào anh sẵn sàng, gõ /plan để tiếp tục.
+Khi nào anh sẵn sàng:
+• Gõ /plan để quick start (technical design)
+• Gõ /requirements để enterprise flow (SRS first)
+
 Em sẽ đọc Brief và tiếp tục từ đó!"
 ```
 
@@ -337,10 +396,19 @@ Em sẽ đọc Brief và tiếp tục từ đó!"
 
 ```
 /brainstorm → Output: BRIEF.md
-     ↓
-/plan → Đọc BRIEF.md, tạo PRD + Schema
-     ↓
-/visualize → Thiết kế UI từ PRD
-     ↓
-/code → Implement từ PRD + Schema
+     │
+     ├──→ /plan (Quick Start)
+     │         ↓
+     │    Technical Design + Phases
+     │         ↓
+     │    /visualize → /code
+     │
+     └──→ /requirements (Enterprise)
+               ↓
+          SRS.md (Use Cases, NFRs, AC)
+               ↓
+          Stakeholder Approval
+               ↓
+          /plan → /visualize → /code
 ```
+

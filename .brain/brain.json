@@ -1,8 +1,8 @@
 {
   "meta": {
     "schema_version": "1.1.0",
-    "mine_version": "3.4.2",
-    "updated_at": "2026-01-26T03:31:00Z"
+    "mine_version": "3.5.0",
+    "updated_at": "2026-01-26T09:41:00Z"
   },
   "project": {
     "name": "mine-vibe",
@@ -29,16 +29,17 @@
     "Fail Fast & Loud: Catch and log errors immediately."
   ],
   "features": [
-    { "name": "/brainstorm", "status": "implemented", "description": "Market research & idea discussion" },
+    { "name": "/brainstorm", "status": "implemented", "description": "Market research & idea discussion → Choose /requirements or /plan" },
+    { "name": "/requirements", "status": "implemented", "description": "IEEE 830 SRS - Use Cases, NFRs, Acceptance Criteria (Enterprise flow)" },
     { "name": "/init", "status": "implemented", "description": "Project initialization" },
-    { "name": "/plan", "status": "implemented", "description": "Feature design & spec generation" },
+    { "name": "/plan", "status": "implemented", "description": "Feature design & spec generation (Quick Start flow)" },
     { "name": "/visualize", "status": "implemented", "description": "UI/UX design" },
     { "name": "/code", "status": "implemented", "description": "Secure coding" },
     { "name": "/run", "status": "implemented", "description": "Application execution" },
     { "name": "/test", "status": "implemented", "description": "QA testing" },
     { "name": "/debug", "status": "implemented", "description": "Root cause analysis" },
     { "name": "/audit", "status": "implemented", "description": "Security & health check" },
-    { "name": "/deploy", "status": "implemented", "description": "Production setup" },
+    { "name": "/deploy", "status": "implemented", "description": "CI/CD Pipeline + Production deployment (5 phases)" },
     { "name": "/recap", "status": "implemented", "description": "Context restoration" },
     { "name": "/next", "status": "implemented", "description": "Step-by-step guidance" },
     { "name": "/refactor", "status": "implemented", "description": "Code cleaning" },
@@ -46,12 +47,25 @@
     { "name": "/save-brain", "status": "implemented", "description": "Memory management" },
     { "name": "/customize", "status": "implemented", "description": "AI personalization" },
     { "name": "/mock-api", "status": "implemented", "description": "API mocking" },
-    { "name": "Uninstall Scripts", "status": "implemented", "description": "Complete framework removal (PS1/SH)" },
-    { "name": "Installer Skills Update", "status": "implemented", "description": "Automatic skill download management" }
+    { "name": "/cloudflare-tunnel", "status": "implemented", "description": "Tunnel management" },
+    { "name": "/mine-update", "status": "implemented", "description": "Framework update check" }
   ],
   "knowledge_items": {
-    "patterns": ["Workflow-based development", "Structured memory with .brain/"],
-    "gotchas": ["PowerShell alias 'dir' vs cmd 'dir /a:d'"],
-    "conventions": ["Semantic versioning", "Bilingual documentation"]
+    "patterns": [
+      "Workflow-based development",
+      "Structured memory with .brain/",
+      "Smart detection (auto-detect existing configs)",
+      "Mode-based workflows (Quick/Enterprise)"
+    ],
+    "gotchas": [
+      "PowerShell alias 'dir' vs cmd 'dir /a:d'",
+      "Avoid workflow overlap - merge if similar purpose"
+    ],
+    "conventions": [
+      "Semantic versioning",
+      "Bilingual documentation",
+      "IEEE 830 for enterprise requirements",
+      "5-phase deploy workflow"
+    ]
   }
 }
