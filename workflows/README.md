@@ -1,4 +1,4 @@
-# 🚀 Antigravity Vibe Coding Suite v3.4 (Ultimate Edition)
+# 🚀 Antigravity Vibe Coding Suite v3.5 (Ultimate Edition)
 
 **Hệ thống Workflow TOÀN DIỆN cho Vibe Coders** - Chỉ cần có ý tưởng, AI lo trọn gói.
 

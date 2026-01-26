@@ -22,7 +22,7 @@ User gõ: /code phase-01
 → Lưu path vào session.json
 → Chế độ: Phase-Based Coding (Single Phase)
 
-User gõ: /code all-phases ⭐ v3.4
+User gõ: /code all-phases ⭐ v3.5
 → Đọc plan.md để lấy danh sách tất cả phases
 → Chế độ: Full Plan Execution (xem 0.2.1)
 
@@ -61,7 +61,7 @@ Nếu có phase file:
 3. Code từng task, tự động tick checkbox khi xong
 4. Cuối phase → Update plan.md progress
 
-### 0.2.1. Full Plan Execution (All Phases) ⭐ v3.4
+### 0.2.1. Full Plan Execution (All Phases) ⭐ v3.5
 
 Khi user gõ `/code all-phases`:
 
@@ -286,7 +286,7 @@ Anh muốn:
 4️⃣ Rollback về trước khi sửa"
 ```
 
-### 4.3.1. Test Skip Behavior (Khi chọn option 2) ⭐ v3.4
+### 4.3.1. Test Skip Behavior (Khi chọn option 2) ⭐ v3.5
 
 ```
 Khi user chọn "Bỏ qua test này":

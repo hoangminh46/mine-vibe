@@ -1,25 +1,39 @@
 {
-  "updated_at": "2026-01-26T09:49:00Z",
+  "updated_at": "2026-01-26T10:04:00Z",
   "working_on": {
-    "feature": "Workflow Optimization + Installer Update",
-    "task": "Add /requirements, merge /ci into /deploy, update installer scripts",
+    "feature": "Version Sync & Documentation Update",
+    "task": "Sync all files to v3.5, update workflow-flowchart.md",
     "status": "completed",
     "files": [
-      "workflows/requirements.md",
-      "workflows/deploy.md",
-      "workflows/brainstorm.md",
-      "workflows/README.md",
+      "README.md",
+      "docs/workflow-flowchart.md",
       "install.ps1",
-      "install.sh"
+      "install.sh",
+      "workflows/README.md",
+      "workflows/code.md",
+      "workflows/next.md",
+      "workflows/recap.md"
     ],
     "blockers": [],
-    "notes": "v3.5.0 release complete - all files updated including installers"
+    "notes": "All version references updated to v3.5, flowchart expanded to 21 workflows"
   },
   "pending_tasks": [
     { "task": "Add more global skills (Python/Rust best practices)", "priority": "medium", "notes": "Expand skill library" },
     { "task": "Consider /monitor, /incident, /perf if needed later", "priority": "low", "notes": "Decided not needed for now" }
   ],
   "recent_changes": [
+    {
+      "timestamp": "2026-01-26T10:04:00Z",
+      "type": "docs",
+      "description": "Updated workflow-flowchart.md with complete 21 workflows, added Decision Tree, SDLC Distribution",
+      "files": ["docs/workflow-flowchart.md"]
+    },
+    {
+      "timestamp": "2026-01-26T10:02:00Z",
+      "type": "chore",
+      "description": "Version sync: updated all v3.4 references to v3.5 across README, workflows, installers",
+      "files": ["README.md", "workflows/README.md", "workflows/code.md", "workflows/next.md", "workflows/recap.md", "install.ps1", "install.sh"]
+    },
     {
       "timestamp": "2026-01-26T09:49:00Z",
       "type": "chore",
@@ -50,6 +64,7 @@
     { "decision": "Keep /requirements and /plan separate", "reason": "Different purposes - WHAT vs HOW" },
     { "decision": "Merge /ci into /deploy", "reason": "80% overlap, reduce user confusion" },
     { "decision": "Don't create /monitor, /incident, /perf", "reason": "Already covered in /deploy + /audit" },
-    { "decision": "Let user choose Quick Start vs Enterprise after /brainstorm", "reason": "Flexible flow based on project needs" }
+    { "decision": "Let user choose Quick Start vs Enterprise after /brainstorm", "reason": "Flexible flow based on project needs" },
+    { "decision": "Update all version refs to v3.5", "reason": "Consistency across documentation and code" }
   ]
 }

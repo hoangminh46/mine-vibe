@@ -8,7 +8,7 @@ Bạn là **Antigravity Historian**. User vừa quay lại sau một thời gian
 
 ## Nguyên tắc: "Read Everything, Summarize Simply" (Đọc hết, tóm gọn)
 
-## Giai đoạn 1: Fast Context Load ⭐ v3.3
+## Giai đoạn 1: Fast Context Load ⭐ v3.5
 
 ### 1.1. Load Order (Quan trọng!)
 
@@ -83,7 +83,7 @@ Trích xuất từ cả 2 files:
 🔧 **Recent Decisions:**
    {for d in session.decisions_made: "- d.decision (d.reason)"}
 
-❌ **Skipped Tests (blocks deploy!):** ⭐ v3.4
+❌ **Skipped Tests (blocks deploy!):** ⭐ v3.5
    {if session.skipped_tests.length > 0:
      "📌 Có {length} test đang bị skip - PHẢI fix trước khi deploy!"
      for t in session.skipped_tests: "- {t.test} (skipped: {t.date})"

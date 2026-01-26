@@ -12,7 +12,7 @@ $Workflows = @(
     "requirements.md", "README.md"
 )
 
-# Schemas and Templates (v3.3+)
+# Schemas and Templates (v3.5+)
 $Schemas = @(
     "brain.schema.json", "session.schema.json", "preferences.schema.json"
 )
