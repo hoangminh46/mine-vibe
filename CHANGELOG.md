@@ -2,6 +2,13 @@
 
 All notable changes to Mine will be documented in this file.
 
+## [3.4.2] - 2026-01-26
+
+### Changed
+- **Installer Update:** Cập nhật danh sách skills mặc định trong `install.ps1` và `install.sh`.
+- **New Skills Added:** Thêm `3d-web-experience`, `clean-code`, `remotion-best-practices`, và `tailwind-patterns`.
+- **Bug Fix:** Chuẩn hóa tên skill `vue-best-practices` để tránh lỗi tìm file.
+
 ## [3.4.1] - 2026-01-23
 
 ### Added

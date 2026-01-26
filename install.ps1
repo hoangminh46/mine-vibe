@@ -21,9 +21,13 @@ $Templates = @(
 
 # Skills
 $Skills = @(
-    "vercel-react-best-practices",
+    "3d-web-experience",
+    "clean-code",
     "nodejs-best-practices",
-    "vuejs-best-practices"
+    "remotion-best-practices",
+    "tailwind-patterns",
+    "vercel-react-best-practices",
+    "vue-best-practices"
 )
 
 # Detect Antigravity Global Path

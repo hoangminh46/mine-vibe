@@ -1,8 +1,8 @@
 {
   "meta": {
     "schema_version": "1.1.0",
-    "mine_version": "3.4.1",
-    "updated_at": "2026-01-23T06:04:18Z"
+    "mine_version": "3.4.2",
+    "updated_at": "2026-01-26T02:59:30Z"
   },
   "project": {
     "name": "mine-vibe",
@@ -46,7 +46,8 @@
     { "name": "/save-brain", "status": "implemented", "description": "Memory management" },
     { "name": "/customize", "status": "implemented", "description": "AI personalization" },
     { "name": "/mock-api", "status": "implemented", "description": "API mocking" },
-    { "name": "Uninstall Scripts", "status": "implemented", "description": "Complete framework removal (PS1/SH)" }
+    { "name": "Uninstall Scripts", "status": "implemented", "description": "Complete framework removal (PS1/SH)" },
+    { "name": "Installer Skills Update", "status": "implemented", "description": "Automatic skill download management" }
   ],
   "knowledge_items": {
     "patterns": ["Workflow-based development", "Structured memory with .brain/"],
