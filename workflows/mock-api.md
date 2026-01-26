@@ -1,177 +1,161 @@
 ---
-description: 💃 Tạo và quản lý Mock API (MSW)
+description: 💃 Tạo và quản lý Mock API (MSW) - Professional Edition
 ---
 
-# 🎭 Mock API Workflow (MSW + Faker)
+# 🎭 Mock API Workflow (MSW + Faker + Data)
 
-Workflow này giúp bạn thiết lập môi trường giả lập API (Mocking) chuyên nghiệp sử dụng **MSW (Mock Service Worker)** kết hợp với **Faker.js** để tạo dữ liệu ngẫu nhiên.
-Giúp phát triển Frontend độc lập với Backend và hỗ trợ Testing hiệu quả.
+Workflow này giúp bạn thiết lập môi trường giả lập API (Mocking) "Premium" - không chỉ trả về dữ liệu tĩnh mà còn hỗ trợ **CRUD, Persistence Data, giả lập Network Delay và Error Handling**.
 
 ## 📦 1. Cài đặt Dependencies
 
-Cài đặt `msw` (để mock) và `@faker-js/faker` (để fake data xịn xò).
+Cài đặt `msw` (v2), `@faker-js/faker` và `@mswjs/data` để quản lý database ảo.
 
 // turbo
 ```bash
-npm install msw @faker-js/faker --save-dev
+npm install msw @faker-js/faker @mswjs/data --save-dev
 ```
 
 ## 🛠 2. Khởi tạo MSW
 
-Tạo Service Worker script trong thư mục `public` để trình duyệt có thể intercept requests.
+Tạo Service Worker script trong thư mục `public`.
 
 // turbo
 ```bash
 npx msw init public/ --save
 ```
 
-## 📂 3. Cấu trúc thư mục (Best Practice)
-
-Tạo cấu trúc thư mục chuẩn trong `src/mocks`:
+## 📂 3. Cấu trúc thư mục (Advanced)
 
 ```text
 src/
   mocks/
-    ├── handlers/        # Chứa logic trả về của từng feature
-    │   ├── auth.ts      # Ví dụ: Login, Register, Me...
-    │   └── index.ts     # Gom tất cả handlers
-    ├── component.tsx    # MSWProvider để bọc App
-    ├── browser.ts       # Setup cho Client-side (Browser)
-    └── server.ts        # Setup cho Server-side (Node.js/Test)
-```
-
-**Lệnh tạo nhanh thư mục:**
-// turbo
-```bash
-mkdir -p src/mocks/handlers
+    ├── db.ts           # Database ảo (Persistence layer)
+    ├── handlers.ts     # Definition của các API endpoints
+    ├── browser.ts      # Setup Client-side
+    ├── node.ts         # Setup Server-side (Testing/SSR)
+    └── MSWProvider.tsx # Client Component để kích hoạt Mocking
 ```
 
 ## 📝 4. Implement Code
 
-### 4.1. Define Handlers (`src/mocks/handlers/index.ts`)
-Tạo handlers mẫu (ví dụ mock User Endpoint).
+### 4.1. Define Database (`src/mocks/db.ts`)
+Sử dụng `@mswjs/data` để dữ liệu không bị reset khi chuyển trang và hỗ trợ CRUD.
 
 ```typescript
-// src/mocks/handlers/index.ts
-import { http, HttpResponse } from 'msw';
+import { factory, primaryKey } from '@mswjs/data';
 import { faker } from '@faker-js/faker';
+
+export const db = factory({
+  user: {
+    id: primaryKey(faker.string.uuid),
+    name: String,
+    email: String,
+    avatar: String,
+  },
+});
+
+// Khởi tạo dữ liệu mẫu
+db.user.create({
+  id: 'user-1',
+  name: 'Vibe Coder',
+  email: 'hello@mine.vibe',
+  avatar: 'https://i.pravatar.cc/150?u=mine',
+});
+```
+
+### 4.2. Handlers với Delay & Error (`src/mocks/handlers.ts`)
+
+```typescript
+import { http, HttpResponse, delay } from 'msw';
+import { db } from './db';
 
 export const handlers = [
   // Mock API: GET /api/me
-  http.get('*/api/me', () => {
-    return HttpResponse.json({
-      id: faker.string.uuid(),
-      name: faker.person.fullName(),
-      email: faker.internet.email(),
-      avatar: faker.image.avatar(),
-    });
+  http.get('*/api/me', async () => {
+    // 1. Giả lập độ trễ mạng (Real vibration!)
+    await delay(800); 
+
+    // 2. Giả lập lỗi ngẫu nhiên (Optional - dùng để test Error Boundary)
+    // if (Math.random() > 0.9) {
+    //   return new HttpResponse(null, { status: 500 });
+    // }
+
+    const user = db.user.findFirst({ where: { id: { equals: 'user-1' } } });
+    return HttpResponse.json(user);
   }),
+
+  // Add thêm các handlers khác sử dụng db.user.findMany(), db.user.update(), etc.
 ];
 ```
 
-### 4.2. Setup Browser Worker (`src/mocks/browser.ts`)
+### 4.3. Setup Environments
 
+**Browser (`src/mocks/browser.ts`):**
 ```typescript
-// src/mocks/browser.ts
 import { setupWorker } from 'msw/browser';
 import { handlers } from './handlers';
-
 export const worker = setupWorker(...handlers);
 ```
 
-### 4.3. Setup Server Worker (`src/mocks/server.ts`)
-Dùng cho Unit Test hoặc Mocking trong Server Components (nếu config instrumentation).
-
+**Node/Server (`src/mocks/node.ts`):**
 ```typescript
-// src/mocks/server.ts
 import { setupServer } from 'msw/node';
 import { handlers } from './handlers';
-
 export const server = setupServer(...handlers);
 ```
 
-### 4.4. Tạo MSW Provider (`src/mocks/component.tsx`)
-Component này chịu trách nhiệm kích hoạt MSW ở phía Client.
+### 4.4. MSW Provider Chống Flash Content (`src/mocks/MSWProvider.tsx`)
 
 ```tsx
-// src/mocks/component.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
 
-const isMockingEnabled = process.env.NEXT_PUBLIC_API_MOCKING === 'true';
-
 export function MSWProvider({ children }: { children: React.ReactNode }) {
-  const [mswReady, setMswReady] = useState(!isMockingEnabled);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    if (!isMockingEnabled) return;
-
-    const initMsw = async () => {
-      // Import dynamic để tránh bundle vào production code
-      const { worker } = await import('./browser');
-      await worker.start({
-        onUnhandledRequest: 'bypass', // Bỏ qua request không được mock (để gọi thật)
-      });
-      setMswReady(true);
+    const init = async () => {
+      if (process.env.NEXT_PUBLIC_API_MOCKING === 'true' && typeof window !== 'undefined') {
+        const { worker } = await import('./browser');
+        await worker.start({
+          onUnhandledRequest: 'bypass',
+        });
+      }
+      setIsReady(true);
     };
 
-    initMsw();
+    init();
   }, []);
 
-  if (!mswReady) {
-    // Return null hoặc Loading Spinner để tránh flash content khi chưa load mock xong
-    return null; 
-  }
+  if (!isReady && process.env.NEXT_PUBLIC_API_MOCKING === 'true') return null;
 
   return <>{children}</>;
 }
 ```
 
-## 🔌 5. Tích hợp vào Layout
+## � 5. Next.js Server Components Support (Optional)
 
-Sửa file `src/app/layout.tsx` để bọc `MSWProvider`.
+Để mock hoạt động trong Server Components, tạo file `instrumentation.ts` ở thư mục gốc (`src/` hoặc root):
 
-```tsx
-// src/app/layout.tsx
-import { MSWProvider } from '@/mocks/component';
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <body>
-        <MSWProvider>
-          {children}
-        </MSWProvider>
-      </body>
-    </html>
-  );
+```typescript
+export async function register() {
+  if (process.env.NEXT_RUNTIME === 'nodejs' && process.env.NEXT_PUBLIC_API_MOCKING === 'true') {
+    const { server } = await import('./mocks/node');
+    server.listen();
+  }
 }
 ```
+*Lưu ý: Bật `experimental.instrumentationHook: true` trong `next.config.js`.*
 
-## ⚙️ 6. Cấu hình Environment
-
-Thêm biến môi trường vào `.env.local` để dễ dàng bật/tắt Mocking mà không cần sửa code.
-
+## ⚙️ 6. Kích hoạt
+Thêm vào `.env.local`:
 ```env
-# .env.local
 NEXT_PUBLIC_API_MOCKING=true
 ```
 
-## 🧪 7. (Optional) Setup cho Vitest/Jest
-
-Nếu dự án có Unit Test, thêm config này vào setup file của test (ví dụ `vitest.setup.ts`).
-
-```typescript
-import { beforeAll, afterEach, afterAll } from 'vitest';
-import { server } from './src/mocks/server';
-
-beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
-```
-
 ## ✅ Next Steps
-- Cập nhật `.env.local`.
-- Thêm thêm các handlers mới vào `src/mocks/handlers/` khi phát triển tính năng mới.
-- Tận hưởng việc dev frontend mà không cần backend! 🎉
+1. Chạy `npm install` các packages mới.
+2. Tạo các file theo cấu trúc trên (Có thể nhờ Mine hỗ trợ bằng lệnh `/code`).
+3. Bọc `MSWProvider` vào `src/app/layout.tsx`.
+4. Run app và tận hưởng cảm giác API trả về mượt mà! 💃
