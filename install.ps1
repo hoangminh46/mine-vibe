@@ -126,8 +126,12 @@ foreach ($skill in $Skills) {
         Invoke-WebRequest -Uri "$RepoBase/skills/$skill/SKILL.md" -OutFile "$SkillPath\SKILL.md" -ErrorAction Stop
         Write-Host "   ✅ Skill: $skill" -ForegroundColor Green
         
-        # Download AGENTS.md if it exists
-        Invoke-WebRequest -Uri "$RepoBase/skills/$skill/AGENTS.md" -OutFile "$SkillPath\AGENTS.md" -ErrorAction SilentlyContinue
+        # Download AGENTS.md if it exists (Optional)
+        try {
+            Invoke-WebRequest -Uri "$RepoBase/skills/$skill/AGENTS.md" -OutFile "$SkillPath\AGENTS.md" -ErrorAction Stop 
+        } catch {
+            # Ignore errors for optional files
+        }
         
         $success++
     } catch {

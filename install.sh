@@ -107,7 +107,7 @@ for skill in "${SKILLS[@]}"; do
         echo "   ✅ Skill: $skill"
         ((success++))
         
-        # Download AGENTS.md if it exists
+        # Download AGENTS.md if it exists (Optional)
         curl -f -s -o "$skill_path/AGENTS.md" "$REPO_BASE/skills/$skill/AGENTS.md" || true
     else
         echo "   ❌ Skill: $skill"

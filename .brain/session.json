@@ -1,22 +1,22 @@
 {
-  "updated_at": "2026-01-26T02:59:30Z",
+  "updated_at": "2026-01-26T03:31:00Z",
   "working_on": {
     "feature": "Installer Maintenance",
-    "task": "Finalize skill list and metadata update",
+    "task": "Fix AGENTS.md optional download error display",
     "status": "completed",
-    "files": ["install.ps1", "install.sh", "CHANGELOG.md", "VERSION", ".brain/brain.json"],
+    "files": ["install.ps1", "install.sh", "CHANGELOG.md"],
     "blockers": [],
-    "notes": "Updated installer to include 3D, Clean Code, Remotion, and Tailwind skills. Standardized Vue skill name."
+    "notes": "Fixed visual bug where optional file download failure showed as error X"
   },
   "pending_tasks": [
     { "task": "Add more global skills", "priority": "medium", "notes": "Expand Python/Rust best practices" }
   ],
   "recent_changes": [
-    { "timestamp": "2026-01-26T02:58:00Z", "type": "feature", "description": "Updated installer scripts with new global skills.", "files": ["install.ps1", "install.sh"] },
+    { "timestamp": "2026-01-26T03:31:00Z", "type": "fix", "description": "Fixed installer script UI glitch for optional files.", "files": ["install.ps1", "install.sh", "CHANGELOG.md"] },
     { "timestamp": "2026-01-26T02:59:30Z", "type": "docs", "description": "Bumped version to 3.4.2 and updated metadata.", "files": ["CHANGELOG.md", "VERSION", ".brain/brain.json"] }
   ],
   "errors_encountered": [],
   "decisions_made": [
-    { "decision": "Standardize Vue skill name to vue-best-practices", "reason": "Consistency with folder naming" }
+    { "decision": "Treat AGENTS.md as strictly optional in installer", "reason": "Avoid false negative error display for users" }
   ]
 }

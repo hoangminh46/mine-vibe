@@ -8,6 +8,7 @@ All notable changes to Mine will be documented in this file.
 - **Installer Update:** Cập nhật danh sách skills mặc định trong `install.ps1` và `install.sh`.
 - **New Skills Added:** Thêm `3d-web-experience`, `clean-code`, `remotion-best-practices`, và `tailwind-patterns`.
 - **Bug Fix:** Chuẩn hóa tên skill `vue-best-practices` để tránh lỗi tìm file.
+- **Improved:** Sửa lỗi hiển thị "X" đỏ gây hiểu nhầm khi tải file tùy chọn `AGENTS.md` trong script cài đặt (`install.ps1`, `install.sh`).
 
 ## [3.4.1] - 2026-01-23
 
