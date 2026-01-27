@@ -11,14 +11,14 @@
 
 | # | Skill Name | Độ ưu tiên | Trạng thái | Mô tả ngắn |
 |---|------------|-----------|-----------|------------|
-| 1 | `framer-motion-magic` | 🔴 Cao | ⬜ Chưa cài | Animation & Micro-interactions |
-| 2 | `performance-precision` | 🔴 Cao | ⬜ Chưa cài | Core Web Vitals & Tối ưu hiệu năng |
+| 1 | `framer-motion-magic` | 🔴 Cao | ✅ Đã cài | Animation & Micro-interactions |
+| 2 | `performance-precision` | 🔴 Cao | ✅ Đã cài | Core Web Vitals & Tối ưu hiệu năng |
 | 3 | `accessibility-guarantor` | 🟡 Trung bình | ⬜ Chưa cài | WCAG & A11y compliance |
 | 4 | `design-system-architect` | 🟡 Trung bình | ⬜ Chưa cài | Design Tokens & Component Library |
 | 5 | `testing-frontend-pro` | 🟡 Trung bình | ⬜ Chưa cài | Vitest, Testing Library, Playwright |
 | 6 | `web-security-frontend` | 🟠 Khá cao | ⬜ Chưa cài | XSS, CSRF, CSP, Auth-flow |
 | 7 | `responsive-mastery` | 🟡 Trung bình | ⬜ Chưa cài | Mobile-first & Touch optimization |
-| 8 | `websocket-realtime-mastery` | 🟠 Khá cao | ⬜ Chưa cài | WebSocket, Socket.IO, Realtime Apps |
+| 8 | `websocket-realtime-mastery` | 🟠 Khá cao | ✅ Đã cài | WebSocket, Socket.IO, Realtime Apps |
 
 ---
 

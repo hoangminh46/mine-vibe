@@ -24,12 +24,15 @@ $Templates = @(
 $Skills = @(
     "3d-web-experience",
     "clean-code",
+    "framer-motion-magic",
     "nodejs-best-practices",
+    "performance-precision",
     "remotion-best-practices",
     "skill-creator",
     "tailwind-patterns",
     "vercel-react-best-practices",
-    "vue-best-practices"
+    "vue-best-practices",
+    "websocket-realtime-mastery"
 )
 
 # Detect Antigravity Global Path

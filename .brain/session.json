@@ -1,20 +1,37 @@
 {
-  "updated_at": "2026-01-27T09:33:00Z",
+  "updated_at": "2026-01-27T10:24:00Z",
   "working_on": {
     "feature": "None",
-    "task": "Session saved - Ready for next task",
+    "task": "Session saved - Frontend Skills completed",
     "status": "idle",
     "files": [],
     "blockers": [],
-    "notes": "Completed coding_rules enhancement, skill-creator skill, and frontend skills roadmap"
+    "notes": "Completed 3 frontend skills: framer-motion-magic, performance-precision, websocket-realtime-mastery"
   },
   "pending_tasks": [
-    { "task": "Implement Frontend Skills (framer-motion-magic, performance-precision, etc.)", "priority": "medium", "notes": "Roadmap đã tạo tại plans/frontend-skills-roadmap.md" },
+    { "task": "Implement remaining Frontend Skills (accessibility-guarantor, design-system-architect, etc.)", "priority": "medium", "notes": "5 skills còn lại trong roadmap" },
     { "task": "Add more global skills (Python/Rust best practices)", "priority": "low", "notes": "Expand skill library - NOT priority for FE dev" },
     { "task": "Consider Project Templates feature", "priority": "low", "notes": "Discussed with user, may implement later" },
     { "task": "Consider Learning Examples feature", "priority": "low", "notes": "Discussed with user, may implement later" }
   ],
   "recent_changes": [
+    {
+      "timestamp": "2026-01-27T10:24:00Z",
+      "type": "milestone",
+      "description": "v3.5.2 - Created 3 frontend skills with comprehensive references",
+      "files": [
+        "skills/framer-motion-magic/SKILL.md",
+        "skills/framer-motion-magic/references/*.md",
+        "skills/performance-precision/SKILL.md",
+        "skills/performance-precision/references/*.md",
+        "skills/websocket-realtime-mastery/SKILL.md",
+        "skills/websocket-realtime-mastery/references/*.md",
+        "install.ps1",
+        "install.sh",
+        "plans/frontend-skills-roadmap.md",
+        "CHANGELOG.md"
+      ]
+    },
     {
       "timestamp": "2026-01-27T09:33:00Z",
       "type": "milestone",
@@ -32,26 +49,14 @@
       "type": "docs",
       "description": "Updated workflow-flowchart.md with complete 21 workflows, added Decision Tree, SDLC Distribution",
       "files": ["docs/workflow-flowchart.md"]
-    },
-    {
-      "timestamp": "2026-01-26T10:02:00Z",
-      "type": "chore",
-      "description": "Version sync: updated all v3.4 references to v3.5 across README, workflows, installers",
-      "files": ["README.md", "workflows/README.md", "workflows/code.md", "workflows/next.md", "workflows/recap.md", "install.ps1", "install.sh"]
-    },
-    {
-      "timestamp": "2026-01-26T09:49:00Z",
-      "type": "chore",
-      "description": "Updated install.ps1 and install.sh with requirements.md workflow and /requirements command",
-      "files": ["install.ps1", "install.sh"]
     }
   ],
   "errors_encountered": [],
   "decisions_made": [
+    { "decision": "Created skills with references/ subfolder", "reason": "Progressive disclosure - main SKILL.md for quick context, references for deep dives" },
+    { "decision": "Research before creating each skill", "reason": "Ensure best practices and up-to-date patterns" },
     { "decision": "Use coding_rules in brain.json instead of local_skills folder", "reason": "Simpler architecture, reuses existing infrastructure" },
     { "decision": "Keep /requirements and /plan separate", "reason": "Different purposes - WHAT vs HOW" },
-    { "decision": "Merge /ci into /deploy", "reason": "80% overlap, reduce user confusion" },
-    { "decision": "Don't create /monitor, /incident, /perf", "reason": "Already covered in /deploy + /audit" },
-    { "decision": "Let user choose Quick Start vs Enterprise after /brainstorm", "reason": "Flexible flow based on project needs" }
+    { "decision": "Merge /ci into /deploy", "reason": "80% overlap, reduce user confusion" }
   ]
 }

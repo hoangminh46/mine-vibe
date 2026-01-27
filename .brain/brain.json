@@ -1,8 +1,8 @@
 {
   "meta": {
     "schema_version": "1.1.0",
-    "mine_version": "3.5.0",
-    "updated_at": "2026-01-27T09:33:00Z"
+    "mine_version": "3.5.2",
+    "updated_at": "2026-01-27T10:24:00Z"
   },
   "project": {
     "name": "mine-vibe",
@@ -49,7 +49,10 @@
     { "name": "/mock-api", "status": "implemented", "description": "API mocking" },
     { "name": "/cloudflare-tunnel", "status": "implemented", "description": "Tunnel management" },
     { "name": "/mine-update", "status": "implemented", "description": "Framework update check" },
-    { "name": "skill-creator", "status": "implemented", "description": "Skill để hướng dẫn tạo skills mới cho Antigravity/Claude" }
+    { "name": "skill-creator", "status": "implemented", "description": "Skill để hướng dẫn tạo skills mới cho Antigravity/Claude" },
+    { "name": "framer-motion-magic", "status": "implemented", "description": "Animation & Micro-interactions với Framer Motion" },
+    { "name": "performance-precision", "status": "implemented", "description": "Core Web Vitals & Performance Optimization" },
+    { "name": "websocket-realtime-mastery", "status": "implemented", "description": "WebSocket & Real-time Applications" }
   ],
   "knowledge_items": {
     "patterns": [

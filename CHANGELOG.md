@@ -2,6 +2,27 @@
 
 All notable changes to Mine will be documented in this file.
 
+## [3.5.2] - 2026-01-27
+
+### Added
+- **`framer-motion-magic` Skill:** Animation & Micro-interactions với Framer Motion
+  - Keyframe animations, Spring physics, AnimatePresence
+  - References: list-patterns, micro-interactions, modal-patterns, page-transitions
+- **`performance-precision` Skill:** Core Web Vitals & Performance Optimization
+  - LCP, INP, CLS optimization strategies
+  - Code splitting, lazy loading, render optimization
+  - References: bundle-optimization, media-optimization, memory-debugging, react-rendering
+- **`websocket-realtime-mastery` Skill:** WebSocket & Real-time Applications
+  - Native WebSocket, Socket.IO, reconnection patterns
+  - Optimistic updates, presence systems, live cursors
+  - References: react-patterns, socketio-advanced, scaling-architecture, testing-realtime
+
+### Changed
+- **install.ps1 & install.sh:** Thêm 3 skills mới vào danh sách cài đặt (tổng 11 skills)
+- **frontend-skills-roadmap.md:** Cập nhật trạng thái 3 skills đã hoàn thành
+
+---
+
 ## [3.5.1] - 2026-01-27
 
 ### Added
