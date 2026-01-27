@@ -27,6 +27,7 @@ SKILLS=(
     "clean-code"
     "nodejs-best-practices"
     "remotion-best-practices"
+    "skill-creator"
     "tailwind-patterns"
     "vercel-react-best-practices"
     "vue-best-practices"
