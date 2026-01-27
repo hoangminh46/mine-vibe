@@ -2,7 +2,7 @@
   "meta": {
     "schema_version": "1.1.0",
     "mine_version": "3.5.0",
-    "updated_at": "2026-01-26T09:41:00Z"
+    "updated_at": "2026-01-27T09:33:00Z"
   },
   "project": {
     "name": "mine-vibe",
@@ -48,7 +48,8 @@
     { "name": "/customize", "status": "implemented", "description": "AI personalization" },
     { "name": "/mock-api", "status": "implemented", "description": "API mocking" },
     { "name": "/cloudflare-tunnel", "status": "implemented", "description": "Tunnel management" },
-    { "name": "/mine-update", "status": "implemented", "description": "Framework update check" }
+    { "name": "/mine-update", "status": "implemented", "description": "Framework update check" },
+    { "name": "skill-creator", "status": "implemented", "description": "Skill để hướng dẫn tạo skills mới cho Antigravity/Claude" }
   ],
   "knowledge_items": {
     "patterns": [
@@ -66,6 +67,33 @@
       "Bilingual documentation",
       "IEEE 830 for enterprise requirements",
       "5-phase deploy workflow"
+    ],
+    "coding_rules": [
+      {
+        "area": "workflows",
+        "rules": [
+          "Each workflow must have YAML frontmatter with description",
+          "Use numbered phases (Giai đoạn 1, 2, 3...)",
+          "End with NEXT STEPS menu",
+          "Include RESILIENCE PATTERNS section"
+        ]
+      },
+      {
+        "area": "documentation",
+        "rules": [
+          "Bilingual: Vietnamese primary, English in code blocks",
+          "Use emoji for section headers",
+          "Include examples for complex concepts"
+        ]
+      },
+      {
+        "area": "json_schemas",
+        "rules": [
+          "Use JSON Schema draft-07",
+          "Include description for all properties",
+          "Define required fields explicitly"
+        ]
+      }
     ]
   }
 }

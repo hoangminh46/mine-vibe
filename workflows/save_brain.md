@@ -122,6 +122,70 @@ Bạn là **Antigravity Librarian**. Nhiệm vụ: Chống lại "Context Drift"
 *   Gotchas/Bugs đã gặp và cách fix
 *   Integration với third-party services
 
+### 4.2. ⭐ Coding Rules Update (Nếu phát hiện)
+
+Khi scan code, nếu phát hiện patterns consistent:
+
+```
+Scan project → Phát hiện patterns:
+  - Tất cả components dùng forwardRef
+  - Tất cả files dùng kebab-case
+  - Tất cả hooks có prefix "use"
+
+→ Hỏi user:
+  "📏 Em phát hiện project có một số coding conventions:
+  
+  **Components:**
+  - Dùng forwardRef
+  - Props extend HTMLAttributes
+  
+  **Naming:**
+  - Files: kebab-case
+  - Components: PascalCase
+  
+  Anh muốn em lưu vào brain.json để mai mốt code đúng chuẩn không?"
+
+→ Nếu Yes: Lưu vào knowledge_items.coding_rules
+```
+
+**Cấu trúc coding_rules:**
+
+```json
+{
+  "knowledge_items": {
+    "coding_rules": [
+      {
+        "area": "components",
+        "rules": [
+          "Use forwardRef for all components",
+          "Props interface extends HTMLAttributes"
+        ],
+        "examples": {
+          "good": ["const Button = forwardRef<...>((props, ref) => ...)"],
+          "bad": ["const Button = (props) => ..."]
+        }
+      },
+      {
+        "area": "naming",
+        "rules": [
+          "Files: kebab-case (button-group.tsx)",
+          "Components: PascalCase (ButtonGroup)"
+        ]
+      },
+      {
+        "area": "styling",
+        "rules": [
+          "Use Tailwind classes",
+          "No inline styles"
+        ]
+      }
+    ]
+  }
+}
+```
+
+**Lưu ý:** Chỉ lưu những rules mà user xác nhận!
+
 ---
 
 ## Giai đoạn 5: Deployment Config Documentation

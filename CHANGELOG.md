@@ -2,6 +2,20 @@
 
 All notable changes to Mine will be documented in this file.
 
+## [3.5.1] - 2026-01-27
+
+### Added
+- **`coding_rules` trong brain.json:** Cho phép định nghĩa coding rules theo từng area (workflows, documentation, json_schemas...) ngay trong `.brain/brain.json` thay vì tạo thư mục local_skills riêng.
+- **Skill Creator Skill:** Thêm skill `skill-creator` hướng dẫn cách tạo skills mới cho Antigravity/Claude.
+- **Frontend Skills Roadmap:** Plan chi tiết 8 skills Frontend cần phát triển (framer-motion-magic, performance-precision, accessibility-guarantor, v.v.)
+
+### Changed
+- **`/code` workflow:** Tích hợp đọc `coding_rules` từ brain.json trước khi coding.
+- **`/save-brain` workflow:** Thêm hướng dẫn lưu `coding_rules` vào brain.json.
+- **brain.schema.json:** Cập nhật schema hỗ trợ `coding_rules` object.
+
+---
+
 ## [3.5.0] - 2026-01-26
 
 ### Added

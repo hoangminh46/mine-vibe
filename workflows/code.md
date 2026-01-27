@@ -190,6 +190,44 @@ User thường QUÊN những thứ này. AI phải TỰ THÊM:
 
 ## Giai đoạn 3: Implementation
 
+### 3.0. ⭐ Check Coding Rules (Nếu có)
+
+Trước khi code, **PHẢI** kiểm tra `.brain/brain.json` > `knowledge_items.coding_rules`:
+
+```
+if exists(".brain/brain.json"):
+    rules = brain.json.knowledge_items.coding_rules
+    
+    if rules exists and not empty:
+        → Hiển thị: "📏 Em sẽ tuân thủ [X] coding rules của project"
+        → Apply rules khi generate code
+        
+    Ví dụ:
+    {
+      "coding_rules": [
+        {
+          "area": "components",
+          "rules": [
+            "All components must use forwardRef",
+            "Props interface must extend HTMLAttributes"
+          ]
+        },
+        {
+          "area": "naming",
+          "rules": [
+            "Files: kebab-case",
+            "Components: PascalCase"
+          ]
+        }
+      ]
+    }
+    
+    → Khi tạo component mới:
+       - Dùng forwardRef ✅
+       - Props extend HTMLAttributes ✅
+       - File name: kebab-case ✅
+```
+
 ### 3.1. Code Structure
 *   Tách logic ra services/utils riêng
 *   Không để logic phức tạp trong component UI

@@ -257,6 +257,33 @@
               "example": { "type": "string" }
             }
           }
+        },
+        "coding_rules": {
+          "type": "array",
+          "description": "Detailed coding rules for AI to follow when generating code",
+          "items": {
+            "type": "object",
+            "properties": {
+              "area": { 
+                "type": "string",
+                "description": "Area this rule applies to: components, hooks, api, styling, testing, naming, etc."
+              },
+              "rules": { 
+                "type": "array", 
+                "items": { "type": "string" },
+                "description": "List of specific rules to follow"
+              },
+              "examples": {
+                "type": "object",
+                "description": "Good and bad examples",
+                "properties": {
+                  "good": { "type": "array", "items": { "type": "string" } },
+                  "bad": { "type": "array", "items": { "type": "string" } }
+                }
+              }
+            },
+            "required": ["area", "rules"]
+          }
         }
       }
     },
