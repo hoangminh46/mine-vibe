@@ -16,8 +16,8 @@
 | 3 | `accessibility-guarantor` | 🟡 Trung bình | ⬜ Chưa cài | WCAG & A11y compliance |
 | 4 | `design-system-architect` | 🟡 Trung bình | ⬜ Chưa cài | Design Tokens & Component Library |
 | 5 | `testing-frontend-pro` | 🟡 Trung bình | ⬜ Chưa cài | Vitest, Testing Library, Playwright |
-| 6 | `web-security-frontend` | 🟠 Khá cao | ⬜ Chưa cài | XSS, CSRF, CSP, Auth-flow |
-| 7 | `responsive-mastery` | 🟡 Trung bình | ⬜ Chưa cài | Mobile-first & Touch optimization |
+| 6 | `web-security-frontend` | 🟠 Khá cao | ✅ Đã cài | XSS, CSRF, CSP, Auth-flow |
+| 7 | `responsive-mastery` | 🟡 Trung bình | ✅ Đã cài | Mobile-first & Touch optimization |
 | 8 | `websocket-realtime-mastery` | 🟠 Khá cao | ✅ Đã cài | WebSocket, Socket.IO, Realtime Apps |
 
 ---

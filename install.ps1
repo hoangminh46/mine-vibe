@@ -28,10 +28,12 @@ $Skills = @(
     "nodejs-best-practices",
     "performance-precision",
     "remotion-best-practices",
+    "responsive-mastery",
     "skill-creator",
     "tailwind-patterns",
     "vercel-react-best-practices",
     "vue-best-practices",
+    "web-security-frontend",
     "websocket-realtime-mastery"
 )
 

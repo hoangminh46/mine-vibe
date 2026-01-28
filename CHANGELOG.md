@@ -2,6 +2,25 @@
 
 All notable changes to Mine will be documented in this file.
 
+## [3.5.3] - 2026-01-28
+
+### Added
+- **`web-security-frontend` Skill:** Frontend Security Best Practices
+  - XSS Prevention (types, DOMPurify, framework-specific)
+  - CSRF Protection (tokens, SameSite cookies, patterns)
+  - CSP & Security Headers (directives, nonce-based CSP)
+  - Auth Best Practices (token storage, JWT, OAuth, sessions)
+- **`responsive-mastery` Skill:** Responsive Web Design Mastery
+  - CSS Techniques (clamp(), container queries, grid patterns)
+  - Mobile Issues (100vh problem, dvh/svh/lvh, safe areas)
+  - Touch Optimization (targets, gestures, hover states)
+
+### Changed
+- **install.ps1 & install.sh:** Thêm 2 skills mới (tổng 13 skills)
+- **frontend-skills-roadmap.md:** Đánh dấu 2 skills đã hoàn thành (5/8 done)
+
+---
+
 ## [3.5.2] - 2026-01-27
 
 ### Added

@@ -1,8 +1,8 @@
 {
   "meta": {
     "schema_version": "1.1.0",
-    "mine_version": "3.5.2",
-    "updated_at": "2026-01-27T10:24:00Z"
+    "mine_version": "3.5.3",
+    "updated_at": "2026-01-28T03:05:00Z"
   },
   "project": {
     "name": "mine-vibe",
@@ -52,7 +52,9 @@
     { "name": "skill-creator", "status": "implemented", "description": "Skill để hướng dẫn tạo skills mới cho Antigravity/Claude" },
     { "name": "framer-motion-magic", "status": "implemented", "description": "Animation & Micro-interactions với Framer Motion" },
     { "name": "performance-precision", "status": "implemented", "description": "Core Web Vitals & Performance Optimization" },
-    { "name": "websocket-realtime-mastery", "status": "implemented", "description": "WebSocket & Real-time Applications" }
+    { "name": "websocket-realtime-mastery", "status": "implemented", "description": "WebSocket & Real-time Applications" },
+    { "name": "web-security-frontend", "status": "implemented", "description": "XSS, CSRF, CSP, Auth Best Practices" },
+    { "name": "responsive-mastery", "status": "implemented", "description": "Mobile-first, Container Queries, Touch Optimization" }
   ],
   "knowledge_items": {
     "patterns": [
