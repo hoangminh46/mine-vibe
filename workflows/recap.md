@@ -91,6 +91,8 @@ Dùng để trả lời:
 - Branch nào
 - Local WIP ở đâu
 - Blockers và pending tasks
+- Nếu có, mức confidence hiện tại đang thấp/trung bình/cao
+- Nếu có, lỗi nào còn unresolved hoặc verification gap nào chưa khép lại
 
 ### 3.4. Git hiện tại
 
@@ -125,11 +127,14 @@ Bản recap phải có 5 phần ngắn gọn:
 - HEAD hiện tại
 - Có commit mới sau lần save không
 - Có local changes không
+- Nếu có phase hiện tại, acceptance criteria đã verify tới đâu
+- Definition of done đã đạt chưa, hay mới chỉ xong phần code
 
 ### 4.5. What to do next
 - Task đang dở
 - Pending tasks ưu tiên cao
 - Cần `/code`, `/debug`, `/plan`, hay `/save-brain`
+- Nếu có, residual risk hoặc test gap nào đang chặn bước tiếp theo
 
 ---
 

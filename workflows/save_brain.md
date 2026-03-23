@@ -82,6 +82,12 @@ Luôn cập nhật:
 - `recent_changes` trong phạm vi từ lần save trước đến hiện tại
 - `active_handoff_id`
 
+Nếu có đủ bằng chứng từ phase/spec/test/debug hiện tại, nên ưu tiên phản ánh thêm vào `working_on`, `pending_tasks`, hoặc `errors_encountered`:
+- acceptance criteria nào đã xong / chưa verify
+- definition of done còn thiếu gì
+- unresolved blockers
+- residual risks hoặc test gaps còn mở
+
 ### 2.3. Quy tắc cập nhật `history.json`
 
 Mỗi lần `/save-brain` tạo 1 entry handoff mới, gồm:
@@ -104,6 +110,8 @@ Entry này phải đọc nhanh trong 1-2 phút, ưu tiên nói:
 - Đã commit gì
 - Local đang dở gì
 - Cần làm tiếp gì ngay đầu phiên sau
+- Acceptance / verification gap nào còn chặn
+- Risk hoặc blocker nào cần nhớ ngay khi quay lại
 
 ---
 
@@ -186,6 +194,7 @@ Trước khi ghi, AI phải tóm tắt:
 - File nào đang local dirty
 - Mục nào trong `brain.json` sẽ thay đổi
 - Next steps dự kiến được lưu vào handoff
+- Verification gaps, residual risks, hoặc blockers nào sẽ được lưu để recap phiên sau không bỏ sót
 
 Nếu phần tóm tắt chưa rõ, không được ghi vội.
 
