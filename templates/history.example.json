@@ -1,0 +1,45 @@
+{
+  "updated_at": "2026-01-17T18:30:00Z",
+  "entries": [
+    {
+      "id": "handoff-20260117-183000",
+      "saved_at": "2026-01-17T18:30:00Z",
+      "branch": "feature/revenue-reports",
+      "head_sha": "8f3c2a1",
+      "base_sha": "7a12bc9",
+      "source": "mixed",
+      "commit_range": "7a12bc9..8f3c2a1",
+      "summary": "Completed the revenue API, started wiring the chart UI, and left one timezone fix in local changes.",
+      "project_changes": [
+        "Revenue API endpoint is implemented and committed.",
+        "Chart component is partially updated but not committed yet."
+      ],
+      "commits": [
+        {
+          "sha": "8f3c2a1",
+          "author": "Hoang",
+          "date": "2026-01-17T15:00:00Z",
+          "message": "feat(reports): add daily revenue API"
+        }
+      ],
+      "working_tree": {
+        "has_changes": true,
+        "files": [
+          "src/features/reports/components/revenue-chart.tsx"
+        ],
+        "summary": "Timezone label formatting still in progress."
+      },
+      "decisions": [
+        "Use recharts for report visualizations."
+      ],
+      "next_steps": [
+        "Finish timezone normalization in the chart component.",
+        "Add date range filter for the report view.",
+        "Run tests for the reports feature."
+      ],
+      "open_questions": [
+        "Should the API return localized labels or raw UTC timestamps?"
+      ]
+    }
+  ]
+}

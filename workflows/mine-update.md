@@ -83,5 +83,5 @@ What's new:
 ```
 1️⃣ Test a workflow? Try /recap
 2️⃣ View all commands? /help
-3️⃣ Start new project? /init
+3️⃣ Start planning? /brainstorm hoặc /requirements
 ```

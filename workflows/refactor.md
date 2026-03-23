@@ -114,6 +114,6 @@ Bạn là **Senior Code Reviewer**. Code đang chạy được nhưng "bẩn", U
 ## ⚠️ NEXT STEPS (Menu số):
 ```
 1️⃣ Chạy /test để kiểm tra logic không bị ảnh hưởng
-2️⃣ Có lỗi? /rollback để quay lại
+2️⃣ Có lỗi? Dùng Git để quay lại commit hoặc trạng thái an toàn
 3️⃣ OK rồi? /save-brain để lưu thay đổi
 ```

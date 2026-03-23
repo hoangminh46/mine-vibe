@@ -1,53 +1,103 @@
 {
   "updated_at": "2026-01-17T18:30:00Z",
+  "current_branch": "feature/revenue-reports",
+  "last_recap_at": "2026-01-17T09:00:00Z",
+  "active_handoff_id": "handoff-20260117-183000",
   "working_on": {
     "feature": "Revenue Reports",
-    "task": "Implement daily revenue chart",
+    "task": "Implement daily revenue chart and verify timezone handling",
     "status": "coding",
+    "current_plan_path": "plans/260117-1430-revenue-reports/",
+    "current_phase": "phase-04",
     "files": [
       "src/features/reports/components/revenue-chart.tsx",
       "src/features/reports/api/get-revenue.ts"
     ],
     "blockers": [],
-    "notes": "Using recharts for visualization"
+    "notes": "Need to confirm GMT+7 output before closing the phase"
+  },
+  "git_snapshot": {
+    "head_sha": "8f3c2a1",
+    "head_summary": "feat(reports): add daily revenue API",
+    "head_authored_at": "2026-01-17T15:00:00Z",
+    "last_saved_head_sha": "7a12bc9",
+    "base_sha": "7a12bc9",
+    "branch": "feature/revenue-reports",
+    "has_uncommitted_changes": true,
+    "changed_files": [
+      "src/features/reports/components/revenue-chart.tsx",
+      "src/features/reports/api/get-revenue.ts"
+    ],
+    "staged_files": [
+      "src/features/reports/api/get-revenue.ts"
+    ],
+    "unstaged_files": [
+      "src/features/reports/components/revenue-chart.tsx"
+    ],
+    "untracked_files": [],
+    "commit_range": "7a12bc9..8f3c2a1",
+    "commits_since_last_save": [
+      {
+        "sha": "8f3c2a1",
+        "author": "Hoang",
+        "date": "2026-01-17T15:00:00Z",
+        "message": "feat(reports): add daily revenue API"
+      }
+    ]
   },
   "pending_tasks": [
     {
       "task": "Add date range filter to revenue chart",
       "priority": "medium",
-      "notes": "User request from demo"
+      "notes": "Requested during demo review"
     },
     {
-      "task": "Fix timezone issue in report",
+      "task": "Fix timezone issue in report output",
       "priority": "high",
-      "notes": "Report shows UTC, need GMT+7"
+      "notes": "Need GMT+7 instead of UTC in chart labels"
     }
   ],
   "recent_changes": [
     {
       "timestamp": "2026-01-17T15:00:00Z",
       "type": "feature",
-      "description": "Added revenue API endpoint",
-      "files": ["src/features/reports/api/get-revenue.ts"]
+      "source": "commit",
+      "commit_sha": "8f3c2a1",
+      "description": "Added revenue API endpoint backed by aggregated order totals",
+      "files": [
+        "src/features/reports/api/get-revenue.ts"
+      ]
     },
     {
-      "timestamp": "2026-01-16T10:00:00Z",
+      "timestamp": "2026-01-17T18:00:00Z",
       "type": "bugfix",
-      "description": "Fixed order total calculation",
-      "files": ["src/features/orders/utils/calculate-total.ts"]
+      "source": "working_tree",
+      "description": "Adjusting chart component to render local timezone labels correctly",
+      "files": [
+        "src/features/reports/components/revenue-chart.tsx"
+      ]
     }
   ],
   "errors_encountered": [
     {
-      "error": "Prisma client not found in production",
-      "solution": "Add 'prisma generate' to postinstall script",
-      "resolved": true
+      "error": "Chart labels render in UTC instead of GMT+7",
+      "solution": "Normalize API timestamps before passing them to the chart formatter",
+      "resolved": false
     }
   ],
   "decisions_made": [
     {
       "decision": "Use recharts instead of Chart.js",
-      "reason": "Better React integration, smaller bundle size"
+      "reason": "Better React integration and simpler composition with existing components",
+      "commit_sha": "8f3c2a1"
     }
-  ]
+  ],
+  "skipped_tests": [],
+  "uncommitted_summary": {
+    "status": "dirty",
+    "summary": "Chart component still has local edits that are not committed yet",
+    "files": [
+      "src/features/reports/components/revenue-chart.tsx"
+    ]
+  }
 }

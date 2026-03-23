@@ -2,8 +2,8 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://mine.dev/schemas/session.schema.json",
   "title": "Mine Session State Schema",
-  "description": "Dynamic session state - changes frequently during work sessions",
-  "version": "1.0.0",
+  "description": "Dynamic session snapshot - current branch, working tree, and next actions",
+  "version": "2.0.0",
   "type": "object",
   "required": ["updated_at"],
   "properties": {
@@ -44,6 +44,75 @@
         "notes": { "type": "string", "description": "Quick notes" }
       }
     },
+    "current_branch": {
+      "type": "string",
+      "description": "Git branch currently checked out"
+    },
+    "last_recap_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time /recap was run"
+    },
+    "active_handoff_id": {
+      "type": "string",
+      "description": "Most recent handoff entry ID from history.json"
+    },
+    "git_snapshot": {
+      "type": "object",
+      "description": "Verified git state at the moment of save",
+      "properties": {
+        "head_sha": { "type": "string" },
+        "head_summary": { "type": "string" },
+        "head_authored_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "last_saved_head_sha": {
+          "type": "string",
+          "description": "HEAD sha captured during the previous successful /save-brain"
+        },
+        "base_sha": {
+          "type": "string",
+          "description": "Commit used as the comparison base for this save"
+        },
+        "branch": { "type": "string" },
+        "has_uncommitted_changes": { "type": "boolean" },
+        "changed_files": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "staged_files": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "unstaged_files": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "untracked_files": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "commit_range": {
+          "type": "string",
+          "description": "Range reviewed since previous save, for example abc123..def456"
+        },
+        "commits_since_last_save": {
+          "type": "array",
+          "description": "Commits included in the current handoff",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sha": { "type": "string" },
+              "author": { "type": "string" },
+              "date": { "type": "string", "format": "date-time" },
+              "message": { "type": "string" }
+            },
+            "required": ["sha", "message"]
+          }
+        }
+      }
+    },
     "pending_tasks": {
       "type": "array",
       "description": "Tasks to do next",
@@ -59,12 +128,18 @@
     },
     "recent_changes": {
       "type": "array",
-      "description": "Recent changes in this session",
+      "description": "Verified recent changes, preferably derived from commit history or current working tree",
       "items": {
         "type": "object",
         "properties": {
           "timestamp": { "type": "string", "format": "date-time" },
           "type": { "type": "string", "enum": ["feature", "bugfix", "refactor", "config", "docs"] },
+          "source": {
+            "type": "string",
+            "enum": ["commit", "working_tree"],
+            "description": "Whether the change came from committed history or local uncommitted work"
+          },
+          "commit_sha": { "type": "string" },
           "description": { "type": "string" },
           "files": { "type": "array", "items": { "type": "string" } }
         }
@@ -89,7 +164,8 @@
         "type": "object",
         "properties": {
           "decision": { "type": "string" },
-          "reason": { "type": "string" }
+          "reason": { "type": "string" },
+          "commit_sha": { "type": "string" }
         }
       }
     },
@@ -104,6 +180,21 @@
           "date": { "type": "string", "format": "date-time" }
         },
         "required": ["test", "date"]
+      }
+    },
+    "uncommitted_summary": {
+      "type": "object",
+      "description": "Short summary of local work not yet committed",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["clean", "dirty"]
+        },
+        "summary": { "type": "string" },
+        "files": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
       }
     }
   }

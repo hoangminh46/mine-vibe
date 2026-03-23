@@ -1,28 +1,35 @@
 # System Architecture - Mine Framework
 
 ## Overview
-Mine là một bộ khung quy trình (workflow framework) được thiết kế để tối ưu hóa việc cộng tác giữa con người và AI (Human-AI Collaboration). Nó hoạt động như một "Hệ điều hành" lớp trên (Layer 2) dành cho các IDE AI như Antigravity và Cursor.
+Mine is a workflow framework for human-AI collaboration inside AI-first IDEs such as Antigravity and Cursor. It acts as a layer on top of the IDE: users trigger slash commands, and the AI follows structured workflows, persists project memory, and restores context across work sessions.
 
 ## Core Components
 
 ### 1. Global Workflows (`workflows/`)
-- Gồm 17+ quy trình Markdown định nghĩa các bước thực hiện cho từng vai trò (Architect, Developer, QA, DevOps...).
-- AI đọc các file này để tự động hóa các tác vụ phức tạp theo đúng tiêu chuẩn.
+- Markdown workflows define the expected behavior for commands such as `/plan`, `/code`, `/save-brain`, and `/recap`.
+- The AI reads these files as operating instructions for each role and task.
 
 ### 2. Schemas & Templates (`schemas/`, `templates/`)
-- Định nghĩa cấu trúc dữ liệu cho bộ nhớ (`brain.json`, `session.json`).
-- Đảm bảo tính nhất quán của dữ liệu qua các phiên bản.
+- Schemas define the structure for persistent memory files.
+- Templates provide starter examples for new projects.
+- The memory model now includes `brain.json`, `session.json`, and `history.json`.
 
 ### 3. Memory System (`.brain/`)
-- **brain.json**: Lưu kiến thức tĩnh (Stack, DB Schema, Business Rules).
-- **session.json**: Lưu trạng thái động (Task hiện tại, lỗi, quyết định).
+- `brain.json`: stable project knowledge that has been verified from code, docs, or Git-backed changes.
+- `session.json`: the current working snapshot, including branch, HEAD, task in progress, pending work, and local uncommitted state.
+- `history.json`: cross-session handoff entries anchored to commit ranges so `/recap` can reconstruct what changed between days.
 
 ### 4. Installation & Maintenance Scripts
-- `install.ps1/sh`: Tự động setup môi trường.
-- `uninstall.ps1/sh`: Gỡ bỏ sạch sẽ framework.
+- `install.ps1` / `install.sh`: install workflows, schemas, templates, and skills into the user's global Mine directory.
+- `uninstall.ps1` / `uninstall.sh`: remove the installed Mine resources.
 
 ## Data Flow
-1. **User** gọi lệnh (VD: `/plan`).
-2. **AI** đọc workflow tương ứng.
-3. **AI** đọc context từ `.brain/` để hiểu dự án.
-4. **AI** thực hiện tác vụ và cập nhật kết quả vào `.brain/session.json`.
+1. The user triggers a workflow command such as `/plan` or `/save-brain`.
+2. The AI reads the matching workflow file.
+3. The AI loads `.brain/brain.json`, `.brain/session.json`, and `.brain/history.json` when available.
+4. For memory-sensitive commands, the AI reconciles the loaded memory with the current Git state.
+5. The AI performs the requested task.
+6. The AI updates:
+   - `brain.json` for stable project facts
+   - `session.json` for the latest working snapshot
+   - `history.json` for session-to-session handoff

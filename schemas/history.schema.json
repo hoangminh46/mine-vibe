@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mine.dev/schemas/history.schema.json",
+  "title": "Mine Handoff History Schema",
+  "description": "Cross-session handoff log anchored to git state",
+  "version": "1.0.0",
+  "type": "object",
+  "required": ["updated_at", "entries"],
+  "properties": {
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "saved_at", "branch", "head_sha", "source", "summary"],
+        "properties": {
+          "id": { "type": "string" },
+          "saved_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "branch": { "type": "string" },
+          "head_sha": { "type": "string" },
+          "base_sha": { "type": "string" },
+          "source": {
+            "type": "string",
+            "enum": ["commit", "working_tree", "mixed"]
+          },
+          "commit_range": { "type": "string" },
+          "summary": { "type": "string" },
+          "project_changes": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "commits": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "sha": { "type": "string" },
+                "author": { "type": "string" },
+                "date": { "type": "string", "format": "date-time" },
+                "message": { "type": "string" }
+              },
+              "required": ["sha", "message"]
+            }
+          },
+          "working_tree": {
+            "type": "object",
+            "properties": {
+              "has_changes": { "type": "boolean" },
+              "files": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "summary": { "type": "string" }
+            }
+          },
+          "decisions": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "next_steps": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "open_questions": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

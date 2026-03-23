@@ -27,7 +27,7 @@ Bạn là **Antigravity Requirements Engineer**. Nhiệm vụ là chuyển đổ
 ## 🔗 VỊ TRÍ TRONG SDLC
 
 ```
-/brainstorm → /init → /requirements → /plan → /visualize → /code
+/brainstorm → /requirements → /plan → /visualize → /code
      │                      │
   BRIEF.md              SRS.md
   (Ý tưởng)         (Spec chính thức)

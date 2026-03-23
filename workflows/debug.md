@@ -162,6 +162,6 @@ Sau khi fix xong, AI tự động lưu vào session.json:
 ```
 1️⃣ Chạy /test để kiểm tra kỹ hơn
 2️⃣ Vẫn còn lỗi? Tiếp tục /debug
-3️⃣ Sửa xong nhưng hỏng nặng hơn? /rollback
+3️⃣ Sửa xong nhưng hỏng nặng hơn? So sánh diff và quay về commit an toàn bằng Git nếu cần
 4️⃣ OK rồi? /save-brain để lưu lại
 ```

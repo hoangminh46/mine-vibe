@@ -1,13 +1,13 @@
 {
   "meta": {
-    "schema_version": "1.1.0",
-    "mine_version": "3.4.0",
+    "schema_version": "2.0.0",
+    "mine_version": "3.5.3",
     "created_at": "2026-01-15T09:00:00Z",
     "updated_at": "2026-01-17T18:30:00Z"
   },
   "project": {
     "name": "coffee-shop-manager",
-    "description": "Quản lý tiệm cà phê - đơn hàng, nhân viên, doanh thu",
+    "description": "Quan ly tiem ca phe - don hang, nhan vien, doanh thu",
     "type": "fullstack",
     "status": "development",
     "repository": "https://github.com/user/coffee-shop-manager",
@@ -53,7 +53,7 @@
       {
         "name": "auth",
         "path": "src/features/auth",
-        "responsibility": "Authentication & authorization",
+        "responsibility": "Authentication and authorization",
         "dependencies": ["next-auth", "prisma"]
       },
       {
@@ -63,15 +63,9 @@
         "dependencies": ["prisma", "zustand"]
       },
       {
-        "name": "menu",
-        "path": "src/features/menu",
-        "responsibility": "Menu items & categories",
-        "dependencies": ["prisma"]
-      },
-      {
         "name": "reports",
         "path": "src/features/reports",
-        "responsibility": "Revenue & analytics",
+        "responsibility": "Revenue and analytics",
         "dependencies": ["prisma", "recharts"]
       }
     ],
@@ -79,12 +73,14 @@
       {
         "name": "VNPay",
         "purpose": "Payment processing",
-        "env_vars": ["VNPAY_TMN_CODE", "VNPAY_HASH_SECRET"]
+        "env_vars": ["VNPAY_TMN_CODE", "VNPAY_HASH_SECRET"],
+        "last_verified_sha": "7a12bc9"
       },
       {
         "name": "Resend",
         "purpose": "Email notifications",
-        "env_vars": ["RESEND_API_KEY"]
+        "env_vars": ["RESEND_API_KEY"],
+        "last_verified_sha": "7a12bc9"
       }
     ]
   },
@@ -92,86 +88,48 @@
     "tables": [
       {
         "name": "users",
-        "description": "Nhân viên & Admin",
+        "description": "Nhan vien va Admin",
         "columns": [
           { "name": "id", "type": "uuid", "primary": true },
           { "name": "email", "type": "string", "nullable": false },
           { "name": "name", "type": "string", "nullable": false },
-          { "name": "role", "type": "enum(ADMIN,STAFF)", "nullable": false },
-          { "name": "created_at", "type": "datetime", "nullable": false }
+          { "name": "role", "type": "enum(ADMIN,STAFF)", "nullable": false }
         ]
       },
       {
         "name": "orders",
-        "description": "Đơn hàng",
+        "description": "Don hang",
         "columns": [
           { "name": "id", "type": "uuid", "primary": true },
           { "name": "user_id", "type": "uuid", "foreign_key": "users.id" },
           { "name": "total", "type": "decimal", "nullable": false },
-          { "name": "status", "type": "enum(PENDING,COMPLETED,CANCELLED)", "nullable": false },
-          { "name": "created_at", "type": "datetime", "nullable": false }
-        ]
-      },
-      {
-        "name": "order_items",
-        "description": "Chi tiết đơn hàng",
-        "columns": [
-          { "name": "id", "type": "uuid", "primary": true },
-          { "name": "order_id", "type": "uuid", "foreign_key": "orders.id" },
-          { "name": "menu_item_id", "type": "uuid", "foreign_key": "menu_items.id" },
-          { "name": "quantity", "type": "int", "nullable": false },
-          { "name": "price", "type": "decimal", "nullable": false }
-        ]
-      },
-      {
-        "name": "menu_items",
-        "description": "Món trong menu",
-        "columns": [
-          { "name": "id", "type": "uuid", "primary": true },
-          { "name": "name", "type": "string", "nullable": false },
-          { "name": "price", "type": "decimal", "nullable": false },
-          { "name": "category", "type": "string", "nullable": false },
-          { "name": "available", "type": "boolean", "nullable": false }
+          { "name": "status", "type": "enum(PENDING,COMPLETED,CANCELLED)", "nullable": false }
         ]
       }
     ],
     "relationships": [
-      { "from": "orders", "to": "users", "type": "many-to-one", "description": "Mỗi order thuộc 1 user" },
-      { "from": "order_items", "to": "orders", "type": "many-to-one", "description": "Mỗi order có nhiều items" },
-      { "from": "order_items", "to": "menu_items", "type": "many-to-one", "description": "Mỗi item tham chiếu 1 menu item" }
+      { "from": "orders", "to": "users", "type": "one-to-many", "description": "One user can create many orders" }
     ]
   },
   "api_endpoints": [
     {
       "method": "POST",
       "path": "/api/auth/login",
-      "description": "Đăng nhập",
+      "description": "Dang nhap",
       "auth_required": false,
+      "source_file": "src/features/auth/api/login.ts",
+      "last_verified_sha": "7a12bc9",
       "request_body": { "email": "string", "password": "string" },
       "response": { "token": "string", "user": "object" }
     },
     {
       "method": "GET",
-      "path": "/api/orders",
-      "description": "Lấy danh sách orders",
-      "auth_required": true,
-      "roles": ["ADMIN", "STAFF"],
-      "response": { "orders": "array", "total": "number", "page": "number" }
-    },
-    {
-      "method": "POST",
-      "path": "/api/orders",
-      "description": "Tạo order mới",
-      "auth_required": true,
-      "roles": ["STAFF"],
-      "request_body": { "items": "array", "note": "string?" }
-    },
-    {
-      "method": "GET",
       "path": "/api/reports/revenue",
-      "description": "Báo cáo doanh thu",
+      "description": "Bao cao doanh thu",
       "auth_required": true,
       "roles": ["ADMIN"],
+      "source_file": "src/features/reports/api/get-revenue.ts",
+      "last_verified_sha": "8f3c2a1",
       "response": { "daily": "array", "total": "number" }
     }
   ],
@@ -179,23 +137,10 @@
     {
       "id": "BR001",
       "domain": "orders",
-      "rule": "Đơn hàng > 500,000 VND được giảm 5%",
+      "rule": "Don hang tren 500000 VND duoc giam 5%",
       "implementation": "src/features/orders/utils/calculate-discount.ts",
-      "exceptions": ["Không áp dụng cho combo"]
-    },
-    {
-      "id": "BR002",
-      "domain": "orders",
-      "rule": "Không thể hủy đơn đã COMPLETED",
-      "implementation": "src/features/orders/actions/cancel-order.ts",
-      "exceptions": ["Admin có thể override"]
-    },
-    {
-      "id": "BR003",
-      "domain": "menu",
-      "rule": "Món hết hàng tự động ẩn khỏi menu",
-      "implementation": "src/features/menu/hooks/use-available-items.ts",
-      "exceptions": []
+      "last_verified_sha": "7a12bc9",
+      "exceptions": ["Khong ap dung cho combo"]
     }
   ],
   "features": [
@@ -204,76 +149,62 @@
       "status": "deployed",
       "spec_file": "docs/specs/auth_spec.md",
       "files": ["src/features/auth/**"],
-      "notes": "NextAuth v5 với Credentials provider"
-    },
-    {
-      "name": "Order Management",
-      "status": "implemented",
-      "spec_file": "docs/specs/orders_spec.md",
-      "files": ["src/features/orders/**"],
-      "notes": "CRUD hoàn chỉnh, đang test"
+      "notes": "NextAuth v5 voi Credentials provider",
+      "last_changed_sha": "7a12bc9"
     },
     {
       "name": "Revenue Reports",
       "status": "in_progress",
       "spec_file": "docs/specs/reports_spec.md",
       "files": ["src/features/reports/**"],
-      "notes": "Đang làm chart daily revenue"
-    },
-    {
-      "name": "VNPay Integration",
-      "status": "planned",
-      "spec_file": null,
-      "files": [],
-      "notes": "Phase 2"
+      "notes": "Revenue API da commit, chart UI dang do dang",
+      "last_changed_sha": "8f3c2a1"
     }
   ],
   "knowledge_items": {
     "patterns": [
       {
         "name": "Server Actions",
-        "description": "Dùng Next.js Server Actions cho mutations",
-        "example_file": "src/features/orders/actions/create-order.ts"
-      },
-      {
-        "name": "Optimistic Updates",
-        "description": "Zustand + optimistic UI cho UX mượt",
-        "example_file": "src/features/orders/stores/order-store.ts"
+        "description": "Dung Next.js Server Actions cho mutations",
+        "example_file": "src/features/orders/actions/create-order.ts",
+        "last_verified_sha": "7a12bc9"
       }
     ],
     "gotchas": [
       {
         "issue": "Prisma client not found in production",
-        "cause": "Vercel cần generate prisma client trong build",
-        "solution": "Thêm 'prisma generate' vào postinstall script",
+        "cause": "Vercel can generate prisma client during build",
+        "solution": "Add prisma generate to postinstall script",
+        "last_verified_sha": "7a12bc9",
         "affected_files": ["package.json"]
-      },
-      {
-        "issue": "NextAuth session null trên API routes",
-        "cause": "Cần wrap với auth() helper",
-        "solution": "Import auth từ @/lib/auth thay vì getServerSession",
-        "affected_files": ["src/features/*/api/*.ts"]
       }
     ],
     "conventions": [
       {
         "area": "file naming",
-        "convention": "kebab-case cho files, PascalCase cho components",
-        "example": "revenue-chart.tsx exports RevenueChart"
-      },
+        "convention": "kebab-case for files, PascalCase for components",
+        "example": "revenue-chart.tsx exports RevenueChart",
+        "last_verified_sha": "7a12bc9"
+      }
+    ],
+    "coding_rules": [
       {
-        "area": "API responses",
-        "convention": "Luôn wrap trong { data, error, message }",
-        "example": "return { data: orders, error: null, message: 'Success' }"
+        "area": "api",
+        "rules": [
+          "Validate request payloads with zod",
+          "Return responses in { data, error, message } shape"
+        ],
+        "examples": {
+          "good": ["return { data, error: null, message: 'Success' }"]
+        },
+        "last_verified_sha": "7a12bc9"
       }
     ]
   },
   "environment": {
     "variables": [
       { "name": "DATABASE_URL", "description": "PostgreSQL connection string", "required": true, "example": "postgresql://user:pass@localhost:5432/db" },
-      { "name": "NEXTAUTH_SECRET", "description": "Secret for JWT signing", "required": true, "example": "random-32-char-string" },
-      { "name": "NEXTAUTH_URL", "description": "App URL for auth callbacks", "required": true, "example": "http://localhost:3000" },
-      { "name": "RESEND_API_KEY", "description": "Resend email API key", "required": false, "example": "re_xxxxx" }
+      { "name": "NEXTAUTH_SECRET", "description": "Secret for JWT signing", "required": true, "example": "random-32-char-string" }
     ],
     "scripts": {
       "dev": "next dev",

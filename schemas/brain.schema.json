@@ -3,7 +3,7 @@
   "$id": "https://mine.dev/schemas/brain.schema.json",
   "title": "Mine Brain Context Schema",
   "description": "Static project knowledge - tech stack, DB schema, APIs, features. Session state moved to session.json",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "type": "object",
   "required": ["meta", "project", "updated_at"],
   "properties": {
@@ -123,7 +123,8 @@
             "properties": {
               "name": { "type": "string" },
               "purpose": { "type": "string" },
-              "env_vars": { "type": "array", "items": { "type": "string" } }
+              "env_vars": { "type": "array", "items": { "type": "string" } },
+              "last_verified_sha": { "type": "string" }
             }
           }
         }
@@ -181,6 +182,8 @@
           "description": { "type": "string" },
           "auth_required": { "type": "boolean" },
           "roles": { "type": "array", "items": { "type": "string" } },
+          "source_file": { "type": "string" },
+          "last_verified_sha": { "type": "string" },
           "request_body": { "type": "object" },
           "response": { "type": "object" }
         }
@@ -196,6 +199,7 @@
           "domain": { "type": "string" },
           "rule": { "type": "string" },
           "implementation": { "type": "string" },
+          "last_verified_sha": { "type": "string" },
           "exceptions": { "type": "array", "items": { "type": "string" } }
         }
       }
@@ -213,7 +217,8 @@
           },
           "spec_file": { "type": "string" },
           "files": { "type": "array", "items": { "type": "string" } },
-          "notes": { "type": "string" }
+          "notes": { "type": "string" },
+          "last_changed_sha": { "type": "string" }
         }
       }
     },
@@ -229,7 +234,8 @@
             "properties": {
               "name": { "type": "string" },
               "description": { "type": "string" },
-              "example_file": { "type": "string" }
+              "example_file": { "type": "string" },
+              "last_verified_sha": { "type": "string" }
             }
           }
         },
@@ -242,6 +248,7 @@
               "issue": { "type": "string" },
               "cause": { "type": "string" },
               "solution": { "type": "string" },
+              "last_verified_sha": { "type": "string" },
               "affected_files": { "type": "array", "items": { "type": "string" } }
             }
           }
@@ -254,7 +261,8 @@
             "properties": {
               "area": { "type": "string" },
               "convention": { "type": "string" },
-              "example": { "type": "string" }
+              "example": { "type": "string" },
+              "last_verified_sha": { "type": "string" }
             }
           }
         },
@@ -280,7 +288,8 @@
                   "good": { "type": "array", "items": { "type": "string" } },
                   "bad": { "type": "array", "items": { "type": "string" } }
                 }
-              }
+              },
+              "last_verified_sha": { "type": "string" }
             },
             "required": ["area", "rules"]
           }

@@ -337,7 +337,7 @@ Bắt đầu nhé!"
 ```
 
 **Tự động xử lý:**
-1. Nếu chưa có project → Tự động chạy `/init` trước
+1. Nếu chưa có project → Tạo brief rõ ràng rồi chuyển sang `/requirements` hoặc `/plan`
 2. Trigger `/plan` workflow với context từ Brief
 3. User chỉ thấy flow mượt mà
 

@@ -1,374 +1,250 @@
 ---
-description: 💾 Lưu kiến thức dự án
+description: 💾 Lưu bộ nhớ dự án theo Git và handoff giữa các phiên
 ---
 
-# WORKFLOW: /save-brain - The Infinite Memory Keeper (Complete Documentation)
+# WORKFLOW: /save-brain - The Git-Anchored Memory Keeper
 
-Bạn là **Antigravity Librarian**. Nhiệm vụ: Chống lại "Context Drift" - đảm bảo AI không bao giờ quên.
+Bạn là **Antigravity Librarian**. Nhiệm vụ: lưu lại bộ nhớ dự án theo cách **nhất quán, có thể đối chiếu được với Git**, để `/recap` có thể dựng lại context chính xác vào ngày hôm sau.
 
-**Nguyên tắc:** "Code thay đổi → Docs thay đổi NGAY LẬP TỨC"
+## Nguyên tắc cốt lõi
 
----
-
-## Giai đoạn 1: Change Analysis & Physical Sync
-
-### 1.1. Phân tích thực tế (Physical Check - QUAN TRỌNG)
-*   **KHÔNG** chỉ dựa vào lịch sử chat. AI phải kiểm tra trạng thái thực tế của files.
-*   Chạy lệnh: `git status` hoặc `git diff` để xác định các file thực sự có thay đổi so với commit gần nhất.
-*   Nếu không dùng Git: Đọc lại nội dung file để kiểm chứng logic/function mới có tồn tại không.
-
-### 1.2. Phân loại thay đổi
-*   **Internal Only:** Chỉ thay đổi nội bộ hoặc code đang làm dở -> Chỉ update `.brain/session.json`.
-*   **Milestone:** Hoàn thành tính năng, fix bug quan trọng -> Chuẩn bị update `CHANGELOG.md` & `VERSION`.
-
-### 1.3. Hỏi User xác nhận
-*   Liệt kê danh sách file em thấy thực sự thay đổi.
-*   Hỏi: "Em thấy các file [list] đã được sửa. Anh có muốn em lưu hết vào bộ não không, hay có phần nào anh đã discard rồi ạ?"
+1. **Git là nguồn sự thật cho thay đổi file và commit history**
+2. **`brain.json` chỉ lưu kiến thức ổn định**
+3. **`session.json` chỉ lưu snapshot hiện tại**
+4. **`history.json` lưu handoff giữa các phiên**
+5. **Không lưu lại những gì không thể xác minh từ code, docs, hoặc Git**
 
 ---
 
-## Giai đoạn 2: Documentation Update
+## Giai đoạn 1: Xác định phạm vi thay đổi
 
-### 2.1. System Architecture
-*   File: `docs/architecture/system_overview.md`
-*   Update nếu có:
-    *   Module mới
-    *   Third-party API mới
-    *   Database changes
+### 1.1. Bắt buộc đọc Git trước
 
-### 2.2. Database Schema
-*   File: `docs/database/schema.md`
-*   Update khi có:
-    *   Bảng mới
-    *   Cột mới
-    *   Quan hệ mới
+AI phải lấy các thông tin sau:
+- `git branch --show-current`
+- `git rev-parse HEAD`
+- `git status --short`
+- Các commit đã được tạo kể từ `session.git_snapshot.last_saved_head_sha` nếu có
 
-### 2.3. API Documentation (⚠️ Thường bị quên)
+### 1.2. Xác định base để so sánh
 
-#### 2.3.1. Auto-generate API Docs
-*   Scan tất cả API routes trong project
-*   Tạo/update file `docs/api/endpoints.md`:
+Thứ tự ưu tiên:
+1. `session.json` > `git_snapshot.last_saved_head_sha`
+2. Nếu không có, dùng `HEAD~1`
+3. Nếu repo mới chưa có commit trước đó, đánh dấu là `initial-save`
 
-```markdown
-# API Documentation
+### 1.3. Phân loại thay đổi
 
-## Authentication
-### POST /api/auth/login
-- **Description:** Đăng nhập
-- **Body:** { email, password }
-- **Response:** { token, user }
-- **Errors:** 401 (Wrong credentials)
+**Committed changes**
+- Những commit mới kể từ lần `/save-brain` trước
+- Được ghi vào `history.json`
 
-## Users
-### GET /api/users
-- **Description:** Lấy danh sách users
-- **Auth:** Required (Admin)
-- **Query:** ?page=1&limit=10
-- **Response:** { users[], total, page }
-...
-```
+**Working tree changes**
+- File đang sửa, staged, unstaged, untracked
+- Chỉ được ghi vào `session.json` và phần `working_tree` của `history.json`
 
-#### 2.3.2. OpenAPI/Swagger (Nếu cần)
-*   Tạo file `docs/api/openapi.yaml` cho API consumers
-
-### 2.4. Business Logic Documentation
-*   File: `docs/business/rules.md`
-*   Lưu lại các quy tắc nghiệp vụ:
-    *   "Điểm thưởng hết hạn sau 1 năm"
-    *   "Đơn hàng > 500k được free ship"
-    *   "Admin có thể override giá"
-
-### 2.5. Spec Status Update
-*   Move Specs từ `Draft` → `Implemented`
-*   Update nếu có thay đổi so với plan ban đầu
+**Stable project knowledge**
+- Chỉ ghi vào `brain.json` nếu thay đổi đã thể hiện rõ trong code/docs:
+  - tech stack
+  - DB schema
+  - API contract
+  - business rules
+  - feature status
+  - coding conventions đã được xác nhận
 
 ---
 
-## Giai đoạn 3: Codebase Documentation
+## Giai đoạn 2: Reconcile memory với codebase
 
-### 3.1. README Update
-*   Cập nhật hướng dẫn setup nếu có dependencies mới
-*   Cập nhật environment variables mới
+### 2.1. Quy tắc cập nhật `brain.json`
 
-### 3.2. Inline Documentation
-*   Kiểm tra các function phức tạp có JSDoc chưa
-*   Đề xuất thêm comments nếu thiếu
+Chỉ cập nhật khi có bằng chứng thực tế:
+- `package.json`, lockfile -> `tech_stack.dependencies`
+- Schema DB / migrations -> `database_schema`
+- Route files / controller files -> `api_endpoints`
+- Docs specs / code đã merge rõ ràng -> `features`
+- Rules nghiệp vụ thể hiện trong code/docs -> `business_rules`
 
-### 3.3. Changelog (⚠️ Theo chuẩn của dự án)
-*   Tạo/update `CHANGELOG.md` theo format: `## [Version] - YYYY-MM-DD`
-*   **LƯU Ý:** Chỉ cập nhật file này khi User xác nhận đây là một **Milestone**.
+Không ghi vào `brain.json`:
+- Task đang làm dở
+- Local WIP
+- Bug tạm thời chưa kết luận
+- Nhận xét mơ hồ không có file/commit neo theo
 
-```markdown
-# Changelog
+### 2.2. Quy tắc cập nhật `session.json`
 
-## [1.2.3] - 2026-01-24
-### Added
-- Tính năng tích điểm khách hàng
-- API `/api/points/redeem`
+Luôn cập nhật:
+- `current_branch`
+- `working_on`
+- `pending_tasks`
+- `git_snapshot`
+- `uncommitted_summary`
+- `recent_changes` trong phạm vi từ lần save trước đến hiện tại
+- `active_handoff_id`
 
-### Changed
-- Cập nhật giao diện Dashboard
+### 2.3. Quy tắc cập nhật `history.json`
 
-### Fixed
-- Lỗi không gửi được email xác nhận
-```
+Mỗi lần `/save-brain` tạo 1 entry handoff mới, gồm:
+- `id`
+- `saved_at`
+- `branch`
+- `head_sha`
+- `base_sha`
+- `source`: `commit`, `working_tree`, hoặc `mixed`
+- `commit_range`
+- `summary`
+- `project_changes`
+- `commits`
+- `working_tree`
+- `decisions`
+- `next_steps`
+- `open_questions`
+
+Entry này phải đọc nhanh trong 1-2 phút, ưu tiên nói:
+- Đã commit gì
+- Local đang dở gì
+- Cần làm tiếp gì ngay đầu phiên sau
 
 ---
 
-## Giai đoạn 4: Knowledge Items Sync
+## Giai đoạn 3: Tạo nội dung memory
 
-### 4.1. Update KI nếu có kiến thức mới
-*   Patterns mới được sử dụng
-*   Gotchas/Bugs đã gặp và cách fix
-*   Integration với third-party services
+### 3.1. `session.json` là snapshot hiện tại
 
-### 4.2. ⭐ Coding Rules Update (Nếu phát hiện)
-
-Khi scan code, nếu phát hiện patterns consistent:
-
-```
-Scan project → Phát hiện patterns:
-  - Tất cả components dùng forwardRef
-  - Tất cả files dùng kebab-case
-  - Tất cả hooks có prefix "use"
-
-→ Hỏi user:
-  "📏 Em phát hiện project có một số coding conventions:
-  
-  **Components:**
-  - Dùng forwardRef
-  - Props extend HTMLAttributes
-  
-  **Naming:**
-  - Files: kebab-case
-  - Components: PascalCase
-  
-  Anh muốn em lưu vào brain.json để mai mốt code đúng chuẩn không?"
-
-→ Nếu Yes: Lưu vào knowledge_items.coding_rules
-```
-
-**Cấu trúc coding_rules:**
+Bắt buộc có:
 
 ```json
 {
-  "knowledge_items": {
-    "coding_rules": [
-      {
-        "area": "components",
-        "rules": [
-          "Use forwardRef for all components",
-          "Props interface extends HTMLAttributes"
-        ],
-        "examples": {
-          "good": ["const Button = forwardRef<...>((props, ref) => ...)"],
-          "bad": ["const Button = (props) => ..."]
-        }
-      },
-      {
-        "area": "naming",
-        "rules": [
-          "Files: kebab-case (button-group.tsx)",
-          "Components: PascalCase (ButtonGroup)"
-        ]
-      },
-      {
-        "area": "styling",
-        "rules": [
-          "Use Tailwind classes",
-          "No inline styles"
-        ]
-      }
-    ]
+  "updated_at": "...",
+  "current_branch": "feature/reports",
+  "active_handoff_id": "handoff-20260323-183000",
+  "working_on": {},
+  "git_snapshot": {
+    "head_sha": "...",
+    "last_saved_head_sha": "...",
+    "base_sha": "...",
+    "branch": "feature/reports",
+    "has_uncommitted_changes": true,
+    "changed_files": [],
+    "staged_files": [],
+    "unstaged_files": [],
+    "untracked_files": [],
+    "commit_range": "abc123..def456",
+    "commits_since_last_save": []
+  },
+  "pending_tasks": [],
+  "recent_changes": [],
+  "uncommitted_summary": {
+    "status": "clean | dirty",
+    "summary": "...",
+    "files": []
   }
 }
 ```
 
-**Lưu ý:** Chỉ lưu những rules mà user xác nhận!
+### 3.2. `history.json` là handoff xuyên phiên
+
+Chỉ ghi những điều cần cho phiên sau:
+- Thay đổi cấp dự án
+- Commit mới
+- Local đang dở
+- Quyết định quan trọng
+- Next steps rõ ràng
+
+### 3.3. `brain.json` là bản đồ dự án
+
+Khi cập nhật các mục trong `brain.json`, ưu tiên gắn:
+- `last_verified_sha`
+- `last_changed_sha`
+- `source_file`
+
+Mục đích: recap có thể biết thông tin này được xác minh tới commit nào.
 
 ---
 
-## Giai đoạn 5: Deployment Config Documentation
+## Giai đoạn 4: Quy trình ghi
 
-### 5.1. Environment Variables
-*   Cập nhật `.env.example` với biến mới
-*   Document ý nghĩa của từng biến
+### 4.1. Trình tự xử lý
 
-### 5.2. Infrastructure
-*   Ghi lại cấu hình server/hosting
-*   Ghi lại các scheduled tasks
+1. Đọc Git state
+2. Đọc `.brain/brain.json`, `.brain/session.json`, `.brain/history.json` nếu có
+3. Tính commit range kể từ lần save trước
+4. Xác định local dirty state
+5. Cập nhật `brain.json` chỉ với thay đổi ổn định
+6. Cập nhật `session.json` với snapshot mới nhất
+7. Append entry mới vào `history.json`
+8. Validate với:
+   - `schemas/brain.schema.json`
+   - `schemas/session.schema.json`
+   - `schemas/history.schema.json`
+9. Mới thông báo cho user về kết quả lưu
 
----
+### 4.2. Pre-write check
 
-## Giai đoạn 6: Structured Context Generation ⭐ v3.3
+Trước khi ghi, AI phải tóm tắt:
+- Commit mới nào sẽ được đưa vào memory
+- File nào đang local dirty
+- Mục nào trong `brain.json` sẽ thay đổi
+- Next steps dự kiến được lưu vào handoff
 
-> **Mục đích:** Tách riêng static knowledge và dynamic session để AI parse nhanh hơn
-
-### 6.1. Cấu trúc thư mục `.brain/`
-
-```
-.brain/                            # LOCAL (per-project)
-├── brain.json                     # 🧠 Static knowledge (ít thay đổi)
-├── session.json                   # 📍 Dynamic session (thay đổi liên tục)
-└── preferences.json               # ⚙️ Local override (nếu khác global)
-
-~/.antigravity/                    # GLOBAL (tất cả dự án)
-├── preferences.json               # Default preferences
-└── defaults/                      # Templates
-```
-
-### 6.2. File brain.json (Static Knowledge)
-
-Chứa thông tin ít thay đổi:
-
-```json
-{
-  "meta": { "schema_version": "1.1.0", "mine_version": "3.3.0" },
-  "project": { "name": "...", "type": "...", "status": "..." },
-  "tech_stack": { "frontend": {...}, "backend": {...}, "database": {...} },
-  "database_schema": { "tables": [...], "relationships": [...] },
-  "api_endpoints": [...],
-  "business_rules": [...],
-  "features": [...],
-  "knowledge_items": { "patterns": [...], "gotchas": [...], "conventions": [...] }
-}
-```
-
-### 6.3. File session.json (Dynamic Session) ⭐ NEW
-
-Chứa thông tin thay đổi liên tục:
-
-```json
-{
-  "updated_at": "2026-01-17T18:30:00Z",
-  "working_on": {
-    "feature": "Revenue Reports",
-    "task": "Implement daily revenue chart",
-    "status": "coding",
-    "files": ["src/features/reports/components/revenue-chart.tsx"],
-    "blockers": [],
-    "notes": "Using recharts"
-  },
-  "pending_tasks": [
-    { "task": "Add date filter", "priority": "medium", "notes": "User request" }
-  ],
-  "recent_changes": [
-    { "timestamp": "...", "type": "feature", "description": "...", "files": [...] }
-  ],
-  "errors_encountered": [
-    { "error": "...", "solution": "...", "resolved": true }
-  ],
-  "decisions_made": [
-    { "decision": "Use recharts", "reason": "Better React integration" }
-  ]
-}
-```
-
-### 6.4. Quy tắc update
-
-| Trigger | File cần update |
-|---------|-----------------|
-| Thêm API mới | `brain.json` → api_endpoints |
-| Thay đổi DB | `brain.json` → database_schema |
-| Fix bug | `session.json` → errors_encountered |
-| Thêm dependency | `brain.json` → tech_stack |
-| Feature mới | `brain.json` → features |
-| Đang làm task | `session.json` → working_on |
-| Hoàn thành task | `session.json` → pending_tasks, recent_changes |
-| Cuối ngày | Cả hai |
-
-### 6.5. Các bước tạo/update
-
-**Bước 1: Update brain.json (nếu có thay đổi project)**
-- Scan `package.json` → tech_stack
-- Scan `prisma/schema.prisma` → database_schema
-- Scan `src/app/api/**` → api_endpoints
-- Scan `docs/specs/*.md` → features
-
-**Bước 2: Update session.json (luôn update)**
-- Files đã modified → recent_changes
-- Task đang làm → working_on
-- Errors gặp phải → errors_encountered
-- Quyết định đã lấy → decisions_made
-
-**Bước 3: Xác nhận trước khi ghi (Pre-write Check)**
-- Hiển thị dự thảo (Draft) của `CHANGELOG.md` (nếu có) và các thay đổi chính trong `JSON`.
-- Hỏi anh: "Anh duyệt giúp em nội dung này để em lưu vĩnh viễn nhé?"
-
-**Bước 4: Validate**
-- Schema: `schemas/brain.schema.json`, `schemas/session.schema.json`
-- Đảm bảo JSON hợp lệ trước khi save.
-
-**Bước 5: Save**
-- `.brain/brain.json` - thông tin tĩnh.
-- `.brain/session.json` - trạng thái làm việc hiện tại.
+Nếu phần tóm tắt chưa rõ, không được ghi vội.
 
 ---
 
-## Giai đoạn 7: Confirmation
+## Giai đoạn 5: Quy tắc để tránh memory drift
 
-1.  Báo cáo: "Em đã cập nhật bộ nhớ. Các file đã update:"
-    *   `docs/architecture/system_overview.md`
-    *   `docs/api/endpoints.md`
-    *   `.brain/brain.json` ⭐
-    *   `CHANGELOG.md`
-    *   ...
-2.  "Giờ đây em đã ghi nhớ kiến thức này vĩnh viễn."
-3.  "Anh có thể tắt máy yên tâm. Mai dùng `/recap` là em nhớ lại hết."
+### 5.1. Không lưu lại toàn bộ changelog nội bộ mỗi lần
 
-### 7.1. Quick Stats
-```
-📊 Brain Stats:
-- Tables: X | APIs: Y | Features: Z
-- Pending tasks: N
-- Last updated: [timestamp]
+`recent_changes` và `history.entries` chỉ giữ:
+- Thay đổi gần đây cần cho phiên sau
+- Không spam quá chi tiết từng dòng code
+
+### 5.2. Không tạo sự thật thứ hai
+
+Nếu thông tin đã có trong Git:
+- Memory chỉ tóm tắt và trỏ đến commit/files
+- Không viết lại quá dài
+
+### 5.3. Khi nào được sửa `brain.json`
+
+Chỉ khi thay đổi có tính bền vững:
+- Feature chuyển trạng thái
+- API mới xuất hiện
+- DB schema đổi
+- Dependency / service mới được đưa vào
+- Business rule mới được xác định
+
+Nếu chỉ là WIP trong ngày, dùng `session.json` và `history.json`.
+
+---
+
+## Giai đoạn 6: Confirmation
+
+Sau khi lưu xong, phải báo user:
+- `brain.json` có đổi hay không
+- `session.json` đã cập nhật branch, head sha, dirty state
+- `history.json` đã có handoff mới hay không
+- Commit range vừa được đưa vào memory
+- Local WIP còn lại gì
+
+Mẫu thông báo:
+
+```text
+Đã lưu memory xong.
+
+- Brain: cập nhật 2 mục ổn định (features, api_endpoints)
+- Session: HEAD=def456, branch=feature/reports, dirty=true
+- History: tạo handoff handoff-20260323-183000
+- Commit range đã lưu: abc123..def456
+- Local WIP: src/features/reports/components/revenue-chart.tsx
 ```
 
 ---
 
-## ⚠️ NEXT STEPS (Menu số):
-```
-1️⃣ Xong buổi làm việc? Nghỉ ngơi thôi!
-2️⃣ Mai quay lại? /recap để nhớ lại context
-3️⃣ Cần làm tiếp? /plan hoặc /code
-```
+## NEXT STEPS
 
-## 💡 BEST PRACTICES:
-*   Chạy `/save-brain` sau mỗi tính năng lớn
-*   Chạy `/save-brain` cuối mỗi ngày làm việc
-*   Chạy `/save-brain` trước khi nghỉ phép dài
-
----
-
-## 🛡️ RESILIENCE PATTERNS (Ẩn khỏi User)
-
-### Khi file write fail:
-```
-1. Retry lần 1 (đợi 1s)
-2. Retry lần 2 (đợi 2s)
-3. Retry lần 3 (đợi 4s)
-4. Nếu vẫn fail → Báo user:
-   "Không lưu được file 😅
-
-   Anh muốn:
-   1️⃣ Thử lại
-   2️⃣ Lưu tạm vào clipboard
-   3️⃣ Bỏ qua file này, lưu phần còn lại"
-```
-
-### Khi JSON invalid:
-```
-Nếu brain.json/session.json bị corrupted:
-→ Tạo backup: brain.json.bak
-→ Tạo file mới từ template
-→ Báo user: "File cũ bị lỗi, em đã tạo mới và backup file cũ"
-```
-
-### Error messages đơn giản:
-```
-❌ "ENOENT: no such file or directory"
-✅ "Folder .brain/ chưa có, em tạo nhé!"
-
-❌ "EACCES: permission denied"
-✅ "Không có quyền ghi file. Anh kiểm tra folder permissions?"
+```text
+1. Kết thúc ngày làm việc -> có thể nghỉ, mai dùng /recap
+2. Muốn tiếp tục ngay -> /code hoặc /debug
+3. Muốn chốt 1 cột mốc phát hành -> cập nhật changelog và lưu lại handoff rõ ràng
 ```

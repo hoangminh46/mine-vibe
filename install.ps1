@@ -4,20 +4,20 @@
 $RepoBase = "https://raw.githubusercontent.com/hoangminh46/mine-vibe/main"
 $RepoUrl = "$RepoBase/workflows"
 $Workflows = @(
-    "plan.md", "code.md", "visualize.md", "deploy.md",
-    "debug.md", "refactor.md", "test.md", "run.md",
-    "init.md", "recap.md", "rollback.md", "save_brain.md",
-    "audit.md", "cloudflare-tunnel.md", "mine-update.md",
+    "plan.md", "code.md", "visualize.md",
+    "debug.md", "refactor.md", "test.md",
+    "recap.md", "save_brain.md",
+    "audit.md", "mine-update.md",
     "brainstorm.md", "next.md", "customize.md", "mock-api.md",
     "requirements.md", "README.md"
 )
 
 # Schemas and Templates (v3.5+)
 $Schemas = @(
-    "brain.schema.json", "session.schema.json", "preferences.schema.json"
+    "brain.schema.json", "session.schema.json", "history.schema.json", "preferences.schema.json"
 )
 $Templates = @(
-    "brain.example.json", "session.example.json", "preferences.example.json"
+    "brain.example.json", "session.example.json", "history.example.json", "preferences.example.json"
 )
 
 # Skills
@@ -233,17 +233,12 @@ Bạn PHẢI đọc file workflow tương ứng và thực hiện theo hướng 
 | ``/visualize`` | ~/.gemini/antigravity/global_workflows/visualize.md | Tạo UI/UX |
 | ``/debug`` | ~/.gemini/antigravity/global_workflows/debug.md | Sửa lỗi sâu |
 | ``/test`` | ~/.gemini/antigravity/global_workflows/test.md | Kiểm thử |
-| ``/run`` | ~/.gemini/antigravity/global_workflows/run.md | Chạy ứng dụng |
-| ``/deploy`` | ~/.gemini/antigravity/global_workflows/deploy.md | 🚀 CI/CD + Deploy production |
-| ``/init`` | ~/.gemini/antigravity/global_workflows/init.md | Khởi tạo dự án |
 | ``/recap`` | ~/.gemini/antigravity/global_workflows/recap.md | Khôi phục ngữ cảnh |
 | ``/next`` | ~/.gemini/antigravity/global_workflows/next.md | Gợi ý bước tiếp theo |
 | ``/customize`` | ~/.gemini/antigravity/global_workflows/customize.md | ⚙️ Cá nhân hóa AI |
 | ``/save-brain`` | ~/.gemini/antigravity/global_workflows/save_brain.md | Lưu kiến thức |
 | ``/audit`` | ~/.gemini/antigravity/global_workflows/audit.md | Kiểm tra bảo mật |
 | ``/refactor`` | ~/.gemini/antigravity/global_workflows/refactor.md | Tái cấu trúc code |
-| ``/rollback`` | ~/.gemini/antigravity/global_workflows/rollback.md | Rollback deployment |
-| ``/cloudflare-tunnel`` | ~/.gemini/antigravity/global_workflows/cloudflare-tunnel.md | Quản lý tunnel |
 | ``/mine-update`` | ~/.gemini/antigravity/global_workflows/mine-update.md | Cập nhật Mine |
 | ``/mock-api`` | ~/.gemini/antigravity/global_workflows/mock-api.md | 💃 Giả lập Backend API |
 

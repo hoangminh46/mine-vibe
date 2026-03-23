@@ -1,436 +1,76 @@
-# 📖 Mine User Guide - Hướng dẫn sử dụng cho người mới
+# Mine User Guide
 
-> **Mine (Antigravity Workflow Framework)** giúp bạn làm app mà không cần biết code.
-> Bạn chỉ cần nói ý tưởng, AI sẽ lo phần còn lại.
+Mine là bộ workflow giúp AI làm việc theo quy trình rõ ràng trong dự án phần mềm. Bộ workflow hiện tại tập trung vào 3 nhóm việc: khám phá yêu cầu, triển khai kỹ thuật, và lưu/khôi phục context giữa các phiên làm việc.
 
----
+## 1. Khi nào dùng workflow nào
 
-## 🎯 Mine dùng để làm gì?
+### Bắt đầu từ ý tưởng
 
-| Bạn muốn... | Mine giúp bạn... |
-|-------------|-----------------|
-| Làm app mới | Từ ý tưởng → App hoàn chỉnh |
-| Thêm tính năng | Thiết kế → Code → Test tự động |
-| Sửa lỗi | Tìm lỗi → Sửa → Kiểm tra |
-| Deploy lên server | Cấu hình → Đẩy lên → Theo dõi |
-
----
-
-## 🗺️ Bản đồ các lệnh Mine
-
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                           Mine WORKFLOW MAP                                  │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                             │
-│  ╔═══════════════════════════════════════════════════════════════════════╗  │
-│  ║                    🌟 KHỞI ĐẦU & TÌM HIỂU                             ║  │
-│  ╠═══════════════════════════════════════════════════════════════════════╣  │
-│  ║  /brainstorm  │  /init      │  /recap       │  /next                  ║  │
-│  ║  Bàn ý tưởng  │  Tạo mới    │  Nhớ lại      │  Bước tiếp              ║  │
-│  ╚═══════════════════════════════════════════════════════════════════════╝  │
-│                              │                                              │
-│                              ▼                                              │
-│  ╔═══════════════════════════════════════════════════════════════════════╗  │
-│  ║                    🎯 THIẾT KẾ & LẬP KẾ HOẠCH                         ║  │
-│  ╠═══════════════════════════════════════════════════════════════════════╣  │
-│  ║  /plan                    │  /visualize                               ║  │
-│  ║  Lên kế hoạch chi tiết    │  Thiết kế giao diện                       ║  │
-│  ╚═══════════════════════════════════════════════════════════════════════╝  │
-│                              │                                              │
-│                              ▼                                              │
-│  ╔═══════════════════════════════════════════════════════════════════════╗  │
-│  ║                    💻 VIẾT CODE & CHẠY THỬ                            ║  │
-│  ╠═══════════════════════════════════════════════════════════════════════╣  │
-│  ║  /code         │  /run          │  /test                              ║  │
-│  ║  Viết code     │  Chạy app      │  Kiểm tra                           ║  │
-│  ╚═══════════════════════════════════════════════════════════════════════╝  │
-│                              │                                              │
-│                              ▼                                              │
-│  ╔═══════════════════════════════════════════════════════════════════════╗  │
-│  ║                    🚀 TRIỂN KHAI & BẢO TRÌ                            ║  │
-│  ╠═══════════════════════════════════════════════════════════════════════╣  │
-│  ║  /deploy    │  /debug     │  /refactor  │  /audit    │  /rollback    ║  │
-│  ║  Đưa lên    │  Sửa lỗi    │  Dọn dẹp    │  Kiểm tra  │  Hoàn tác     ║  │
-│  ╚═══════════════════════════════════════════════════════════════════════╝  │
-│                              │                                              │
-│                              ▼                                              │
-│  ╔═══════════════════════════════════════════════════════════════════════╗  │
-│  ║                    💾 LƯU TRỮ & CẬP NHẬT                              ║  │
-│  ╠═══════════════════════════════════════════════════════════════════════╣  │
-│  ║  /save-brain              │  /mine-update                              ║  │
-│  ║  Lưu kiến thức            │  Cập nhật Mine                             ║  │
-│  ╚═══════════════════════════════════════════════════════════════════════╝  │
-│                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
+```text
+/brainstorm -> /requirements -> /plan -> /visualize
 ```
 
----
+### Bắt đầu từ dự án đang làm dở
 
-# 📚 3 KỊCH BẢN SỬ DỤNG Mine
-
----
-
-## 🆕 KỊCH BẢN 1: Tạo App Mới Từ Đầu
-
-> **Tình huống:** Bạn có ý tưởng và muốn làm app từ con số 0.
-
-### Luồng hoạt động:
-
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                                                                             │
-│   BẠN CÓ Ý TƯỞNG                                                            │
-│   "Em muốn làm app quản lý tiệm cà phê"                                     │
-│          │                                                                  │
-│          ▼                                                                  │
-│   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │ BƯỚC 1: /brainstorm (Nếu ý tưởng còn mơ hồ)                         │   │
-│   │                                                                     │   │
-│   │ AI sẽ hỏi:                                                          │   │
-│   │ • "App giải quyết vấn đề gì?"                                       │   │
-│   │ • "Ai sẽ dùng? Chủ tiệm hay nhân viên?"                             │   │
-│   │ • "Có muốn em tìm xem thị trường có app tương tự không?"            │   │
-│   │                                                                     │   │
-│   │ → Output: BRIEF.md (Tóm tắt ý tưởng)                                │   │
-│   └─────────────────────────────────────────────────────────────────────┘   │
-│          │                                                                  │
-│          ▼                                                                  │
-│   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │ BƯỚC 2: /init (Tạo dự án)                                           │   │
-│   │                                                                     │   │
-│   │ AI sẽ hỏi:                                                          │   │
-│   │ • "Loại app: Website / Web App / Mobile?"                           │   │
-│   │ • "Tên project?"                                                    │   │
-│   │                                                                     │   │
-│   │ AI TỰ LÀM (bạn không cần biết):                                     │   │
-│   │ • Cài đặt công nghệ phù hợp                                         │   │
-│   │ • Tạo cấu trúc thư mục                                              │   │
-│   │ • Cài đặt Git, ESLint, Prettier                                     │   │
-│   │                                                                     │   │
-│   │ → Output: Project sẵn sàng để code                                  │   │
-│   └─────────────────────────────────────────────────────────────────────┘   │
-│          │                                                                  │
-│          ▼                                                                  │
-│   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │ BƯỚC 3: /plan (Lên kế hoạch tính năng)                              │   │
-│   │                                                                     │   │
-│   │ AI sẽ hỏi:                                                          │   │
-│   │ • "Có cần đăng nhập không?"                                         │   │
-│   │ • "Quản lý những gì? (Nhân viên, đơn hàng, menu...)"                │   │
-│   │ • "Có cần báo cáo doanh thu không?"                                 │   │
-│   │                                                                     │   │
-│   │ → Output: Thiết kế chi tiết (PRD, Database schema)                  │   │
-│   └─────────────────────────────────────────────────────────────────────┘   │
-│          │                                                                  │
-│          ▼                                                                  │
-│   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │ BƯỚC 4: /visualize (Thiết kế giao diện)                             │   │
-│   │                                                                     │   │
-│   │ AI sẽ hỏi:                                                          │   │
-│   │ • "Màn hình nào cần làm trước?"                                     │   │
-│   │ • "Trên màn hình có những gì?"                                      │   │
-│   │ • "Khi click vào thì chuyển đi đâu?"                                │   │
-│   │                                                                     │   │
-│   │ → Output: File UI code sẵn sàng                                     │   │
-│   └─────────────────────────────────────────────────────────────────────┘   │
-│          │                                                                  │
-│          ▼                                                                  │
-│   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │ BƯỚC 5: /code (Viết logic)                                          │   │
-│   │                                                                     │   │
-│   │ AI TỰ LÀM:                                                          │   │
-│   │ • Viết code backend (xử lý dữ liệu)                                 │   │
-│   │ • Kết nối database                                                  │   │
-│   │ • Xử lý đăng nhập, bảo mật                                          │   │
-│   │                                                                     │   │
-│   │ QUY TẮC VÀNG:                                                       │   │
-│   │ • Chỉ làm những gì bạn yêu cầu                                      │   │
-│   │ • Không tự ý deploy hay thay đổi lớn                                │   │
-│   └─────────────────────────────────────────────────────────────────────┘   │
-│          │                                                                  │
-│          ▼                                                                  │
-│   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │ BƯỚC 6: /run → /test (Chạy và kiểm tra)                             │   │
-│   │                                                                     │   │
-│   │ • /run: Chạy app lên xem thử                                        │   │
-│   │ • /test: Kiểm tra xem có lỗi gì không                               │   │
-│   │                                                                     │   │
-│   │ Nếu có lỗi → /debug để sửa                                          │   │
-│   └─────────────────────────────────────────────────────────────────────┘   │
-│          │                                                                  │
-│          ▼                                                                  │
-│   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │ BƯỚC 7: /deploy (Đưa lên internet)                                  │   │
-│   │                                                                     │   │
-│   │ AI TỰ LÀM:                                                          │   │
-│   │ • Cấu hình hosting                                                  │   │
-│   │ • Thiết lập domain                                                  │   │
-│   │ • SEO, Analytics, bảo mật                                           │   │
-│   │                                                                     │   │
-│   │ → Output: App live trên internet!                                   │   │
-│   └─────────────────────────────────────────────────────────────────────┘   │
-│          │                                                                  │
-│          ▼                                                                  │
-│   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │ BƯỚC 8: /save-brain (Lưu kiến thức)                                 │   │
-│   │                                                                     │   │
-│   │ Lưu lại tất cả để mai còn nhớ:                                      │   │
-│   │ • Cấu trúc app                                                      │   │
-│   │ • Các API đã tạo                                                    │   │
-│   │ • Quy tắc nghiệp vụ                                                 │   │
-│   └─────────────────────────────────────────────────────────────────────┘   │
-│                                                                             │
-│   🎉 HOÀN THÀNH! App của bạn đã live!                                       │
-│                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
+```text
+/recap -> /code hoặc /debug -> /test -> /save-brain
 ```
 
-### Tóm tắt luồng:
-```
-/brainstorm → /init → /plan → /visualize → /code → /run → /test → /deploy → /save-brain
-```
+### Khi không biết làm gì tiếp
 
----
-
-## 📦 KỊCH BẢN 2: Thêm Mine vào App Có Sẵn
-
-> **Tình huống:** Bạn đã có app đang chạy, muốn dùng Mine để phát triển tiếp.
-
-### Luồng hoạt động:
-
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                                                                             │
-│   BẠN CÓ APP SẴN                                                            │
-│   (Đã có code, đang chạy)                                                   │
-│          │                                                                  │
-│          ▼                                                                  │
-│   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │ BƯỚC 1: Cài đặt Mine vào project                                     │   │
-│   │                                                                     │   │
-│   │ Chạy lệnh cài đặt:                                                  │   │
-│   │ curl -fsSL https://raw.githubusercontent.com/.../install.sh | bash  │   │
-│   │                                                                     │   │
-│   │ Mine sẽ tạo file GEMINI.md trong project                             │   │
-│   └─────────────────────────────────────────────────────────────────────┘   │
-│          │                                                                  │
-│          ▼                                                                  │
-│   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │ BƯỚC 2: /recap (Cho AI hiểu app của bạn)                            │   │
-│   │                                                                     │   │
-│   │ AI sẽ TỰ ĐỘNG:                                                      │   │
-│   │ • Đọc cấu trúc thư mục                                              │   │
-│   │ • Phân tích code hiện có                                            │   │
-│   │ • Hiểu tech stack đang dùng                                         │   │
-│   │ • Xem git history                                                   │   │
-│   │                                                                     │   │
-│   │ AI sẽ TÓM TẮT:                                                      │   │
-│   │ "📋 Em hiểu app của anh là [X], dùng [tech], có [features]..."      │   │
-│   └─────────────────────────────────────────────────────────────────────┘   │
-│          │                                                                  │
-│          ▼                                                                  │
-│   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │ BƯỚC 3: /save-brain (Lưu kiến thức về app)                          │   │
-│   │                                                                     │   │
-│   │ Quan trọng! Để AI "nhớ" app của bạn:                                │   │
-│   │ • Cấu trúc database                                                 │   │
-│   │ • Các API endpoints                                                 │   │
-│   │ • Quy tắc nghiệp vụ đặc biệt                                        │   │
-│   │                                                                     │   │
-│   │ → Từ giờ AI sẽ hiểu context của app                                 │   │
-│   └─────────────────────────────────────────────────────────────────────┘   │
-│          │                                                                  │
-│          ▼                                                                  │
-│   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │ BƯỚC 4: Sẵn sàng! Bắt đầu phát triển                                │   │
-│   │                                                                     │   │
-│   │ Giờ bạn có thể dùng:                                                │   │
-│   │ • /plan - Thêm tính năng mới                                        │   │
-│   │ • /debug - Sửa lỗi                                                  │   │
-│   │ • /refactor - Dọn dẹp code cũ                                       │   │
-│   │ • /audit - Kiểm tra bảo mật, hiệu năng                              │   │
-│   └─────────────────────────────────────────────────────────────────────┘   │
-│                                                                             │
-│   🎉 Mine đã sẵn sàng hỗ trợ app của bạn!                                    │
-│                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
+```text
+/next
 ```
 
-### Tóm tắt luồng:
-```
-Cài Mine → /recap → /save-brain → Sẵn sàng dùng các lệnh khác
-```
+## 2. Danh sách workflow hiện có
 
----
+### Discovery & Planning
+- `/brainstorm`
+- `/requirements`
+- `/plan`
+- `/visualize`
 
-## ➕ KỊCH BẢN 3: Thêm Tính Năng Mới vào App
+### Build & Validate
+- `/code`
+- `/test`
+- `/debug`
+- `/mock-api`
+- `/refactor`
+- `/audit`
 
-> **Tình huống:** App đã có, bạn muốn thêm tính năng mới.
+### Memory & Guidance
+- `/save-brain`
+- `/recap`
+- `/next`
+- `/customize`
+- `/mine-update`
 
-### Luồng hoạt động:
+## 3. Workflow đã bị loại bỏ
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                                                                             │
-│   BẠN MUỐN THÊM TÍNH NĂNG                                                   │
-│   "Em muốn thêm tính năng báo cáo doanh thu"                                │
-│          │                                                                  │
-│          ▼                                                                  │
-│   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │ BƯỚC 0: /recap (Nếu lâu không làm việc với app)                     │   │
-│   │                                                                     │   │
-│   │ AI sẽ nhắc lại:                                                     │   │
-│   │ • App đang làm gì                                                   │   │
-│   │ • Lần cuối làm đến đâu                                              │   │
-│   │ • Có việc dở dang không                                             │   │
-│   │                                                                     │   │
-│   │ (Bỏ qua nếu vừa mới làm việc với app)                               │   │
-│   └─────────────────────────────────────────────────────────────────────┘   │
-│          │                                                                  │
-│          ▼                                                                  │
-│   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │ BƯỚC 1: /brainstorm HOẶC /plan                                      │   │
-│   │                                                                     │   │
-│   │ Chọn /brainstorm nếu:                                               │   │
-│   │ • Chưa chắc tính năng cần gì                                        │   │
-│   │ • Muốn thảo luận nhiều hướng                                        │   │
-│   │ • Cần research xem người ta làm thế nào                             │   │
-│   │                                                                     │   │
-│   │ Chọn /plan nếu:                                                     │   │
-│   │ • Đã biết rõ tính năng cần gì                                       │   │
-│   │ • Chỉ cần AI thiết kế chi tiết                                      │   │
-│   │                                                                     │   │
-│   │ AI sẽ hỏi về tính năng và tạo thiết kế                              │   │
-│   └─────────────────────────────────────────────────────────────────────┘   │
-│          │                                                                  │
-│          ▼                                                                  │
-│   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │ BƯỚC 2: /visualize (Nếu tính năng có giao diện)                     │   │
-│   │                                                                     │   │
-│   │ AI sẽ hỏi về màn hình:                                              │   │
-│   │ • "Màn hình báo cáo hiển thị những gì?"                             │   │
-│   │ • "Có biểu đồ không? Loại nào?"                                     │   │
-│   │ • "Có nút export PDF không?"                                        │   │
-│   │                                                                     │   │
-│   │ → Tạo UI cho tính năng mới                                          │   │
-│   └─────────────────────────────────────────────────────────────────────┘   │
-│          │                                                                  │
-│          ▼                                                                  │
-│   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │ BƯỚC 3: /code (Viết code tính năng)                                 │   │
-│   │                                                                     │   │
-│   │ AI sẽ:                                                              │   │
-│   │ • Viết code cho tính năng mới                                       │   │
-│   │ • Kết nối với code cũ                                               │   │
-│   │ • Đảm bảo không phá hỏng gì                                         │   │
-│   │                                                                     │   │
-│   │ QUY TẮC: Thay đổi tối thiểu, không ảnh hưởng code đang chạy tốt     │   │
-│   └─────────────────────────────────────────────────────────────────────┘   │
-│          │                                                                  │
-│          ▼                                                                  │
-│   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │ BƯỚC 4: /run → /test (Kiểm tra)                                     │   │
-│   │                                                                     │   │
-│   │ • /run: Chạy app, test tính năng mới                                │   │
-│   │ • /test: Kiểm tra tính năng mới VÀ tính năng cũ                     │   │
-│   │   (đảm bảo không phá gì)                                            │   │
-│   │                                                                     │   │
-│   │ Nếu lỗi → /debug                                                    │   │
-│   └─────────────────────────────────────────────────────────────────────┘   │
-│          │                                                                  │
-│          ▼                                                                  │
-│   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │ BƯỚC 5: /deploy (Cập nhật lên server)                               │   │
-│   │                                                                     │   │
-│   │ AI sẽ:                                                              │   │
-│   │ • Đẩy code mới lên server                                           │   │
-│   │ • Không downtime (app vẫn chạy)                                     │   │
-│   │ • Backup phòng trường hợp cần rollback                              │   │
-│   └─────────────────────────────────────────────────────────────────────┘   │
-│          │                                                                  │
-│          ▼                                                                  │
-│   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │ BƯỚC 6: /save-brain (Lưu kiến thức mới)                             │   │
-│   │                                                                     │   │
-│   │ Cập nhật kiến thức về app:                                          │   │
-│   │ • Tính năng mới đã thêm                                             │   │
-│   │ • API mới (nếu có)                                                  │   │
-│   │ • Quy tắc nghiệp vụ mới                                             │   │
-│   └─────────────────────────────────────────────────────────────────────┘   │
-│                                                                             │
-│   🎉 TÍNH NĂNG MỚI ĐÃ LIVE!                                                 │
-│                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
+Các workflow sau không còn được hỗ trợ trong Mine:
+- `/init`
+- `/run`
+- `/deploy`
+- `/rollback`
+- `/cloudflare-tunnel`
+
+## 4. Memory giữa các phiên
+
+Mine dùng 3 file trong `.brain/`:
+- `brain.json`: kiến thức ổn định của dự án
+- `session.json`: snapshot hiện tại
+- `history.json`: handoff giữa các phiên
+
+### Cuối ngày
+
+```text
+/save-brain
 ```
 
-### Tóm tắt luồng:
-```
-(/recap) → /brainstorm hoặc /plan → /visualize → /code → /run → /test → /deploy → /save-brain
-```
+### Đầu ngày mới
 
----
-
-## 🆘 KHI GẶP KHÓ KHĂN
-
-### Không biết làm gì tiếp?
-```
-Gõ: /next
-→ AI sẽ phân tích và gợi ý bước tiếp theo
+```text
+/recap
 ```
 
-### Bị lỗi?
-```
-Gõ: /debug
-→ AI sẽ tìm và sửa lỗi
-```
-
-### Muốn quay lại phiên bản cũ?
-```
-Gõ: /rollback
-→ AI sẽ giúp khôi phục
-```
-
-### Kiểm tra app có vấn đề gì không?
-```
-Gõ: /audit
-→ AI kiểm tra bảo mật, hiệu năng, code quality
-```
-
----
-
-## 📊 BẢNG TÓM TẮT TẤT CẢ LỆNH
-
-| Lệnh | Khi nào dùng | Output |
-|------|--------------|--------|
-| `/brainstorm` | Có ý tưởng mơ hồ, cần thảo luận | BRIEF.md |
-| `/init` | Tạo project mới | Project sẵn sàng |
-| `/recap` | Quên đang làm gì, quay lại sau lâu | Tóm tắt context |
-| `/next` | Không biết bước tiếp theo | Gợi ý cụ thể |
-| `/plan` | Thiết kế tính năng | PRD, Schema |
-| `/visualize` | Thiết kế giao diện | UI code |
-| `/code` | Viết logic, backend | Code hoàn chỉnh |
-| `/run` | Chạy thử app | App running |
-| `/test` | Kiểm tra có lỗi không | Test results |
-| `/debug` | Sửa lỗi | Bug fixed |
-| `/deploy` | Đưa lên internet | App live |
-| `/refactor` | Dọn dẹp code | Code sạch hơn |
-| `/audit` | Kiểm tra sức khỏe app | Báo cáo |
-| `/rollback` | Quay về phiên bản cũ | Khôi phục |
-| `/save-brain` | Lưu kiến thức cuối ngày | Knowledge saved |
-| `/mine-update` | Cập nhật Mine | Mine mới nhất |
-
----
-
-## 💡 MẸO SỬ DỤNG
-
-1. **Mỗi sáng:** `/recap` để nhớ lại
-2. **Cuối ngày:** `/save-brain` để mai không quên
-3. **Khi stuck:** `/next` để được gợi ý
-4. **Trước release:** `/audit` + `/test`
-5. **Nói tự nhiên:** AI sẽ hỏi lại nếu chưa hiểu
-
----
-
-*Mine - Antigravity Workflow Framework*
-*Your ideas, our engineering.*
+Nếu quên `/save-brain`, `/recap` vẫn có thể dựng lại tương đối tốt từ Git, nhưng chất lượng handoff sẽ kém hơn vì thiếu decisions và next steps đã được chốt.

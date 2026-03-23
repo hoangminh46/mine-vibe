@@ -118,7 +118,7 @@ if exists("plans/*/plan.md"):
 
 ➡️ **Bước tiếp theo:**
    1️⃣ Tiếp tục code: Nói cho em biết cần làm gì tiếp
-   2️⃣ Test thử: Gõ `/run` để chạy xem kết quả
+   2️⃣ Kiểm tra tiếp: Gõ `/test` để xác nhận kết quả
    3️⃣ Gặp lỗi: Gõ `/debug` để tìm và sửa lỗi
 
 📂 **File đang thay đổi:** [Danh sách file]"
@@ -142,7 +142,7 @@ if exists("plans/*/plan.md"):
    1️⃣ Test kỹ: Gõ `/test` để kiểm tra logic
    2️⃣ Làm tiếp: Gõ `/plan` cho tính năng mới
    3️⃣ Dọn dẹp: Gõ `/refactor` nếu code cần tối ưu
-   4️⃣ Triển khai: Gõ `/deploy` nếu muốn đưa lên server
+   4️⃣ Chốt lại phiên làm việc: Gõ `/save-brain`
 
 📝 **Commit gần nhất:** [Commit message]"
 ```

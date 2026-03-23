@@ -97,7 +97,7 @@ Khi user gõ `/code all-phases`:
     ✅ All tests passed
     📝 Files modified: XX files
 
-    Next: /deploy hoặc /save-brain"
+    Next: /test hoặc /save-brain"
 ```
 
 **Khi nào dừng lại:**
@@ -342,8 +342,8 @@ Khi user chọn "Bỏ qua test này":
 3. Hiển thị warning trong mọi handover sau đó:
    "⚠️ Có 1 test đang bị skip: create-order.test.ts"
 
-4. Khi /deploy → Block với thông báo:
-   "❌ Không thể deploy khi có test bị skip!
+4. Khi chốt trạng thái ổn định → Block với thông báo:
+   "❌ Không nên chốt trạng thái ổn định khi có test bị skip!
     Chạy /test để fix hoặc /debug để phân tích."
 
 5. Reminder mỗi đầu session (trong /recap):
@@ -506,8 +506,8 @@ Khi code fail nhiều lần:
 
 ### Nếu code độc lập:
 ```
-1️⃣ Chạy /run để test thử
-2️⃣ Cần test kỹ? /test
+1️⃣ Chạy /test để kiểm tra
+2️⃣ Cần debug sâu? /debug
 3️⃣ Gặp lỗi? /debug
 4️⃣ Cuối buổi? /save-brain
 ```
