@@ -89,6 +89,20 @@ iex "& { $(irm https://raw.githubusercontent.com/hoangminh46/mine-vibe/main/inst
 curl -fsSL https://raw.githubusercontent.com/hoangminh46/mine-vibe/main/install.sh | sh
 ```
 
+## Gỡ cài đặt
+
+### Windows
+
+```powershell
+iex "& { $(irm https://raw.githubusercontent.com/hoangminh46/mine-vibe/main/uninstall.ps1) }"
+```
+
+### Mac / Linux
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/hoangminh46/mine-vibe/main/uninstall.sh | sh
+```
+
 ## Luồng dùng khuyến nghị
 
 ### Ý tưởng mới
