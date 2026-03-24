@@ -4,32 +4,50 @@ Mine là bộ workflow cho AI coding trong Antigravity/Cursor. Repo này không 
 
 ## Mục tiêu
 
-- Chuẩn hóa cách AI brainstorm, phân tích yêu cầu, lên plan, code, test, debug và lưu memory
+- Chuẩn hóa cách AI discovery, làm rõ requirements, lên plan, visualize, code, test, debug và lưu memory
 - Giảm context drift giữa các phiên làm việc
-- Dùng Git + `.brain/` để recap lại dự án chính xác hơn
+- Dùng Git + `.brain/` để recap và handoff dự án chính xác hơn
 
-## Workflow còn lại
+## Nhóm workflow hiện tại
 
-### Discovery & Planning
+### Discovery & Requirements
+- `/brainstorm`
+- `/requirements`
+- `/plan`
+
+### Design & Implementation
+- `/visualize`
+- `/code`
+- `/mock-api`
+- `/refactor`
+
+### Validation & Recovery
+- `/test`
+- `/debug`
+- `/audit`
+- `/next`
+
+### Memory & Utilities
+- `/save-brain`
+- `/recap`
+- `/customize`
+- `/mine-update`
+
+Catalog workflow hiện tại được quyết định bởi các file đang có trong thư mục [workflows](/C:/Users/admin/Desktop/AmelaProject/mine-vibe/workflows).
+
+## Workflow cốt lõi
+
+Nếu cần nhìn nhanh các workflow "xương sống" của Mine, ưu tiên:
 - `/brainstorm`
 - `/requirements`
 - `/plan`
 - `/visualize`
-
-### Build & Validate
 - `/code`
 - `/test`
 - `/debug`
-- `/mock-api`
-- `/refactor`
-- `/audit`
-
-### Memory & Guidance
 - `/save-brain`
 - `/recap`
 - `/next`
-- `/customize`
-- `/mine-update`
 
 ## Workflow đã loại bỏ
 
@@ -73,26 +91,45 @@ curl -fsSL https://raw.githubusercontent.com/hoangminh46/mine-vibe/main/install.
 
 ## Luồng dùng khuyến nghị
 
-### Dự án mới hoặc ý tưởng mới
+### Ý tưởng mới
 
 ```text
 /brainstorm -> /requirements -> /plan -> /visualize -> /code -> /test -> /save-brain
 ```
 
-### Bắt đầu ngày làm việc mới
+### Scope nhỏ hoặc MVP đã rõ
 
 ```text
-/recap -> /code hoặc /debug -> /test -> /save-brain
+/plan -> /visualize -> /code -> /test -> /save-brain
 ```
 
-### Khi bị kẹt
+### Frontend bị chặn bởi backend
 
 ```text
-/next hoặc /debug
+/mock-api -> /code -> /test
+```
+
+### Khi có lỗi hoặc mất confidence
+
+```text
+/test -> /debug -> /code -> /test
+```
+
+### Bắt đầu phiên mới
+
+```text
+/recap -> /next -> /code hoặc /debug hoặc /plan
+```
+
+### Kết thúc phiên
+
+```text
+/save-brain
 ```
 
 ## Tài liệu
 
 - [User Guide](/C:/Users/admin/Desktop/AmelaProject/mine-vibe/docs/USER_GUIDE.md)
 - [Workflow Overview](/C:/Users/admin/Desktop/AmelaProject/mine-vibe/workflows/README.md)
+- [Workflow Flowchart](/C:/Users/admin/Desktop/AmelaProject/mine-vibe/docs/workflow-flowchart.md)
 - [System Architecture](/C:/Users/admin/Desktop/AmelaProject/mine-vibe/docs/architecture/system_overview.md)

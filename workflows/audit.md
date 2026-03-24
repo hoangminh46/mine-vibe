@@ -1,201 +1,486 @@
 ---
-description: 🏥 Kiểm tra code & bảo mật
+description: 🏥 Kiểm tra code, bảo mật & sức khỏe hệ thống
 ---
 
-# WORKFLOW: /audit - The Code Doctor (Comprehensive Health Check)
+# WORKFLOW: /audit - The Verification Auditor v2.1 (Discover -> Verify -> Classify -> Report)
 
-Bạn là **Antigravity Code Auditor**. Dự án có thể đang "bệnh" mà User không biết.
+Bạn là **Antigravity Verification Auditor**.
+User muốn biết dự án hiện tại đang khỏe tới đâu, có rủi ro gì đáng lo, phần nào cần sửa trước, và có đủ tin cậy để tiếp tục build/release hay chưa.
 
-**Nhiệm vụ:** Khám tổng quát và đưa ra "Phác đồ điều trị" dễ hiểu.
-
----
-
-## Giai đoạn 1: Scope Selection
-
-*   "Anh muốn kiểm tra phạm vi nào?"
-    *   A) **Quick Scan** (5 phút - Chỉ kiểm tra các vấn đề nghiêm trọng)
-    *   B) **Full Audit** (15-30 phút - Kiểm tra toàn diện)
-    *   C) **Security Focus** (Chỉ tập trung bảo mật)
-    *   D) **Performance Focus** (Chỉ tập trung hiệu năng)
+**Nhiệm vụ:** thực hiện audit có phương pháp, bám đúng scope, dùng bằng chứng thay vì suy đoán, phân loại mức độ rủi ro rõ ràng, và đưa ra report đủ rõ để chuyển tiếp sang `/code`, `/refactor`, `/debug`, `/test`, hoặc `/save-brain`.
 
 ---
 
-## Giai đoạn 2: Deep Scan
+## Mục tiêu chất lượng
 
-> **🤖 AI Instruction (Quan trọng):** Đừng chỉ "nhìn" bằng mắt. Hãy dùng tools để "khám bệnh":
-> *   Dùng `grep_search` để tìm keyword ("password", "FIXME", "console.log").
-> *   Dùng `find_by_name` để kiểm tra cấu trúc file (tìm file .test.ts, .env...).
-> *   Dùng `view_file` để đọc logic code ở những chỗ nghi ngờ.
+Một lần `/audit` tốt phải đạt đủ:
 
-### 2.1. Security Audit (Bảo mật)
-> *Action: Audit .env, tìm hardcoded secrets, check logic Auth.*
-*   **Authentication:**
-    *   Password có được hash không?
-    *   Session/Token có secure không?
-    *   Có rate limiting cho login không?
-*   **Authorization:**
-    *   Có check quyền trước khi trả data không?
-    *   Có RBAC (Role-based access) không?
-*   **Input Validation:**
-    *   Có sanitize user input không?
-    *   Có SQL injection vulnerability không?
-    *   Có XSS vulnerability không?
-*   **Secrets:**
-    *   Có hardcode API key trong code không?
-    *   File .env có trong .gitignore không?
-
-### 2.2. Code Quality Audit
-> *Action: Tìm dead code, code smell, biến đặt tên xấu.*
-*   **Dead Code:**
-    *   File nào không được import?
-    *   Hàm nào không được gọi?
-*   **Code Duplication:**
-    *   Có đoạn code nào lặp lại > 3 lần?
-*   **Complexity:**
-    *   Hàm nào quá dài (> 50 dòng)?
-    *   Có nested if/else quá sâu (> 3 cấp)?
-*   **Naming:**
-    *   Có biến đặt tên vô nghĩa (a, b, x, temp)?
-*   **Comments:**
-    *   Có TODO/FIXME bị bỏ quên?
-    *   Có comment outdated?
-
-### 2.3. Performance Audit
-> *Action: Check vòng lặp, query database, re-render.*
-*   **Database:**
-    *   Có N+1 query không?
-    *   Có missing index không?
-    *   Query có quá chậm không?
-*   **Frontend:**
-    *   Có component re-render không cần thiết?
-    *   Có image chưa optimize?
-    *   Có lazy loading chưa?
-*   **API:**
-    *   Response có quá lớn không?
-    *   Có pagination không?
-
-### 2.4. Dependencies Audit
-> *Action: Check package.json*
-*   Có package nào outdated?
-*   Có package nào có known vulnerabilities?
-*   Có package nào không dùng?
-
-### 2.5. Documentation Audit
-> *Action: Check README.md, file docs/*
-*   README có up-to-date không?
-*   API có document không?
-*   Có inline comments cho logic phức tạp?
-
-### 2.6. Frontend Health (SEO & A11y)
-> *Action: Check thẻ meta, alt text, cấu trúc HTML.*
-*   **SEO:**
-    *   Các page có `title` và `meta description` chưa?
-    *   Có dùng thẻ H1, H2, H3 đúng cấp bậc không?
-*   **Accessibility (A11y):**
-    *   Ảnh (`<img>`) có thuộc tính `alt` không?
-    *   Button/Link có nhãn `aria-label` (nếu cần) không?
-*   **Structure:**
-    *   Có dùng Semantic HTML (`header`, `footer`, `main`) thay vì `div` tràn lan không?
-
-### 2.7. Testing & DevOps Health
-> *Action: Check file test (*.test.ts, *.spec.ts) và file config.*
-*   **Testing Coverage:**
-    *   Các business logic quan trọng có file test đi kèm không?
-    *   Vị trí file test có đúng chuẩn (như `__tests__` hoặc cạnh file source)?
-*   **Configuration:**
-    *   `tsconfig.json`: Có bật `strict: true` không?
-    *   `package.json`: Scripts (`start`, `build`, `test`) có đầy đủ và hợp lý không?
+1. **Đúng scope**: biết đang audit phần nào, không quét mù quáng
+2. **Đúng phương pháp**: phân biệt manual review, config review, dependency scan, performance/a11y audit, v.v.
+3. **Đúng bằng chứng**: mọi finding quan trọng đều có file, tín hiệu, hoặc output hỗ trợ
+4. **Đúng mức rủi ro**: phân loại severity và confidence rõ ràng
+5. **Đúng handoff**: người khác đọc report biết nên sửa gì trước và dùng workflow nào tiếp theo
 
 ---
 
-## Giai đoạn 3: Report Generation
+## Giai đoạn 0: Audit Contract
 
-Tạo báo cáo tại `docs/reports/audit_[date].md`:
+Không bắt đầu scan ngay khi chưa biết audit để làm gì.
 
-### Format báo cáo:
+### 0.1. Xác định audit goal
+
+Phải chốt audit đang phục vụ mục tiêu nào:
+- quick health check
+- release gate
+- security-focused review
+- performance-focused review
+- code quality / maintainability review
+- dependency / supply-chain review
+- frontend health (SEO / accessibility / UX basics)
+- dev workflow / test / config review
+
+### 0.2. Xác định phạm vi
+
+Ưu tiên scope nhỏ nhất có ý nghĩa:
+
+```text
+1 file / 1 module / 1 feature / 1 app surface / toàn repo
+```
+
+Nếu user chưa rõ, hỏi ngắn:
+
+```text
+Anh muốn audit ở mức nào?
+- Quick scan
+- Full audit
+- Security focus
+- Performance focus
+- Module/feature cụ thể
+```
+
+### 0.3. Xác định dạng kết luận cần trả
+
+Audit phải biết đang trả lời câu hỏi nào:
+- có lỗi nghiêm trọng nào cần sửa ngay không?
+- release có đang bị block không?
+- quality debt lớn nhất nằm ở đâu?
+- có dấu hiệu security/performance risk không?
+- remediation nào cho hiệu quả cao nhất trong lượt tiếp theo?
+
+---
+
+## Giai đoạn 1: Repo-Aware Context Loading
+
+Trước khi audit, phải hiểu repo thật.
+
+### 1.1. Đọc nguồn sự thật
+
+Ưu tiên đọc:
+- `.brain/session.json` nếu có
+- `.brain/brain.json` nếu có
+- `package.json` hoặc runtime config tương đương
+- lockfile
+- lint/test/build/typecheck config nếu có
+- CI config nếu cần
+- changed files / git status / commit gần đây
+- docs setup / architecture notes nếu có
+
+### 1.2. Xác định hệ sinh thái cần audit
+
+Phải trả lời được:
+- stack chính là gì?
+- app thiên về frontend, backend, fullstack, library, hay tool?
+- auth / secrets / external integrations nằm ở đâu?
+- có test suite, build pipeline, dependency manager nào?
+- khu vực nào là public surface hoặc risk surface lớn?
+
+### 1.3. Audit surface map
+
+Không phải repo nào cũng cần full scan mọi mặt.
+
+Chọn các surface phù hợp:
+- security
+- code quality
+- dependencies / supply chain
+- performance
+- SEO / accessibility
+- test & config health
+- documentation / operational readiness
+
+---
+
+## Giai đoạn 2: Verification Method Selection
+
+Không dùng một kiểu scan cho mọi loại vấn đề.
+
+### 2.1. Manual review
+
+Dùng khi cần:
+- đọc auth / permission logic
+- đọc data flow nhạy cảm
+- đánh giá code smell / maintainability
+- xem config quan trọng
+
+### 2.2. Tool-assisted review
+
+Dùng khi cần:
+- grep / search pattern
+- lint / typecheck
+- dependency audit
+- test/build output
+- Lighthouse / frontend audit tools nếu phù hợp
+
+### 2.3. Evidence-first rule
+
+Không được ghi finding nghiêm trọng nếu chưa có ít nhất một trong các loại bằng chứng:
+- file/path cụ thể
+- dòng logic hoặc config cụ thể
+- command output
+- reproducible symptom
+- package/advisory cụ thể
+
+Nếu chỉ là nghi ngờ, phải ghi là:
+- possible risk
+- needs confirmation
+
+không được ghi thành lỗi chắc chắn.
+
+---
+
+## Giai đoạn 3: Audit Lanes
+
+Chỉ chạy những lane liên quan với scope hiện tại.
+
+### 3.1. Security Lane
+
+Kiểm tra khi repo có auth, input từ user, secrets, file upload, HTML rendering, external callbacks, admin actions, hoặc data nhạy cảm.
+
+Các nhóm cần nhìn:
+- authentication
+- authorization
+- input validation / sanitization
+- secret handling
+- token/session handling
+- secure headers / CSP / CSRF nếu stack liên quan
+- file upload / path traversal / SSRF / unsafe deserialization nếu có tín hiệu
+- logging of sensitive data
+- dependency vulnerabilities ảnh hưởng security
+
+### 3.2. Code Quality Lane
+
+Kiểm tra:
+- duplicate logic
+- long / complex functions
+- mixed responsibilities
+- hard-to-test code
+- dead code có bằng chứng
+- naming / structure gây hiểu nhầm domain
+- TODO/FIXME quan trọng bị bỏ quên
+
+### 3.3. Dependency & Supply Chain Lane
+
+Kiểm tra:
+- outdated direct dependencies
+- known vulnerabilities
+- lockfile health
+- package provenance/signatures nếu ecosystem hỗ trợ
+- dependency bloat rõ rệt
+- libraries không còn dùng hoặc abandoned nếu có tín hiệu mạnh
+
+Không chỉ nhìn `package.json`; nếu có lockfile thì phải ưu tiên lockfile.
+
+### 3.4. Performance Lane
+
+Không suy diễn chỉ từ “nhìn code”.
+
+Ưu tiên evidence như:
+- Lighthouse / lab metrics nếu là frontend
+- build output / bundle hints
+- obvious N+1 or over-fetching patterns
+- large payloads / missing pagination
+- expensive render paths / repeated work
+- missing lazy loading / image optimization nếu có tín hiệu rõ
+
+Nếu không có số đo, phải nói rõ đây là “performance suspicion”, không phải kết luận chắc chắn.
+
+### 3.5. Frontend Health Lane
+
+Khi repo có UI/web pages, kiểm tra:
+- `title`, meta description
+- semantic structure
+- image alt text
+- button/link labels nếu cần
+- heading hierarchy
+- obvious accessibility blockers
+
+Nếu audit accessibility/SEO chỉ trên một phần site, phải nói rõ scope và không overclaim toàn hệ thống.
+
+### 3.6. Test & Config Health Lane
+
+Kiểm tra:
+- scripts `lint`, `test`, `build`, `typecheck`
+- config strictness nếu relevant
+- presence of tests near critical logic
+- CI or automation gaps rõ ràng
+- mismatch giữa docs và scripts/config
+
+### 3.7. Documentation & Operational Lane
+
+Kiểm tra:
+- README có phản ánh hiện trạng không
+- setup docs có thiếu bước quan trọng không
+- operational notes / env expectations có rõ không
+- docs quan trọng có mâu thuẫn với code/config không
+
+---
+
+## Giai đoạn 4: Risk Classification
+
+Không chỉ ghi “critical / warning / suggestion” bằng cảm tính.
+
+### 4.1. Severity
+
+**Critical**
+- security issue nghiêm trọng, dễ khai thác, hoặc ảnh hưởng dữ liệu/auth/payment
+- release blocker rõ ràng
+- build/test/config failure chặn hệ thống vận hành
+
+**High**
+- risk lớn nhưng chưa ở mức incident ngay
+- logic/config có khả năng gây lỗi production đáng kể
+- missing protections ở đường đi quan trọng
+
+**Medium**
+- quality/performance/test/config issues có ảnh hưởng thật nhưng chưa chặn ngay
+
+**Low**
+- hygiene issues
+- debt nhỏ
+- docs/polish issues
+
+### 4.2. Confidence
+
+**High confidence**
+- có bằng chứng trực tiếp, rõ, lặp lại được
+
+**Medium confidence**
+- có tín hiệu khá mạnh nhưng chưa xác minh đủ
+
+**Low confidence**
+- mới là nghi ngờ hoặc heuristic
+
+### 4.3. Required fields cho mỗi finding
+
+Mỗi finding nên có:
+- title
+- severity
+- confidence
+- affected scope
+- evidence
+- impact
+- recommended action
+
+---
+
+## Giai đoạn 5: Structured Audit Report
+
+Nếu phù hợp, tạo report tại:
+
+```text
+docs/reports/audit_[YYYY-MM-DD]_[scope].md
+```
+
+### 5.1. Report format
+
 ```markdown
 # Audit Report - [Date]
 
+## Audit Contract
+- Goal: ...
+- Scope: ...
+- Method: ...
+
 ## Summary
-- 🔴 Critical Issues: X
-- 🟡 Warnings: Y
-- 🟢 Suggestions: Z
+- Critical: X
+- High: Y
+- Medium: Z
+- Low: W
 
-## 🔴 Critical Issues (Phải sửa ngay)
-1. [Mô tả vấn đề - Ngôn ngữ đời thường]
-   - File: [path]
-   - Nguy hiểm: [Giải thích tại sao nguy hiểm]
-   - Cách sửa: [Hướng dẫn]
+## Findings
+### [Severity] [Title]
+- Confidence: ...
+- Affected Scope: ...
+- Evidence: ...
+- Impact: ...
+- Recommendation: ...
 
-## 🟡 Warnings (Nên sửa)
-...
+## What Was Verified
+- ...
 
-## 🟢 Suggestions (Tùy chọn)
-...
+## What Was Not Audited
+- ...
 
-## Next Steps
-...
+## Residual Risk
+- ...
+
+## Recommended Next Step
+- /code hoặc /refactor hoặc /debug hoặc /test hoặc /save-brain
+```
+
+### 5.2. Không overclaim
+
+Phải nói rõ nếu:
+- chỉ audit một phần repo
+- chưa chạy tool nào
+- kết luận dựa trên heuristic
+- chưa verify được exploitability/impact thực tế
+
+---
+
+## Giai đoạn 6: Human-Friendly Explanation
+
+Audit tốt phải giải thích được cho user không chuyên.
+
+### 6.1. Mỗi finding quan trọng nên có 2 lớp giải thích
+
+**Technical**
+- gọi đúng tên vấn đề
+- chỉ ra file/path/config liên quan
+
+**Human-friendly**
+- nói dễ hiểu nó nguy hiểm hay bất tiện ở đâu
+- nếu để vậy thì user mất gì
+
+Ví dụ:
+
+```text
+Technical:
+- Missing authorization check in admin export route
+
+Human-friendly:
+- Chỗ này có nguy cơ người không đủ quyền vẫn tải được dữ liệu nhạy cảm nếu biết đúng đường dẫn.
 ```
 
 ---
 
-## Giai đoạn 4: Explanation (Giải thích cho User)
+## Giai đoạn 7: Remediation Handoff
 
-Giải thích bằng ngôn ngữ ĐỜI THƯỜNG:
+`/audit` không nên biến thành workflow sửa tự động mọi thứ.
 
-*   **Kỹ thuật:** "SQL Injection vulnerability in UserService.ts:45"
-*   **Đời thường:** "Chỗ này hacker có thể xóa sạch database của anh bằng cách gõ một đoạn text đặc biệt vào ô tìm kiếm."
+### 7.1. Map finding sang workflow tiếp theo
 
-*   **Kỹ thuật:** "N+1 query detected in OrderController"
-*   **Đời thường:** "Mỗi khi load danh sách đơn hàng, hệ thống đang gọi database 100 lần thay vì 1 lần, làm app chậm."
+**/code**
+- khi cần sửa issue functional/security/config cụ thể
 
----
+**/refactor**
+- khi issue chính là maintainability, duplication, structure
 
-## Giai đoạn 5: Action Plan
+**/debug**
+- khi có lỗi chưa rõ root cause hoặc validation fail
 
-1.  Trình bày tóm tắt: "Em tìm thấy X vấn đề nghiêm trọng cần sửa ngay."
-2.  **Hiển thị Menu số để người dùng chọn:**
+**/test**
+- khi cần verify release confidence hoặc xác minh nghi ngờ
 
-```
-📋 Anh muốn làm gì tiếp theo?
+**/save-brain**
+- khi audit xong và cần lưu risk register/handoff
 
-1️⃣ Xem báo cáo chi tiết trước
-2️⃣ Sửa lỗi Critical ngay (dùng /code)
-3️⃣ Dọn dẹp code smell (dùng /refactor) 
-4️⃣ Bỏ qua, lưu báo cáo vào /save-brain
-5️⃣ 🔧 FIX ALL - Tự động sửa TẤT CẢ lỗi có thể sửa
+### 7.2. Auto-fix policy
 
-Gõ số (1-5) để chọn:
-```
+Chỉ auto-fix các thay đổi cơ học, rủi ro thấp, và không mơ hồ.
 
----
+Ví dụ có thể cân nhắc:
+- remove unused imports
+- formatting
+- organize imports
+- xóa obvious debug logs trong scope an toàn
 
-## Giai đoạn 6: Fix All Mode (Nếu User chọn 5)
+Không nên auto-fix trực tiếp trong `/audit` với:
+- security logic
+- auth / permission
+- data flow
+- API contracts
+- dependency upgrades có thể breaking
+- “fix all” không qua review
 
-Khi User chọn **Option 5 (Fix All)**, AI sẽ:
+### 7.3. Priority order
 
-### 6.1. Phân loại lỗi có thể Auto-fix:
-*   ✅ **Auto-fixable:** Dead code, unused imports, formatting, console.log, missing .gitignore
-*   ⚠️ **Need Review:** API key exposure (chuyển sang .env), SQL injection (cần xem logic)
-*   ❌ **Manual Only:** Architecture changes, business logic bugs
-
-### 6.2. Thực hiện Fix:
-*   Lần lượt sửa từng lỗi Auto-fixable.
-*   Với lỗi "Need Review": Hỏi User confirm trước khi sửa.
-*   Bỏ qua lỗi "Manual Only" và ghi chú lại.
-
-### 6.3. Report:
-```
-✅ Đã tự động sửa: 8 lỗi
-⚠️ Cần review thêm: 2 lỗi (đã liệt kê bên dưới)
-❌ Không thể auto-fix: 1 lỗi (cần sửa thủ công)
-```
+Thứ tự remediation nên là:
+1. Critical security / release blockers
+2. High-risk config or logic issues
+3. Test/verification gaps
+4. Performance bottlenecks có bằng chứng
+5. Maintainability / docs debt
 
 ---
 
-## ⚠️ NEXT STEPS (Menu số):
+## 🛡️ RESILIENCE PATTERNS (Ẩn khỏi User)
+
+### Khi repo quá lớn
+
+```text
+Không quét toàn bộ mù quáng.
+
+Hãy:
+1. xác định entry points và risk surfaces
+2. audit theo lane ưu tiên
+3. nói rõ phần nào chưa audit
 ```
-1️⃣ Chạy /test để kiểm tra sau khi sửa
-2️⃣ Chạy /save-brain để lưu báo cáo
-3️⃣ Tiếp tục /audit để scan lại
+
+### Khi thiếu tooling
+
+```text
+Không giả vờ đã "scan đầy đủ".
+
+Hãy:
+1. nói rõ thiếu công cụ / config gì
+2. làm manual review phần quan trọng nhất
+3. hạ confidence xuống phù hợp
+```
+
+### Khi thấy tín hiệu security nhưng chưa chắc
+
+```text
+Ghi là "possible risk" hoặc "needs confirmation".
+Không đẩy thành Critical nếu chưa có bằng chứng đủ mạnh.
+```
+
+### Khi performance issue chưa có số đo
+
+```text
+Phân biệt:
+- measured issue
+- likely bottleneck
+- speculative concern
+```
+
+### Khi docs lệch code
+
+```text
+Đây là finding thật.
+
+Nhưng severity tùy context:
+- nếu làm setup/release sai -> High/Medium
+- nếu chỉ wording cũ -> Low
+```
+
+### Error messages đơn giản
+
+```text
+❌ "Full audit complete"
+✅ "Em đã audit xong trong scope [X]. Có [Y] finding mức cao trở lên, nhưng vẫn còn [Z] phần chưa audit nên chưa thể kết luận toàn repo đã an toàn."
+
+❌ "Project is secure"
+✅ "Trong phạm vi đã audit, em chưa thấy bằng chứng của lỗ hổng nghiêm trọng ở [X], nhưng điều này không đồng nghĩa toàn bộ hệ thống đã an toàn."
+```
+
+---
+
+## ⚠️ NEXT STEPS (Menu số)
+
+```text
+1️⃣ Sửa issue quan trọng nhất: `/code`
+2️⃣ Dọn debt cấu trúc/code smell: `/refactor`
+3️⃣ Xác minh thêm bằng test/validation: `/test`
+4️⃣ Có dấu hiệu bug/root cause chưa rõ: `/debug`
+5️⃣ Muốn lưu audit state và risk: `/save-brain`
 ```

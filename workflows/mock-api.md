@@ -1,161 +1,254 @@
 ---
-description: 💃 Tạo và quản lý Mock API (MSW) - Professional Edition
+description: 🧪 Thiết lập Mock API thực dụng cho dev và test
 ---
 
-# 🎭 Mock API Workflow (MSW + Faker + Data)
+# WORKFLOW: /mock-api - The Mock API Builder (Detect -> Mock -> Verify)
 
-Workflow này giúp bạn thiết lập môi trường giả lập API (Mocking) "Premium" - không chỉ trả về dữ liệu tĩnh mà còn hỗ trợ **CRUD, Persistence Data, giả lập Network Delay và Error Handling**.
+Bạn là **Antigravity Mock API Builder**.
+Nhiệm vụ của bạn là giúp user dựng mock API đủ tốt để unblock frontend, test UI states, hoặc phát triển contract-first mà không để mock bị drift vô tội vạ khỏi backend thật.
 
-## 📦 1. Cài đặt Dependencies
+---
 
-Cài đặt `msw` (v2), `@faker-js/faker` và `@mswjs/data` để quản lý database ảo.
+## Khi nào dùng `/mock-api`
 
-// turbo
-```bash
-npm install msw @faker-js/faker @mswjs/data --save-dev
-```
+Ưu tiên dùng khi:
+- frontend cần chạy trước backend
+- cần mock loading / empty / error states
+- cần demo/prototype
+- cần reproduce API failure cục bộ
+- có OpenAPI/docs API và muốn dev contract-first
 
-## 🛠 2. Khởi tạo MSW
+Không nhất thiết dùng khi:
+- backend thật đã sẵn và ổn định
+- user chỉ cần fix logic UI nhỏ không phụ thuộc API
 
-Tạo Service Worker script trong thư mục `public`.
+---
 
-// turbo
-```bash
-npx msw init public/ --save
-```
+## Giai đoạn 0: Chọn mode
 
-## 📂 3. Cấu trúc thư mục (Advanced)
+Chọn mode nhỏ nhất đủ dùng:
+
+**Quick endpoint mock**
+- mock 1-2 endpoint để unblock 1 màn
+
+**Feature mock**
+- mock đủ CRUD/state cho một feature
+
+**Scenario mock**
+- tập trung vào success / empty / error / loading states
+
+**Contract-driven mock**
+- bám theo OpenAPI / docs API / traffic mẫu
+
+---
+
+## Giai đoạn 1: Detect context
+
+Trước khi viết mock, phải xác định:
+- repo dùng framework gì?
+- có `src/` hay không?
+- có browser app, test runner, Storybook, hay SSR không?
+- mock sẽ dùng cho local dev, test, hay cả hai?
+
+Ưu tiên bám cấu trúc repo thật, không ép cứng vào một framework nếu repo không dùng nó.
+
+---
+
+## Giai đoạn 2: Chọn source of truth
+
+Ưu tiên theo thứ tự:
+1. OpenAPI spec
+2. backend docs / API contract thật
+3. recorded traffic / HAR / sample payload
+4. handwritten mock tạm thời
+
+Nếu mock viết tay, phải coi đó là **temporary contract** và ghi rõ:
+- endpoint nào đang mock
+- payload nào là giả định
+- phần nào chưa chắc đúng backend thật
+
+---
+
+## Giai đoạn 3: Thiết kế mock
+
+### 3.1. Chọn stack mặc định
+
+Nếu là web app hiện đại, ưu tiên:
+- `msw`
+- `@faker-js/faker`
+- `@mswjs/data` khi cần persistence CRUD nhẹ
+
+### 3.2. Scenario tối thiểu
+
+Mock tốt không chỉ có happy path.
+
+Ít nhất nên nghĩ đến:
+- success
+- loading / delay
+- empty
+- validation error
+- server error
+- permission error nếu relevant
+
+### 3.3. Cấu trúc gợi ý
 
 ```text
 src/
   mocks/
-    ├── db.ts           # Database ảo (Persistence layer)
-    ├── handlers.ts     # Definition của các API endpoints
-    ├── browser.ts      # Setup Client-side
-    ├── node.ts         # Setup Server-side (Testing/SSR)
-    └── MSWProvider.tsx # Client Component để kích hoạt Mocking
+    db.ts           # optional, khi cần persistence
+    handlers.ts     # endpoint handlers
+    browser.ts      # browser worker setup
+    node.ts         # node/test setup nếu cần
+    MSWProvider.tsx # provider nếu app cần
 ```
 
-## 📝 4. Implement Code
+Không bắt buộc đủ mọi file nếu mode chỉ là quick mock.
 
-### 4.1. Define Database (`src/mocks/db.ts`)
-Sử dụng `@mswjs/data` để dữ liệu không bị reset khi chuyển trang và hỗ trợ CRUD.
+---
 
-```typescript
-import { factory, primaryKey } from '@mswjs/data';
-import { faker } from '@faker-js/faker';
+## Giai đoạn 4: Implement gọn, đúng việc
 
-export const db = factory({
-  user: {
-    id: primaryKey(faker.string.uuid),
-    name: String,
-    email: String,
-    avatar: String,
-  },
-});
+### 4.1. Cài dependencies
 
-// Khởi tạo dữ liệu mẫu
-db.user.create({
-  id: 'user-1',
-  name: 'Vibe Coder',
-  email: 'hello@mine.vibe',
-  avatar: 'https://i.pravatar.cc/150?u=mine',
-});
+Ví dụ:
+
+```bash
+npm install msw @faker-js/faker @mswjs/data --save-dev
 ```
 
-### 4.2. Handlers với Delay & Error (`src/mocks/handlers.ts`)
+### 4.2. Khởi tạo worker
 
-```typescript
-import { http, HttpResponse, delay } from 'msw';
-import { db } from './db';
+Ví dụ:
 
-export const handlers = [
-  // Mock API: GET /api/me
-  http.get('*/api/me', async () => {
-    // 1. Giả lập độ trễ mạng (Real vibration!)
-    await delay(800); 
-
-    // 2. Giả lập lỗi ngẫu nhiên (Optional - dùng để test Error Boundary)
-    // if (Math.random() > 0.9) {
-    //   return new HttpResponse(null, { status: 500 });
-    // }
-
-    const user = db.user.findFirst({ where: { id: { equals: 'user-1' } } });
-    return HttpResponse.json(user);
-  }),
-
-  // Add thêm các handlers khác sử dụng db.user.findMany(), db.user.update(), etc.
-];
+```bash
+npx msw init public/ --save
 ```
 
-### 4.3. Setup Environments
+### 4.3. Handlers nên mô tả network behavior
 
-**Browser (`src/mocks/browser.ts`):**
-```typescript
-import { setupWorker } from 'msw/browser';
-import { handlers } from './handlers';
-export const worker = setupWorker(...handlers);
+Handler nên bám:
+- method
+- URL/path params/query
+- payload shape
+- response shape
+- status codes
+- realistic delay khi cần
+
+Ưu tiên mock ở network layer, không mock client internals nếu không bắt buộc.
+
+### 4.4. Dùng `@mswjs/data` khi nào
+
+Nên dùng khi:
+- cần CRUD nhẹ
+- cần persistence trong dev session
+- cần nhiều state transitions
+
+Không cần dùng nếu chỉ mock 1-2 response tĩnh.
+
+---
+
+## Giai đoạn 5: Verify mock setup
+
+Sau khi setup, phải kiểm tra:
+- request thật sự bị intercept chưa
+- UI có hiện đúng state mong muốn không
+- unhandled requests xử lý thế nào
+- browser/dev test có dùng chung handlers được không
+
+Checklist nhanh:
+
+```text
+1. Start app/test
+2. Gọi màn hoặc action dùng endpoint mock
+3. Xác nhận response mock xuất hiện đúng
+4. Thử 1 case error hoặc empty
+5. Kiểm tra request không được mock có bị bypass hay fail đúng ý không
 ```
 
-**Node/Server (`src/mocks/node.ts`):**
-```typescript
-import { setupServer } from 'msw/node';
-import { handlers } from './handlers';
-export const server = setupServer(...handlers);
+---
+
+## Giai đoạn 6: Anti-drift rules
+
+Mock API rất dễ lệch backend thật. Phải giữ các rule sau:
+
+1. Nếu có OpenAPI/docs thật, ưu tiên bám contract đó
+2. Không để handwritten mock sống quá lâu mà không update
+3. Ghi rõ endpoint nào chỉ là giả định tạm
+4. Khi backend contract đổi, mock phải update cùng lúc
+5. Không dùng mock để che integration bug một cách vô tình
+
+---
+
+## Giai đoạn 7: Structured handoff
+
+Kết thúc `/mock-api`, phải nói rõ:
+
+```text
+[Mode]
+- Quick / Feature / Scenario / Contract-driven
+
+[Mocked Endpoints]
+- ...
+
+[Scenarios Covered]
+- success / empty / loading / error / ...
+
+[Files Created]
+- ...
+
+[Assumptions]
+- ...
+
+[What Still Uses Real API]
+- ...
+
+[Recommended Next Step]
+- /code hoặc /test
 ```
 
-### 4.4. MSW Provider Chống Flash Content (`src/mocks/MSWProvider.tsx`)
+---
 
-```tsx
-'use client';
+## 🛡️ RESILIENCE PATTERNS (Ẩn khỏi User)
 
-import { useEffect, useState } from 'react';
+### Khi user chỉ cần unblock 1 màn
 
-export function MSWProvider({ children }: { children: React.ReactNode }) {
-  const [isReady, setIsReady] = useState(false);
+```text
+Không dựng full mock system quá sớm.
 
-  useEffect(() => {
-    const init = async () => {
-      if (process.env.NEXT_PUBLIC_API_MOCKING === 'true' && typeof window !== 'undefined') {
-        const { worker } = await import('./browser');
-        await worker.start({
-          onUnhandledRequest: 'bypass',
-        });
-      }
-      setIsReady(true);
-    };
-
-    init();
-  }, []);
-
-  if (!isReady && process.env.NEXT_PUBLIC_API_MOCKING === 'true') return null;
-
-  return <>{children}</>;
-}
+Chỉ mock đúng endpoint và states cần cho màn đó.
 ```
 
-## � 5. Next.js Server Components Support (Optional)
+### Khi chưa có API contract rõ
 
-Để mock hoạt động trong Server Components, tạo file `instrumentation.ts` ở thư mục gốc (`src/` hoặc root):
-
-```typescript
-export async function register() {
-  if (process.env.NEXT_RUNTIME === 'nodejs' && process.env.NEXT_PUBLIC_API_MOCKING === 'true') {
-    const { server } = await import('./mocks/node');
-    server.listen();
-  }
-}
-```
-*Lưu ý: Bật `experimental.instrumentationHook: true` trong `next.config.js`.*
-
-## ⚙️ 6. Kích hoạt
-Thêm vào `.env.local`:
-```env
-NEXT_PUBLIC_API_MOCKING=true
+```text
+Ghi rõ đây là temporary mock contract.
+Không giả vờ payload này là backend truth.
 ```
 
-## ✅ Next Steps
-1. Chạy `npm install` các packages mới.
-2. Tạo các file theo cấu trúc trên (Có thể nhờ Mine hỗ trợ bằng lệnh `/code`).
-3. Bọc `MSWProvider` vào `src/app/layout.tsx`.
-4. Run app và tận hưởng cảm giác API trả về mượt mà! 💃
+### Khi repo không phải Next.js
+
+```text
+Không ép dùng app router / layout.tsx / instrumentation.
+
+Bám cấu trúc framework thực tế của repo.
+```
+
+### Khi test fail vì unhandled request
+
+```text
+Phân biệt:
+- endpoint quên mock
+- URL mismatch
+- mock đang drift khỏi code gọi API
+```
+
+---
+
+## ⚠️ NEXT STEPS (Menu số)
+
+```text
+1️⃣ Cần implement UI dùng mock này: `/code`
+2️⃣ Cần verify các states/mock flow: `/test`
+3️⃣ Cần sửa drift hoặc lỗi mock: `/debug`
+4️⃣ Muốn lưu context hiện tại: `/save-brain`
+```

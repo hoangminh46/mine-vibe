@@ -3,20 +3,23 @@
 ## Nhóm workflow hiện tại
 
 ```text
-Discovery & Planning
-/brainstorm -> /requirements -> /plan -> /visualize
+Discovery & Requirements
+/brainstorm -> /requirements -> /plan
 
-Build & Validate
-/code -> /test -> /debug
-              -> /refactor
-              -> /audit
-              -> /mock-api
+Design & Implementation
+/visualize -> /code
+/mock-api -> /code
+/refactor
 
-Memory & Guidance
+Validation & Recovery
+/test -> /debug -> /code -> /test
+/audit
+/next
+
+Memory & Utilities
 /save-brain <-> /recap
-             -> /next
-             -> /customize
-             -> /mine-update
+/customize
+/mine-update
 ```
 
 ## Flow khuyến nghị
@@ -27,10 +30,22 @@ Memory & Guidance
 /brainstorm -> /requirements -> /plan -> /visualize -> /code -> /test -> /save-brain
 ```
 
+### Scope nhỏ hoặc MVP đã rõ
+
+```text
+/plan -> /visualize -> /code -> /test -> /save-brain
+```
+
+### Frontend bị chặn bởi backend
+
+```text
+/mock-api -> /code -> /test
+```
+
 ### Quay lại làm việc
 
 ```text
-/recap -> /code hoặc /debug -> /test -> /save-brain
+/recap -> /next -> /code hoặc /debug hoặc /plan
 ```
 
 ## Đã loại bỏ

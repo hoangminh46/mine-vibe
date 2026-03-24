@@ -31,23 +31,23 @@
   "features": [
     { "name": "/brainstorm", "status": "implemented", "description": "Market research & idea discussion → Choose /requirements or /plan" },
     { "name": "/requirements", "status": "implemented", "description": "IEEE 830 SRS - Use Cases, NFRs, Acceptance Criteria (Enterprise flow)" },
-    { "name": "/init", "status": "implemented", "description": "Project initialization" },
+    { "name": "/init", "status": "removed", "description": "Removed from current workflow catalog" },
     { "name": "/plan", "status": "implemented", "description": "Feature design & spec generation (Quick Start flow)" },
     { "name": "/visualize", "status": "implemented", "description": "UI/UX design" },
     { "name": "/code", "status": "implemented", "description": "Secure coding" },
-    { "name": "/run", "status": "implemented", "description": "Application execution" },
+    { "name": "/run", "status": "removed", "description": "Removed from current workflow catalog" },
     { "name": "/test", "status": "implemented", "description": "QA testing" },
     { "name": "/debug", "status": "implemented", "description": "Root cause analysis" },
     { "name": "/audit", "status": "implemented", "description": "Security & health check" },
-    { "name": "/deploy", "status": "implemented", "description": "CI/CD Pipeline + Production deployment (5 phases)" },
+    { "name": "/deploy", "status": "removed", "description": "Historical workflow; no longer shipped in the current repo" },
     { "name": "/recap", "status": "implemented", "description": "Context restoration" },
     { "name": "/next", "status": "implemented", "description": "Step-by-step guidance" },
     { "name": "/refactor", "status": "implemented", "description": "Code cleaning" },
-    { "name": "/rollback", "status": "implemented", "description": "Version revert" },
+    { "name": "/rollback", "status": "removed", "description": "Removed from current workflow catalog" },
     { "name": "/save-brain", "status": "implemented", "description": "Memory management" },
     { "name": "/customize", "status": "implemented", "description": "AI personalization" },
     { "name": "/mock-api", "status": "implemented", "description": "API mocking" },
-    { "name": "/cloudflare-tunnel", "status": "implemented", "description": "Tunnel management" },
+    { "name": "/cloudflare-tunnel", "status": "removed", "description": "Removed from current workflow catalog" },
     { "name": "/mine-update", "status": "implemented", "description": "Framework update check" },
     { "name": "skill-creator", "status": "implemented", "description": "Skill để hướng dẫn tạo skills mới cho Antigravity/Claude" },
     { "name": "framer-motion-magic", "status": "implemented", "description": "Animation & Micro-interactions với Framer Motion" },
@@ -71,7 +71,7 @@
       "Semantic versioning",
       "Bilingual documentation",
       "IEEE 830 for enterprise requirements",
-      "5-phase deploy workflow"
+      "Current workflow catalog is defined by files present in workflows/"
     ],
     "coding_rules": [
       {

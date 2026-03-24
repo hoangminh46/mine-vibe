@@ -1,49 +1,65 @@
 # Mine User Guide
 
-Mine là bộ workflow giúp AI làm việc theo quy trình rõ ràng trong dự án phần mềm. Bộ workflow hiện tại tập trung vào 3 nhóm việc: khám phá yêu cầu, triển khai kỹ thuật, và lưu/khôi phục context giữa các phiên làm việc.
+Mine là bộ workflow giúp AI làm việc theo quy trình rõ ràng trong dự án phần mềm. Bộ workflow hiện tại chia thành 4 nhóm việc: discovery, implementation, validation, và memory/utilities.
 
-## 1. Khi nào dùng workflow nào
+## 1. Dùng workflow nào khi nào
 
-### Bắt đầu từ ý tưởng
+### Ý tưởng mới hoặc dự án mới
 
 ```text
-/brainstorm -> /requirements -> /plan -> /visualize
+/brainstorm -> /requirements -> /plan -> /visualize -> /code -> /test -> /save-brain
 ```
 
-### Bắt đầu từ dự án đang làm dở
+### Scope nhỏ hoặc MVP đã rõ
 
 ```text
-/recap -> /code hoặc /debug -> /test -> /save-brain
+/plan -> /visualize -> /code -> /test -> /save-brain
 ```
 
-### Khi không biết làm gì tiếp
+### Frontend bị chặn bởi backend
 
 ```text
-/next
+/mock-api -> /code -> /test
+```
+
+### Có bug hoặc mất confidence
+
+```text
+/test -> /debug -> /code -> /test
+```
+
+### Quay lại dự án đang làm dở
+
+```text
+/recap -> /next -> /code hoặc /debug hoặc /plan
 ```
 
 ## 2. Danh sách workflow hiện có
 
-### Discovery & Planning
+### Discovery & Requirements
 - `/brainstorm`
 - `/requirements`
 - `/plan`
-- `/visualize`
 
-### Build & Validate
+### Design & Implementation
+- `/visualize`
 - `/code`
-- `/test`
-- `/debug`
 - `/mock-api`
 - `/refactor`
-- `/audit`
 
-### Memory & Guidance
+### Validation & Recovery
+- `/test`
+- `/debug`
+- `/audit`
+- `/next`
+
+### Memory & Utilities
 - `/save-brain`
 - `/recap`
-- `/next`
 - `/customize`
 - `/mine-update`
+
+`/customize` và `/mine-update` là workflow tiện ích nên được giữ nhẹ hơn workflow cốt lõi.
 
 ## 3. Workflow đã bị loại bỏ
 
@@ -54,6 +70,8 @@ Các workflow sau không còn được hỗ trợ trong Mine:
 - `/rollback`
 - `/cloudflare-tunnel`
 
+Catalog workflow hiện tại được quyết định bởi các file đang có trong thư mục `workflows/`.
+
 ## 4. Memory giữa các phiên
 
 Mine dùng 3 file trong `.brain/`:
@@ -61,16 +79,16 @@ Mine dùng 3 file trong `.brain/`:
 - `session.json`: snapshot hiện tại
 - `history.json`: handoff giữa các phiên
 
-### Cuối ngày
+### Cuối phiên
 
 ```text
 /save-brain
 ```
 
-### Đầu ngày mới
+### Đầu phiên mới
 
 ```text
 /recap
 ```
 
-Nếu quên `/save-brain`, `/recap` vẫn có thể dựng lại tương đối tốt từ Git, nhưng chất lượng handoff sẽ kém hơn vì thiếu decisions và next steps đã được chốt.
+Nếu quên `/save-brain`, `/recap` vẫn có thể dựng lại tương đối tốt từ Git, nhưng chất lượng handoff sẽ kém hơn vì thiếu decisions, risks và next steps đã được chốt.

@@ -2,6 +2,14 @@
 
 All notable changes to Mine will be documented in this file.
 
+## [Unreleased]
+
+### Clarified
+- **Workflow Catalog Source of Truth:** The current shipped workflow set is the one present in `workflows/`.
+- **`/deploy` Status:** `/deploy` is no longer part of the current workflow catalog. Historical entries below still describe the v3.5.0 merge of `/ci` into `/deploy`, but the workflow itself has since been removed from the repo.
+
+---
+
 ## [3.5.3] - 2026-01-28
 
 ### Added

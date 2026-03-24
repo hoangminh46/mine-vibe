@@ -6,48 +6,83 @@
     <title>Mine Workflow Overview</title>
     <style>
         body { font-family: Segoe UI, Arial, sans-serif; margin: 0; background: #0f172a; color: #e2e8f0; }
-        .wrap { max-width: 960px; margin: 0 auto; padding: 40px 20px; }
-        h1, h2 { color: #f8fafc; }
-        .card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+        .wrap { max-width: 1040px; margin: 0 auto; padding: 40px 20px; }
+        h1, h2, h3 { color: #f8fafc; }
+        .intro { color: #cbd5e1; line-height: 1.6; margin-bottom: 24px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; }
+        .card p { color: #cbd5e1; line-height: 1.6; }
         code { color: #86efac; }
-        ul { line-height: 1.7; }
+        ul { line-height: 1.7; padding-left: 18px; }
+        .flow { margin-top: 28px; background: #111827; border: 1px solid #334155; border-radius: 12px; padding: 20px; }
+        pre { white-space: pre-wrap; color: #e2e8f0; margin: 0 0 14px; }
+        .muted { color: #94a3b8; }
     </style>
 </head>
 <body>
     <div class="wrap">
         <h1>Mine Workflow Overview</h1>
-        <div class="card">
-            <h2>Discovery & Planning</h2>
-            <ul>
-                <li><code>/brainstorm</code></li>
-                <li><code>/requirements</code></li>
-                <li><code>/plan</code></li>
-                <li><code>/visualize</code></li>
-            </ul>
+        <p class="intro">
+            Catalog workflow hiện tại được quyết định bởi các file đang có trong thư mục <code>workflows/</code>.
+            Bộ workflow cốt lõi của Mine hiện tập trung vào discovery, implementation, validation và memory.
+        </p>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Discovery & Requirements</h2>
+                <p>Làm rõ user, problem, scope, requirements và implementation plan.</p>
+                <ul>
+                    <li><code>/brainstorm</code></li>
+                    <li><code>/requirements</code></li>
+                    <li><code>/plan</code></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Design & Implementation</h2>
+                <p>Chốt visual direction, triển khai code, mock API và refactor an toàn.</p>
+                <ul>
+                    <li><code>/visualize</code></li>
+                    <li><code>/code</code></li>
+                    <li><code>/mock-api</code></li>
+                    <li><code>/refactor</code></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Validation & Recovery</h2>
+                <p>Đo mức confidence hiện tại, debug khi cần, audit theo scope và chọn bước tiếp theo.</p>
+                <ul>
+                    <li><code>/test</code></li>
+                    <li><code>/debug</code></li>
+                    <li><code>/audit</code></li>
+                    <li><code>/next</code></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Memory & Utilities</h2>
+                <p>Lưu context theo Git, recap phiên mới và hỗ trợ cá nhân hóa/cập nhật Mine.</p>
+                <ul>
+                    <li><code>/save-brain</code></li>
+                    <li><code>/recap</code></li>
+                    <li><code>/customize</code></li>
+                    <li><code>/mine-update</code></li>
+                </ul>
+            </div>
         </div>
-        <div class="card">
-            <h2>Build & Validate</h2>
-            <ul>
-                <li><code>/code</code></li>
-                <li><code>/test</code></li>
-                <li><code>/debug</code></li>
-                <li><code>/mock-api</code></li>
-                <li><code>/refactor</code></li>
-                <li><code>/audit</code></li>
-            </ul>
+
+        <div class="flow">
+            <h3>Flow khuyến nghị</h3>
+            <pre>/brainstorm -> /requirements -> /plan -> /visualize -> /code -> /test -> /save-brain</pre>
+            <pre>/plan -> /visualize -> /code -> /test -> /save-brain</pre>
+            <pre>/mock-api -> /code -> /test</pre>
+            <pre>/recap -> /next -> /code hoặc /debug hoặc /plan</pre>
         </div>
-        <div class="card">
-            <h2>Memory & Guidance</h2>
-            <ul>
-                <li><code>/save-brain</code></li>
-                <li><code>/recap</code></li>
-                <li><code>/next</code></li>
-                <li><code>/customize</code></li>
-                <li><code>/mine-update</code></li>
-            </ul>
-        </div>
-        <div class="card">
-            <h2>Đã loại bỏ</h2>
+
+        <div class="flow">
+            <h3>Workflow đã bỏ</h3>
+            <p class="muted">Các workflow sau chỉ còn giá trị lịch sử, không còn là workflow hiện hành của Mine.</p>
             <ul>
                 <li><code>/init</code></li>
                 <li><code>/run</code></li>
