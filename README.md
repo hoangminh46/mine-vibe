@@ -33,7 +33,7 @@ Mine là bộ workflow cho AI coding trong Antigravity/Cursor. Repo này không 
 - `/customize`
 - `/mine-update`
 
-Catalog workflow hiện tại được quyết định bởi các file đang có trong thư mục [workflows](/C:/Users/admin/Desktop/AmelaProject/mine-vibe/workflows).
+Catalog workflow hiện tại được quyết định bởi các file đang có trong [workflows/coding](/C:/Users/admin/Desktop/AmelaProject/mine-vibe/workflows/coding) và [workflows/system](/C:/Users/admin/Desktop/AmelaProject/mine-vibe/workflows/system).
 
 ## Workflow cốt lõi
 
@@ -69,11 +69,11 @@ Mine hiện dùng 3 lớp memory:
 
 ## Cấu trúc repo
 
-- [workflows](/C:/Users/admin/Desktop/AmelaProject/mine-vibe/workflows): workflow Markdown
+- [workflows](/C:/Users/admin/Desktop/AmelaProject/mine-vibe/workflows): thư mục gốc chứa workflow Markdown theo nhóm `coding/` và `system/`
 - [schemas](/C:/Users/admin/Desktop/AmelaProject/mine-vibe/schemas): JSON schema cho memory và preferences
 - [templates](/C:/Users/admin/Desktop/AmelaProject/mine-vibe/templates): file mẫu
 - [docs](/C:/Users/admin/Desktop/AmelaProject/mine-vibe/docs): tài liệu tổng quan
-- [skills](/C:/Users/admin/Desktop/AmelaProject/mine-vibe/skills): skill tham khảo/cài kèm
+- [skills](/C:/Users/admin/Desktop/AmelaProject/mine-vibe/skills): skill tham khảo/cài kèm, được nhóm theo domain trong `frontend/`, `backend/`, `quality/`, `media/`, `system/`
 
 ## Cài đặt
 

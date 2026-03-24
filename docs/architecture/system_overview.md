@@ -5,7 +5,7 @@ Mine is a workflow framework for human-AI collaboration inside AI-first IDEs suc
 
 ## Core Components
 
-### 1. Global Workflows (`workflows/`)
+### 1. Global Workflows (`workflows/coding/`, `workflows/system/`)
 - Markdown workflows define the expected behavior for commands such as `/plan`, `/code`, `/save-brain`, and `/recap`.
 - The AI reads these files as operating instructions for each role and task.
 
@@ -22,6 +22,10 @@ Mine is a workflow framework for human-AI collaboration inside AI-first IDEs suc
 ### 4. Installation & Maintenance Scripts
 - `install.ps1` / `install.sh`: install workflows, schemas, templates, and skills into the user's global Mine directory.
 - `uninstall.ps1` / `uninstall.sh`: remove the installed Mine resources.
+
+### 5. Skill Catalog (`skills/`)
+- Bundled skills are grouped by domain under `skills/frontend/`, `skills/backend/`, `skills/quality/`, `skills/media/`, and `skills/system/`.
+- Installation keeps the public skill names stable in the user's global Mine directory.
 
 ## Data Flow
 1. The user triggers a workflow command such as `/plan` or `/save-brain`.

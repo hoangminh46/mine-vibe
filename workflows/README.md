@@ -2,7 +2,11 @@
 
 ## Overview
 
-Thư mục `workflows/` hiện chứa 4 nhóm workflow chính:
+Thư mục `workflows/` hiện được tổ chức theo 2 thư mục con:
+- `workflows/coding/`: workflow phục vụ discovery, implementation, validation
+- `workflows/system/`: workflow phục vụ memory và utility
+
+Tổng thể workflow vẫn chia thành 4 nhóm workflow chính:
 - discovery & requirements
 - design & implementation
 - validation & recovery
@@ -69,7 +73,7 @@ Repo này không còn duy trì:
 - `/rollback`
 - `/cloudflare-tunnel`
 
-Workflow catalog hiện tại được quyết định bởi các file đang có trong thư mục `workflows/`.
+Workflow catalog hiện tại được quyết định bởi các file đang có trong `workflows/coding/` và `workflows/system/`.
 
 ---
 

@@ -70,7 +70,7 @@ Các workflow sau không còn được hỗ trợ trong Mine:
 - `/rollback`
 - `/cloudflare-tunnel`
 
-Catalog workflow hiện tại được quyết định bởi các file đang có trong thư mục `workflows/`.
+Catalog workflow hiện tại được quyết định bởi các file đang có trong `workflows/coding/` và `workflows/system/`.
 
 ## 4. Memory giữa các phiên
 

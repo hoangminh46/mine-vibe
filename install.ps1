@@ -2,14 +2,23 @@
 # Tự động detect Antigravity Global Workflows
 
 $RepoBase = "https://raw.githubusercontent.com/hoangminh46/mine-vibe/main"
-$RepoUrl = "$RepoBase/workflows"
 $Workflows = @(
-    "plan.md", "code.md", "visualize.md",
-    "debug.md", "refactor.md", "test.md",
-    "recap.md", "save_brain.md",
-    "audit.md", "mine-update.md",
-    "brainstorm.md", "next.md", "customize.md", "mock-api.md",
-    "requirements.md", "README.md"
+    @{ Source = "workflows/coding/plan.md"; Target = "plan.md" },
+    @{ Source = "workflows/coding/code.md"; Target = "code.md" },
+    @{ Source = "workflows/coding/visualize.md"; Target = "visualize.md" },
+    @{ Source = "workflows/coding/debug.md"; Target = "debug.md" },
+    @{ Source = "workflows/coding/refactor.md"; Target = "refactor.md" },
+    @{ Source = "workflows/coding/test.md"; Target = "test.md" },
+    @{ Source = "workflows/coding/audit.md"; Target = "audit.md" },
+    @{ Source = "workflows/coding/brainstorm.md"; Target = "brainstorm.md" },
+    @{ Source = "workflows/coding/mock-api.md"; Target = "mock-api.md" },
+    @{ Source = "workflows/coding/requirements.md"; Target = "requirements.md" },
+    @{ Source = "workflows/system/recap.md"; Target = "recap.md" },
+    @{ Source = "workflows/system/save_brain.md"; Target = "save_brain.md" },
+    @{ Source = "workflows/system/mine-update.md"; Target = "mine-update.md" },
+    @{ Source = "workflows/system/next.md"; Target = "next.md" },
+    @{ Source = "workflows/system/customize.md"; Target = "customize.md" },
+    @{ Source = "workflows/README.md"; Target = "README.md" }
 )
 
 # Schemas and Templates (v3.5+)
@@ -22,19 +31,19 @@ $Templates = @(
 
 # Skills
 $Skills = @(
-    "3d-web-experience",
-    "clean-code",
-    "framer-motion-magic",
-    "nodejs-best-practices",
-    "performance-precision",
-    "remotion-best-practices",
-    "responsive-mastery",
-    "skill-creator",
-    "tailwind-patterns",
-    "vercel-react-best-practices",
-    "vue-best-practices",
-    "web-security-frontend",
-    "websocket-realtime-mastery"
+    @{ Source = "skills/frontend/3d-web-experience"; Target = "3d-web-experience" },
+    @{ Source = "skills/quality/clean-code"; Target = "clean-code" },
+    @{ Source = "skills/frontend/framer-motion-magic"; Target = "framer-motion-magic" },
+    @{ Source = "skills/backend/nodejs-best-practices"; Target = "nodejs-best-practices" },
+    @{ Source = "skills/quality/performance-precision"; Target = "performance-precision" },
+    @{ Source = "skills/media/remotion-best-practices"; Target = "remotion-best-practices" },
+    @{ Source = "skills/frontend/responsive-mastery"; Target = "responsive-mastery" },
+    @{ Source = "skills/system/skill-creator"; Target = "skill-creator" },
+    @{ Source = "skills/frontend/tailwind-patterns"; Target = "tailwind-patterns" },
+    @{ Source = "skills/frontend/vercel-react-best-practices"; Target = "vercel-react-best-practices" },
+    @{ Source = "skills/frontend/vue-best-practices"; Target = "vue-best-practices" },
+    @{ Source = "skills/frontend/web-security-frontend"; Target = "web-security-frontend" },
+    @{ Source = "skills/backend/websocket-realtime-mastery"; Target = "websocket-realtime-mastery" }
 )
 
 # Detect Antigravity Global Path
@@ -79,11 +88,11 @@ Write-Host "⏳ Đang tải workflows..." -ForegroundColor Cyan
 $success = 0
 foreach ($wf in $Workflows) {
     try {
-        Invoke-WebRequest -Uri "$RepoUrl/$wf" -OutFile "$AntigravityGlobal\$wf" -ErrorAction Stop
-        Write-Host "   ✅ $wf" -ForegroundColor Green
+        Invoke-WebRequest -Uri "$RepoBase/$($wf.Source)" -OutFile "$AntigravityGlobal\$($wf.Target)" -ErrorAction Stop
+        Write-Host "   ✅ $($wf.Target)" -ForegroundColor Green
         $success++
     } catch {
-        Write-Host "   ❌ $wf" -ForegroundColor Red
+        Write-Host "   ❌ $($wf.Target)" -ForegroundColor Red
     }
 }
 
@@ -124,25 +133,25 @@ if (-not (Test-Path $SkillsDir)) {
 Write-Host "⏳ Đang tải skills..." -ForegroundColor Cyan
 foreach ($skill in $Skills) {
     try {
-        $SkillPath = "$SkillsDir\$skill"
+        $SkillPath = "$SkillsDir\$($skill.Target)"
         if (-not (Test-Path $SkillPath)) {
             New-Item -ItemType Directory -Force -Path $SkillPath | Out-Null
         }
         
         # Download SKILL.md
-        Invoke-WebRequest -Uri "$RepoBase/skills/$skill/SKILL.md" -OutFile "$SkillPath\SKILL.md" -ErrorAction Stop
-        Write-Host "   ✅ Skill: $skill" -ForegroundColor Green
+        Invoke-WebRequest -Uri "$RepoBase/$($skill.Source)/SKILL.md" -OutFile "$SkillPath\SKILL.md" -ErrorAction Stop
+        Write-Host "   ✅ Skill: $($skill.Target)" -ForegroundColor Green
         
         # Download AGENTS.md if it exists (Optional)
         try {
-            Invoke-WebRequest -Uri "$RepoBase/skills/$skill/AGENTS.md" -OutFile "$SkillPath\AGENTS.md" -ErrorAction Stop 
+            Invoke-WebRequest -Uri "$RepoBase/$($skill.Source)/AGENTS.md" -OutFile "$SkillPath\AGENTS.md" -ErrorAction Stop 
         } catch {
             # Ignore errors for optional files
         }
         
         $success++
     } catch {
-        Write-Host "   ❌ Skill: $skill" -ForegroundColor Red
+        Write-Host "   ❌ Skill: $($skill.Target)" -ForegroundColor Red
     }
 }
 

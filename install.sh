@@ -3,14 +3,23 @@
 # Tự động detect Antigravity Global Workflows
 
 REPO_BASE="https://raw.githubusercontent.com/hoangminh46/mine-vibe/main"
-REPO_URL="$REPO_BASE/workflows"
 WORKFLOWS=(
-    "plan.md" "code.md" "visualize.md"
-    "debug.md" "refactor.md" "test.md"
-    "recap.md" "save_brain.md"
-    "audit.md" "mine-update.md"
-    "brainstorm.md" "next.md" "customize.md" "mock-api.md"
-    "requirements.md" "README.md"
+    "workflows/coding/plan.md:plan.md"
+    "workflows/coding/code.md:code.md"
+    "workflows/coding/visualize.md:visualize.md"
+    "workflows/coding/debug.md:debug.md"
+    "workflows/coding/refactor.md:refactor.md"
+    "workflows/coding/test.md:test.md"
+    "workflows/coding/audit.md:audit.md"
+    "workflows/coding/brainstorm.md:brainstorm.md"
+    "workflows/coding/mock-api.md:mock-api.md"
+    "workflows/coding/requirements.md:requirements.md"
+    "workflows/system/recap.md:recap.md"
+    "workflows/system/save_brain.md:save_brain.md"
+    "workflows/system/mine-update.md:mine-update.md"
+    "workflows/system/next.md:next.md"
+    "workflows/system/customize.md:customize.md"
+    "workflows/README.md:README.md"
 )
 
 # Schemas and Templates (v3.5+)
@@ -23,19 +32,19 @@ TEMPLATES=(
 
 # Skills
 SKILLS=(
-    "3d-web-experience"
-    "clean-code"
-    "framer-motion-magic"
-    "nodejs-best-practices"
-    "performance-precision"
-    "remotion-best-practices"
-    "responsive-mastery"
-    "skill-creator"
-    "tailwind-patterns"
-    "vercel-react-best-practices"
-    "vue-best-practices"
-    "web-security-frontend"
-    "websocket-realtime-mastery"
+    "skills/frontend/3d-web-experience:3d-web-experience"
+    "skills/quality/clean-code:clean-code"
+    "skills/frontend/framer-motion-magic:framer-motion-magic"
+    "skills/backend/nodejs-best-practices:nodejs-best-practices"
+    "skills/quality/performance-precision:performance-precision"
+    "skills/media/remotion-best-practices:remotion-best-practices"
+    "skills/frontend/responsive-mastery:responsive-mastery"
+    "skills/system/skill-creator:skill-creator"
+    "skills/frontend/tailwind-patterns:tailwind-patterns"
+    "skills/frontend/vercel-react-best-practices:vercel-react-best-practices"
+    "skills/frontend/vue-best-practices:vue-best-practices"
+    "skills/frontend/web-security-frontend:web-security-frontend"
+    "skills/backend/websocket-realtime-mastery:websocket-realtime-mastery"
 )
 
 # Detect paths
@@ -70,11 +79,13 @@ echo "✅ Antigravity Global Path: $ANTIGRAVITY_GLOBAL"
 echo "⏳ Đang tải workflows..."
 success=0
 for wf in "${WORKFLOWS[@]}"; do
-    if curl -f -s -o "$ANTIGRAVITY_GLOBAL/$wf" "$REPO_URL/$wf"; then
-        echo "   ✅ $wf"
+    source_path="${wf%%:*}"
+    target_name="${wf##*:}"
+    if curl -f -s -o "$ANTIGRAVITY_GLOBAL/$target_name" "$REPO_BASE/$source_path"; then
+        echo "   ✅ $target_name"
         ((success++))
     else
-        echo "   ❌ $wf"
+        echo "   ❌ $target_name"
     fi
 done
 
@@ -107,17 +118,19 @@ mkdir -p "$HOME/.gemini/antigravity/global_skills"
 SKILLS_DIR="$HOME/.gemini/antigravity/global_skills"
 echo "⏳ Đang tải skills..."
 for skill in "${SKILLS[@]}"; do
-    skill_path="$SKILLS_DIR/$skill"
+    source_path="${skill%%:*}"
+    target_name="${skill##*:}"
+    skill_path="$SKILLS_DIR/$target_name"
     mkdir -p "$skill_path"
     
-    if curl -f -s -o "$skill_path/SKILL.md" "$REPO_BASE/skills/$skill/SKILL.md"; then
-        echo "   ✅ Skill: $skill"
+    if curl -f -s -o "$skill_path/SKILL.md" "$REPO_BASE/$source_path/SKILL.md"; then
+        echo "   ✅ Skill: $target_name"
         ((success++))
         
         # Download AGENTS.md if it exists (Optional)
-        curl -f -s -o "$skill_path/AGENTS.md" "$REPO_BASE/skills/$skill/AGENTS.md" || true
+        curl -f -s -o "$skill_path/AGENTS.md" "$REPO_BASE/$source_path/AGENTS.md" || true
     else
-        echo "   ❌ Skill: $skill"
+        echo "   ❌ Skill: $target_name"
     fi
 done
 
