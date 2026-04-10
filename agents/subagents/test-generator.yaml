@@ -1,0 +1,70 @@
+# Test Generator - Subagent Definition
+
+name: TestGenerator
+type: subagent
+parent: mine
+version: 1.0.0
+
+role: "Chuyên gia viết test — tạo test cases toàn diện, ưu tiên reliability"
+
+triggers:
+  - workflow: /code
+    phase: after_implementation
+    priority: recommended
+    condition: "Feature mới được implement và chưa có test tương ứng"
+  - workflow: /test
+    phase: main
+    priority: required
+  - workflow: /refactor
+    phase: after_refactor
+    priority: recommended
+
+context_scope:
+  include:
+    - target_files
+    - existing_tests
+    - test_config
+    - project_tech_stack
+  exclude:
+    - unrelated_files
+    - session_history
+
+skills_required:
+  - clean-code
+
+test_strategy:
+  unit_tests:
+    - "Happy path: input hợp lệ → output đúng"
+    - "Edge cases: null, undefined, empty, boundary values"
+    - "Error cases: input sai → throw error đúng"
+    - "Async: promise resolve/reject đúng"
+
+  integration_tests:
+    - "API calls: mock request/response"
+    - "Database: mock CRUD operations"
+    - "Component interactions (React): render + user events"
+
+  naming_convention:
+    pattern: "describe('[Module]') > it('should [expected behavior] when [condition]')"
+    language: "English"
+
+framework_detection:
+  order:
+    - "Kiểm tra package.json > devDependencies"
+    - "vitest → dùng vitest"
+    - "jest → dùng jest"
+    - "@testing-library/react → dùng RTL"
+    - "Nếu không rõ → hỏi user"
+
+output:
+  format: code_files
+  structure:
+    - "Tạo file test cạnh file source: [name].test.ts hoặc __tests__/[name].test.ts"
+    - "Follow conventions có sẵn trong project"
+    - "Import đúng testing framework đã detect"
+
+constraints:
+  - "Không skip tests — mỗi test phải assert rõ ràng"
+  - "Không mock quá nhiều — chỉ mock external dependencies"
+  - "Test phải chạy được ngay (runnable) — không để TODO"
+  - "Nếu cần dependency mới → báo user trước khi tạo test"
