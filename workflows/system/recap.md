@@ -65,6 +65,16 @@ Cần trả lời được:
 - Fallback scan dự án
 - Không được giả vờ memory vẫn đúng
 
+**Case E - Branch đã thay đổi so với lần save cuối**
+- Báo rõ: "Memory lưu context của branch `X`, nhưng hiện tại anh đang ở branch `Y`"
+- Kiểm tra branch cũ đã merge vào branch hiện tại chưa:
+  - Đã merge → context cũ vẫn relevant, có thể dùng
+  - Chưa merge → cảnh báo context có thể không còn đúng cho branch hiện tại
+- Nếu branch mới là `main`/`develop` → có thể user đã hoàn thành feature, tóm tắt kết quả
+- Nếu branch mới là feature khác → context cũ gần như không relevant
+- Luôn gợi ý `/save-brain` để cập nhật session cho branch mới
+- Ưu tiên đọc Git log của branch hiện tại để bổ sung context
+
 ---
 
 ## Giai đoạn 3: Nguồn dữ liệu để tóm tắt
@@ -83,6 +93,12 @@ Dùng để trả lời:
 - Giữa các phiên đã thay đổi gì
 - Lần handoff gần nhất đã chốt gì
 - Next steps và open questions từ lần trước
+
+**Xử lý archive entries:**
+- Entries có `type: "archive"` là tóm tắt cô đọng từ nhiều handoff cũ
+- Chỉ đọc archive khi cần context xa (>15 phiên trước)
+- Ưu tiên đọc `key_decisions` và `key_changes` từ archive, không cần đọc hết
+- Entries không có field `type` → coi như `type: "handoff"` (backward compatible)
 
 ### 3.3. `session.json`
 
@@ -125,6 +141,7 @@ Bản recap phải có 5 phần ngắn gọn:
 ### 4.4. Current Git reality
 - Branch hiện tại
 - HEAD hiện tại
+- ⚠️ Branch có khác với `session.current_branch` không (Case E)
 - Có commit mới sau lần save không
 - Có local changes không
 - Nếu có phase hiện tại, acceptance criteria đã verify tới đâu
@@ -135,6 +152,7 @@ Bản recap phải có 5 phần ngắn gọn:
 - Pending tasks ưu tiên cao
 - Cần `/code`, `/debug`, `/plan`, hay `/save-brain`
 - Nếu có, residual risk hoặc test gap nào đang chặn bước tiếp theo
+- Nếu branch đã thay đổi (Case E), ưu tiên gợi ý `/save-brain` trước khi làm việc khác
 
 ---
 
@@ -169,6 +187,7 @@ Bản recap phải có 5 phần ngắn gọn:
 Nếu có sai lệch giữa memory và Git, phải nói rõ:
 - "Memory đã lưu tới commit X, nhưng hiện tại HEAD là Y"
 - "Có N file đang sửa chưa commit"
+- "Memory lưu context của branch `X`, nhưng hiện tại anh đang ở branch `Y`" (Case E)
 
 ---
 
@@ -179,6 +198,9 @@ Nếu có sai lệch giữa memory và Git, phải nói rõ:
 3. Không bỏ qua local dirty state
 4. Không đánh đồng local WIP thành feature đã xong
 5. Nếu memory chưa cập nhật, khuyến nghị `/save-brain` sau khi user tiếp tục xong
+6. Nếu phát hiện branch đã thay đổi (Case E), luôn cảnh báo ngay đầu recap
+7. Archive entries chỉ cần đọc lướt, không cần phân tích chi tiết
+8. Sau khi recap xong, cập nhật `session.json > last_recap_at` với timestamp hiện tại
 
 ---
 

@@ -181,11 +181,12 @@ Mục đích: recap có thể biết thông tin này được xác minh tới co
 5. Cập nhật `brain.json` chỉ với thay đổi ổn định
 6. Cập nhật `session.json` với snapshot mới nhất
 7. Append entry mới vào `history.json`
-8. Validate với:
+8. Chạy **Garbage Collection** trên `history.json` (xem mục 5.4)
+9. Validate với:
    - `schemas/brain.schema.json`
    - `schemas/session.schema.json`
    - `schemas/history.schema.json`
-9. Mới thông báo cho user về kết quả lưu
+10. Mới thông báo cho user về kết quả lưu (bao gồm kết quả GC nếu có)
 
 ### 4.2. Pre-write check
 
@@ -225,6 +226,49 @@ Chỉ khi thay đổi có tính bền vững:
 
 Nếu chỉ là WIP trong ngày, dùng `session.json` và `history.json`.
 
+### 5.4. History Garbage Collection
+
+`history.json` phải được kiểm soát kích thước để tránh phình to theo thời gian.
+
+**Ngưỡng và quy tắc:**
+
+- **Giới hạn tối đa**: 15 entries chi tiết (type `handoff`)
+- **Khi vượt ngưỡng**: các entries cũ nhất vượt quá 15 sẽ được gộp thành 1 entry archive
+- **Entry archive**: tóm tắt giai đoạn đã qua, giữ lại thông tin cốt lõi
+
+**Quy trình GC:**
+
+1. Đếm số entries có `type: "handoff"` (hoặc không có field `type`, tức entry cũ)
+2. Nếu tổng ≤ 15 → không làm gì
+3. Nếu tổng > 15:
+   - Lấy N entries cũ nhất cần gộp (N = tổng - 15)
+   - Tạo 1 entry archive mới từ N entries đó:
+     ```json
+     {
+       "id": "archive-YYYYMMDD-HHmmss",
+       "type": "archive",
+       "saved_at": "<timestamp hiện tại>",
+       "branch": "<branch của entry cũ nhất>",
+       "head_sha": "<head_sha của entry mới nhất trong nhóm>",
+       "base_sha": "<base_sha của entry cũ nhất trong nhóm>",
+       "source": "mixed",
+       "commit_range": "<base_sha cũ nhất>...<head_sha mới nhất>",
+       "summary": "Archive N handoffs từ <date cũ nhất> đến <date mới nhất>. Tóm tắt: ...",
+       "archived_count": N,
+       "archived_date_range": { "from": "...", "to": "..." },
+       "key_decisions": ["<gộp decisions quan trọng nhất>"],
+       "key_changes": ["<gộp project_changes quan trọng nhất>"]
+     }
+     ```
+   - Xóa N entries cũ, thay bằng entry archive
+   - Giữ thứ tự: archives ở đầu, handoffs gần nhất ở cuối
+
+**Nguyên tắc gộp archive:**
+- Chỉ giữ decisions và changes có tính bền vững (feature hoàn thành, API mới, quyết định kiến trúc)
+- Bỏ qua chi tiết WIP, debug tạm, local dirty state đã cũ
+- Summary phải đọc được trong 30 giây
+- Mỗi lần GC chạy, các archive entries cũ cũng được gộp lại nếu tổng archive > 5
+
 ---
 
 ## Giai đoạn 6: Confirmation
@@ -246,7 +290,10 @@ Mẫu thông báo:
 - History: tạo handoff handoff-20260323-183000
 - Commit range đã lưu: abc123..def456
 - Local WIP: src/features/reports/components/revenue-chart.tsx
+- GC: gộp 3 entries cũ thành archive-20260323-183000 (giữ 15 entries)
 ```
+
+Nếu không có GC, bỏ dòng GC. Nếu có, phải báo rõ số entries đã gộp.
 
 ---
 

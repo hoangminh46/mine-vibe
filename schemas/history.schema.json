@@ -18,6 +18,12 @@
         "required": ["id", "saved_at", "branch", "head_sha", "source", "summary"],
         "properties": {
           "id": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["handoff", "archive"],
+            "default": "handoff",
+            "description": "Entry type: handoff (normal save) or archive (condensed from GC)"
+          },
           "saved_at": {
             "type": "string",
             "format": "date-time"
@@ -69,6 +75,28 @@
           },
           "open_questions": {
             "type": "array",
+            "items": { "type": "string" }
+          },
+          "archived_count": {
+            "type": "integer",
+            "description": "Number of original entries condensed into this archive entry (archive type only)"
+          },
+          "archived_date_range": {
+            "type": "object",
+            "description": "Date range of the entries that were archived (archive type only)",
+            "properties": {
+              "from": { "type": "string", "format": "date-time" },
+              "to": { "type": "string", "format": "date-time" }
+            }
+          },
+          "key_decisions": {
+            "type": "array",
+            "description": "Important decisions preserved from archived entries (archive type only)",
+            "items": { "type": "string" }
+          },
+          "key_changes": {
+            "type": "array",
+            "description": "Major project changes preserved from archived entries (archive type only)",
             "items": { "type": "string" }
           }
         }
