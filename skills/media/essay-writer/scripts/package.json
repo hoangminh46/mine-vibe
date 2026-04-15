@@ -1,0 +1,9 @@
+{
+  "name": "essay-writer-scripts",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "docx": "^9.0.0"
+  }
+}
