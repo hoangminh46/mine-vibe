@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Input schema for generate_essay.mjs — defines the exact contract for essay data",
+  "type": "object",
+  "required": ["meta", "title", "sections"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["subject_name", "subject_code"],
+      "properties": {
+        "student_name": { "type": "string" },
+        "student_id": { "type": "string" },
+        "birth_date": { "type": "string" },
+        "cohort": { "type": "string", "description": "Graduate cohort, e.g. QH-2025S" },
+        "class_name": { "type": "string" },
+        "major": { "type": "string" },
+        "instructor": { "type": "string", "description": "Instructor name + title" },
+        "subject_name": { "type": "string", "minLength": 1 },
+        "subject_code": { "type": "string", "minLength": 1 },
+        "year": { "type": "integer", "minimum": 2020 }
+      }
+    },
+    "title": { "type": "string", "minLength": 1, "description": "Essay topic/title" },
+    "assignment_type": {
+      "type": "string",
+      "enum": ["TIỂU LUẬN CUỐI KÌ", "BÀI THI HẾT HỌC PHẦN"],
+      "default": "TIỂU LUẬN CUỐI KÌ"
+    },
+    "page_count": {
+      "type": "integer",
+      "minimum": 5,
+      "description": "Target number of pages (excluding cover + TOC). Configured by user prompt. Script will warn if content falls short."
+    },
+    "preface": { "type": "string", "description": "Lời mở đầu content" },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Main essay body sections",
+      "items": {
+        "type": "object",
+        "required": ["heading", "level"],
+        "properties": {
+          "heading": { "type": "string", "minLength": 1 },
+          "level": { "type": "integer", "enum": [1, 2, 3], "description": "1=H1, 2=H2, 3=H3" },
+          "content": { "type": "string", "description": "Paragraph content for this section" }
+        }
+      }
+    },
+    "references": {
+      "type": "array",
+      "minItems": 3,
+      "description": "At least 3 academic references, sorted alphabetically by author",
+      "items": {
+        "type": "object",
+        "required": ["author", "year", "title", "publisher"],
+        "properties": {
+          "stt": { "type": "integer" },
+          "author": { "type": "string", "minLength": 1 },
+          "year": { "type": "integer" },
+          "title": { "type": "string", "minLength": 1 },
+          "publisher": { "type": "string", "minLength": 1 },
+          "pages": { "type": "string" }
+        }
+      }
+    }
+  }
+}

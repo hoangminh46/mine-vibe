@@ -1,78 +1,211 @@
-SIÊU ĐỀ CƯƠNG TIỂU LUẬN
-Chủ đề: Ứng dụng khoa học nhận thức trong phát triển năng lực người học (Dự kiến độ dài: 20 trang)
-PHẦN MỞ ĐẦU (Dự kiến: 1 - 1.5 trang)
-Lý do chọn đề tài: Giáo dục hiện đại đang chuyển từ truyền thụ kiến thức thụ động sang phát triển năng lực người học. Việc ứng dụng khoa học nhận thức giúp giải mã "hộp đen" của não bộ, từ đó đưa ra các phương pháp giảng dạy tối ưu.
-Mục tiêu nghiên cứu & Phạm vi nghiên cứu: Khám phá cơ chế nhận thức, trí nhớ, động cơ, chức năng điều hành và đặc biệt là năng lực siêu nhận thức để ứng dụng vào thực tiễn dạy học.
-Nguồn tham khảo chung cho phần này: [Thuyết Nhận Thức (Cognitivism) Trong Dạy Học | PDF - Scribd].
+BỘ CƠ SỞ DỮ LIỆU CHUYÊN SÂU:
+ỨNG DỤNG KHOA HỌC NHẬN THỨC TRONG PHÁT TRIỂN NĂNG LỰC NGƯỜI HỌC
+CHƯƠNG 1: NỀN TẢNG KHOA HỌC THẦN KINH VÀ TÂM LÝ HỌC NHẬN THỨC TRONG GIÁO DỤC
+1.1. Bản chất của Thuyết nhận thức trong dạy học
+1.1.1. Hoàn cảnh ra đời và định nghĩa: Thuyết nhận thức hình thành từ những năm đầu thế kỷ hai mươi (khoảng thập niên một chín hai mươi) và phát triển mạnh vào giữa thế kỷ hai mươi, đặc biệt bùng nổ vào cuối những năm một chín năm mươi khi diễn ra cuộc cách mạng nhận thức trong tâm lý học [Nguồn: Thuyết Nhận Thức Trong Dạy Học - Tác giả: Tèo]
+. Lý thuyết này ra đời như một phản ứng trước chủ nghĩa hành vi, chuyển trọng tâm nghiên cứu từ hành vi bề ngoài sang các quá trình tinh thần bên trong [Nguồn: Thuyết Nhận Thức Trong Dạy Học - Tác giả: Tèo]
+. Con người không còn được nhìn nhận là tập hợp các phản xạ kích thích và đáp ứng thụ động như quan điểm hành vi, mà được xem như hệ thống xử lý thông tin chủ động [Nguồn: Thuyết Nhận Thức Trong Dạy Học - Tác giả: Tèo]
+. Tâm lý học nhận thức coi học tập là một quá trình diễn ra bên trong trí óc người học, tập trung vào cách con người tiếp nhận, xử lý thông tin và ghi nhớ kiến thức [Nguồn: Thuyết Nhận Thức Trong Dạy Học - Tác giả: Tèo]
+.
+1.1.2. Cơ chế xử lý thông tin và giải quyết vấn đề: Người học được xem như một bộ xử lý thông tin, thực hiện các hoạt động nhận thức để tiếp nhận, biến đổi và lưu trữ thông tin vào trí nhớ [Nguồn: Thuyết Nhận Thức Trong Dạy Học - Tác giả: Tèo]
+. Thông qua việc đồng hóa thông tin mới vào cấu trúc hiểu biết sẵn có và điều ứng cấu trúc đó khi gặp thông tin mâu thuẫn, người học dần xây dựng nên tri thức cho riêng mình [Nguồn: Thuyết Nhận Thức Trong Dạy Học - Tác giả: Tèo]
+. Theo quan điểm nhận thức, học tập thực chất là quá trình giải quyết vấn đề: người học tiếp nhận vấn đề, huy động kiến thức và kỹ năng để tìm giải pháp, qua đó lĩnh hội tri thức mới [Nguồn: Thuyết Nhận Thức Trong Dạy Học - Tác giả: Tèo]
+. Các cấu trúc nhận thức, tức hệ thống kiến thức và khái niệm trong trí óc, được hình thành và phát triển nhờ kinh nghiệm học tập chứ không phải có sẵn bẩm sinh [Nguồn: Thuyết Nhận Thức Trong Dạy Học - Tác giả: Tèo]
+.
+1.2. Cơ sở thần kinh học: Vỏ não trước trán và Chức năng điều hành
+1.2.1. Cấu trúc và vai trò của vỏ não trước trán: Vỏ não trước trán là phần phía trước của thùy trán, nằm ngay sau trán và được xem là vùng não phát triển cao nhất ở con người [Nguồn: Đề tài nghiên cứu: Tác động của vỏ não trước trán đến chức năng điều hành ở học - Tác giả: Thu Trung]
+. Chức năng của vỏ não trước trán liên quan mật thiết đến các hoạt động như lập kế hoạch, tổ chức hành vi, đưa ra quyết định, điều chỉnh cảm xúc, chú ý, và khả năng tự điều chỉnh [Nguồn: Đề tài nghiên cứu: Tác động của vỏ não trước trán đến chức năng điều hành ở học - Tác giả: Thu Trung]
+. Đây cũng là vùng não chịu trách nhiệm điều hành hành vi phù hợp với mục tiêu và bối cảnh xã hội [Nguồn: Đề tài nghiên cứu: Tác động của vỏ não trước trán đến chức năng điều hành ở học - Tác giả: Thu Trung]
+. Vỏ não trước trán không xử lý thông tin giác quan hay điều khiển trực tiếp vận động, mà đảm nhiệm vai trò điều phối và tích hợp thông tin từ các vùng khác để kiểm soát hành vi một cách linh hoạt và thích nghi [Nguồn: Đề tài nghiên cứu: Tác động của vỏ não trước trán đến chức năng điều hành ở học - Tác giả: Thu Trung]
+.
+1.2.2. Sự phát triển ở lứa tuổi tiểu học: Sự phát triển của vỏ não trước trán diễn ra kéo dài từ giai đoạn sơ sinh cho đến tận tuổi trưởng thành, tuy nhiên giai đoạn tiểu học được xem là thời kỳ đặc biệt quan trọng khi nhiều chức năng điều hành bắt đầu hình thành rõ nét [Nguồn: Đề tài nghiên cứu: Tác động của vỏ não trước trán đến chức năng điều hành ở học - Tác giả: Thu Trung]
+. Đến độ tuổi tiểu học, đặc biệt từ sáu đến mười hai tuổi, có sự gia tăng đáng kể về kích thước, mật độ khớp thần kinh và quá trình tái cấu trúc của các vùng liên quan đến vỏ não trước trán [Nguồn: Đề tài nghiên cứu: Tác động của vỏ não trước trán đến chức năng điều hành ở học - Tác giả: Thu Trung]
+. Giai đoạn này chứng kiến sự thay đổi mạnh mẽ trong khả năng chú ý, trí nhớ làm việc, kiểm soát ức chế và linh hoạt nhận thức, những yếu tố quan trọng cấu thành chức năng điều hành [Nguồn: Đề tài nghiên cứu: Tác động của vỏ não trước trán đến chức năng điều hành ở học - Tác giả: Thu Trung]
+.
+1.2.3. Bản chất của Chức năng điều hành: Chức năng điều hành là thuật ngữ dùng để chỉ một nhóm các tiến trình nhận thức cao cấp cho phép cá nhân điều chỉnh tư duy, cảm xúc và hành vi để đạt được mục tiêu cụ thể [Nguồn: Đề tài nghiên cứu: Tác động của vỏ não trước trán đến chức năng điều hành ở học - Tác giả: Thu Trung]
+. Chức năng điều hành gồm ba thành phần cốt lõi: trí nhớ làm việc, kiểm soát ức chế, và sự linh hoạt nhận thức [Nguồn: Đề tài nghiên cứu: Tác động của vỏ não trước trán đến chức năng điều hành ở học - Tác giả: Thu Trung]
+.
+Trí nhớ làm việc giúp trẻ lưu giữ và xử lý thông tin trong thời gian ngắn để sử dụng trong hoạt động học tập như giải toán hay đọc hiểu [Nguồn: Đề tài nghiên cứu: Tác động của vỏ não trước trán đến chức năng điều hành ở học - Tác giả: Thu Trung]
+.
+Kiểm soát ức chế cho phép trẻ kìm hãm các phản ứng bốc đồng, chú ý có chọn lọc và tuân theo hướng dẫn [Nguồn: Đề tài nghiên cứu: Tác động của vỏ não trước trán đến chức năng điều hành ở học - Tác giả: Thu Trung]
+.
+Sự linh hoạt nhận thức hỗ trợ trẻ chuyển đổi giữa các nhiệm vụ, thích nghi với sự thay đổi và giải quyết vấn đề sáng tạo [Nguồn: Đề tài nghiên cứu: Tác động của vỏ não trước trán đến chức năng điều hành ở học - Tác giả: Thu Trung]
+.
+1.2.4. Suy giảm chức năng điều hành trong các rối loạn thần kinh: Chức năng điều hành có thể bị suy giảm ở nhiều rối loạn phát triển thần kinh ở trẻ em như rối loạn phổ tự kỷ, rối loạn tăng động giảm chú ý hay rối loạn học tập đặc thù [Nguồn: Suy Giảm Chức Năng Điều Hành Ở Trẻ Rối Loạn Phát Triển Thần Kinh - Viện Tâm lý Việt Pháp]
+. Đối với rối loạn tăng động giảm chú ý, suy giảm khả năng kiểm soát ức chế, đặc biệt là phần kiểm soát phản ứng, được xem là một trong những khiếm khuyết cốt lõi chức năng điều hành [Nguồn: Suy Giảm Chức Năng Điều Hành Ở Trẻ Rối Loạn Phát Triển Thần Kinh - Viện Tâm lý Việt Pháp]
+. Đối với rối loạn phổ tự kỷ, trẻ thường có sự suy giảm đáng kể trong các khía cạnh như tính linh hoạt nhận thức, lập kế hoạch và kiểm soát ức chế, góp phần tạo nên các hành vi cứng nhắc, khó thích nghi với thay đổi [Nguồn: Suy Giảm Chức Năng Điều Hành Ở Trẻ Rối Loạn Phát Triển Thần Kinh - Viện Tâm lý Việt Pháp]
+. Trẻ mắc chứng khó đọc gặp khó khăn trong các lĩnh vực như lập kế hoạch, trí nhớ làm việc, kiểm soát chú ý và ức chế dung nạp thông tin không cần thiết [Nguồn: Suy Giảm Chức Năng Điều Hành Ở Trẻ Rối Loạn Phát Triển Thần Kinh - Viện Tâm lý Việt Pháp]
+.
+1.3. Các quá trình nhận thức cơ bản và Điều kiện nhận thức
+1.3.1. Cảm giác và Tri giác (Nhận thức cảm tính):
+Cảm giác là quá trình nhận thức cảm tính, phản ánh các thuộc tính của sự vật hiện tượng một cách riêng lẻ khi có sự tác động trực tiếp của chúng vào các cơ quan cảm giác [Nguồn: CÁC QUÁ TRÌNH NHẬN THỨC - Vô danh]
+.
+Tri giác là một quá trình tâm lý phản ánh một cách trọn vẹn các thuộc tính bên ngoài, không bản chất của sự vật, hiện tượng khi chúng trực tiếp tác động vào các giác quan [Nguồn: CÁC QUÁ TRÌNH NHẬN THỨC - Vô danh]
+. Tri giác không phải là tổng số của các cảm giác riêng lẻ, mà là một quá trình chủ động, có sự phân tích, tổng hợp, lựa chọn, diễn giải các thông tin kích thích [Nguồn: CÁC QUÁ TRÌNH NHẬN THỨC - Vô danh]
+.
+1.3.2. Tư duy và Tưởng tượng (Nhận thức lý tính):
+Tư duy là một quá trình tâm lý phản ánh những thuộc tính bản chất, những mối liên hệ và quan hệ có tính quy luật giữa các sự vật hiện tượng mà con người ta chưa biết [Nguồn: CÁC QUÁ TRÌNH NHẬN THỨC - Vô danh]
+. Tư duy phản ánh những thuộc tính bản chất là tổng hợp tất cả những đặc điểm, những thuộc tính, những mối liên hệ tất yếu và tương đối ổn định ở bên trong sự vật hiện tượng, quy định sự vận động và phát triển của sự vật hiện tượng đó [Nguồn: CÁC QUÁ TRÌNH NHẬN THỨC - Vô danh]
+.
+Tưởng tượng là một quá trình tâm lý phản ánh những cái chưa từng có trong kinh nghiệm của cá nhân bằng cách xây dựng những hình ảnh mới trên cơ sở của những biểu tượng đã có [Nguồn: CÁC QUÁ TRÌNH NHẬN THỨC - Vô danh]
+.
+1.3.3. Chú ý và Trí nhớ:
+Chú ý là sự tập trung của ý thức vào một hay một số các sự vật hiện tượng để định hướng hoạt động, đảm bảo điều kiện thần kinh và tâm lý cần thiết cho hoạt động tiến hành có hiệu quả [Nguồn: CHÚ Ý – TRÍ NHỚ - NGÔN NGỮ VÀ NHẬN THỨC - Vô danh]
+. Dựa trên tính chủ động, chú ý được chia thành ba loại: chú ý không chủ định, chú ý có chủ định và chú ý sau chủ định [Nguồn: CHÚ Ý – TRÍ NHỚ - NGÔN NGỮ VÀ NHẬN THỨC - Vô danh]
+.
+Trí nhớ là một quá trình tâm lý phản ánh những kinh nghiệm của cá nhân dưới hình thức biểu tượng, bao gồm sự ghi nhớ, gìn giữ và tái tạo ở trong óc cái mà con người đã trải nghiệm trước đây [Nguồn: CHÚ Ý – TRÍ NHỚ - NGÔN NGỮ VÀ NHẬN THỨC - Vô danh]
+. Có ba kiểu trí nhớ: trí nhớ cảm giác lưu trữ tạm thời các thông tin do giác quan mang lại, trí nhớ thị giác kéo dài dưới một giây, trí nhớ thính giác kéo dài từ ba đến bốn giây [Nguồn: CHÚ Ý – TRÍ NHỚ - NGÔN NGỮ VÀ NHẬN THỨC - Vô danh]
+,
+; trí nhớ ngắn hạn hay trí nhớ làm việc lưu trữ từ năm đến chín đơn vị thông tin nhiều nhất là ba mươi giây [Nguồn: CHÚ Ý – TRÍ NHỚ - NGÔN NGỮ VÀ NHẬN THỨC - Vô danh]
+; trí nhớ dài hạn như một nhà kho chứa đựng tất cả các thông tin tương đối bền vững và vô hạn về khả năng chứa đựng [Nguồn: CHÚ Ý – TRÍ NHỚ - NGÔN NGỮ VÀ NHẬN THỨC - Vô danh]
+.
+1.3.4. Sự quên: Quên là không nhận lại hay nhớ lại những sự vật hiện tượng khi cần thiết [Nguồn: CHÚ Ý – TRÍ NHỚ - NGÔN NGỮ VÀ NHẬN THỨC - Vô danh]
+. Nguyên nhân của sự quên được giải thích qua các lý thuyết: Lý thuyết về sự suy yếu mờ đi của các vết trí nhớ trên não, lý thuyết về sự ức chế do các dữ liệu mới nạp xen vào gây nhiễu, và lý thuyết về sự dồn nén do cố ý quên đi những sự kiện gây khó chịu [Nguồn: CHÚ Ý – TRÍ NHỚ - NGÔN NGỮ VÀ NHẬN THỨC - Vô danh]
+,
+,
+.
 
 --------------------------------------------------------------------------------
-CHƯƠNG 1: CƠ SỞ LÝ LUẬN VỀ KHOA HỌC NHẬN THỨC VÀ NĂNG LỰC NGƯỜI HỌC (Dự kiến: 4 trang)
-Chương này xây dựng nền tảng khái niệm, giải thích thế nào là nhận thức, trí tuệ, năng lực và cách phân loại mục tiêu giáo dục theo góc nhìn nhận thức.
-1.1. Thuyết nhận thức (Cognitivism) trong dạy học
-Nội dung: Lịch sử ra đời của thuyết nhận thức (phản ứng lại thuyết hành vi). Quan điểm coi người học là một hệ thống xử lý thông tin chủ động (tiếp nhận, mã hóa, lưu trữ). Học tập là quá trình giải quyết vấn đề và tái tổ chức các cấu trúc tư duy.
-Nguồn trích dẫn: [Thuyết Nhận Thức (Cognitivism) Trong Dạy Học | PDF - Scribd - Tác giả: Tèo].
-1.2. Bản chất của năng lực và các lý thuyết về trí tuệ
-1.2.1. Khái niệm và cấu trúc năng lực: Định nghĩa năng lực là sự tổ hợp các thuộc tính độc đáo của cá nhân phù hợp với yêu cầu hoạt động (tri thức, kỹ năng, động cơ). Sự khác biệt giữa năng lực, năng khiếu và tài năng.
-Nguồn trích dẫn: [Dạy học phát triển năng lực (7.-Dạy-học-phát-triển-năng-lực.docx)].
-1.2.2. Sự đa dạng của trí tuệ: Quan điểm từ trí tuệ đơn nhân tố (IQ) đến đa nhân tố (thuyết đa trí tuệ của Gardner, thuyết 3 nhân tố của Sternberg, trí tuệ cảm xúc EQ của Goleman, và chỉ số vượt khó AQ của Paul Stoltz).
-Nguồn trích dẫn: [Dạy học phát triển trí tuệ (5.-Dạy-học-phát-triển-trí-tuệ_1.docx - TS. Trần Văn Tính)].
-1.3. Khung phân loại mục tiêu nhận thức hiện đại
-Nội dung: Ứng dụng khung năng lực nhận thức của Lorin W. Anderson và David R. Krathwohl (dựa trên thang Bloom). Phân tích 4 bậc tri thức (Thực tiễn, Khái niệm, Quy trình, Siêu nhận thức) và 6 cấp độ quy trình nhận thức (Nhớ, Hiểu, Áp dụng, Phân tích, Đánh giá, Sáng tạo).
-Nguồn trích dẫn: [Khung năng lực nhận thức và khả năng vận dụng... - TS. Tạ Quang Tuấn].
+CHƯƠNG 2: BẢN CHẤT CỦA NĂNG LỰC, TRÍ TUỆ VÀ ĐỘNG CƠ HỌC TẬP
+2.1. Khái niệm và cấu trúc của năng lực
+2.1.1. Định nghĩa: Năng lực là tổ hợp các thuộc tính độc đáo của cá nhân, phù hợp với yêu cầu của một hoạt động nhất định, đảm bảo cho hoạt động đó có hiệu quả [Nguồn: DẠY HỌC VÀ PHÁT TRIỂN NĂNG LỰC - Vô danh]
+. Trong chương trình giáo dục phổ thông tổng thể năm hai nghìn không trăm mười tám nêu rõ: Năng lực là thuộc tính cá nhân được hình thành phát triển nhờ tố chất sẵn có và quá trình học tập, rèn luyện, cho phép con người huy động tổng hợp các kiến thức, kĩ năng và các thuộc tính cá nhân khác như hứng thú, niềm tin, ý chí thực hiện thành công một loại hoạt động nhất định, đạt kết quả mong muốn trong những sự kiện cụ thể [Nguồn: Phát triển năng lực nhận thức khoa học tự nhiên trong dạy học chủ đề “Thực vật và Động vật - Tác giả: Nguyễn Bảo Hoàng Thanh, Đặng Thị Thanh Vi]
+.
+2.1.2. Cấu trúc năng lực: Cấu trúc năng lực gồm ba thành tố: Hệ thống tri thức, kỹ năng kỹ xảo để tạo ra năng lực tương ứng với hoạt động; Động cơ hứng thú, xu hướng hoạt động; Hành động là điều kiện để hình thành năng lực [Nguồn: DẠY HỌC VÀ PHÁT TRIỂN NĂNG LỰC - Vô danh]
+,
+.
+2.2. Các lý thuyết về trí tuệ hiện đại
+2.2.1. Định nghĩa trí tuệ: Trí tuệ là một cấu trúc động tương đối độc lập của những năng lực nhận thức và xúc cảm của cá nhân, được hình thành và thể hiện trong hoạt động, do những điều kiện văn hóa và lịch sử quy định và chủ yếu đảm bảo cho sự tác động qua lại phù hợp với hiện thực xung quanh, cho sự cải tạo có mục đích hiện thực ấy, nhằm đạt các mục tiêu quan trọng trong cuộc sống của cá nhân và xã hội [Nguồn: TRẮC NGHIỆM NĂNG LỰC TRÍ TUỆ - Tác giả: Trần Văn Tính]
+.
+2.2.2. Thuyết đa trí tuệ: Nhà nghiên cứu Hô-oát Gác-nơ (Howard Gardner) cho rằng não bộ đã tạo ra các hệ thống riêng biệt cho những năng lực tương ứng khác nhau mà ông gọi là các trí tuệ [Nguồn: TRẮC NGHIỆM NĂNG LỰC TRÍ TUỆ - Tác giả: Trần Văn Tính]
+. Có tám kiểu loại trí tuệ khác nhau: trí tuệ ngôn ngữ, trí tuệ luận lý và toán học, trí tuệ âm nhạc, trí tuệ không gian, trí tuệ vận động cơ thể, trí tuệ về bản thân, trí tuệ về người khác, và trí tuệ tự nhiên [Nguồn: TRẮC NGHIỆM NĂNG LỰC TRÍ TUỆ - Tác giả: Trần Văn Tính]
+,
+,
+,
+,
+,
+,
+,
+.
+2.2.3. Trí tuệ cảm xúc: Được định nghĩa là năng lực nhận biết các cảm xúc của mình và của người khác, năng lực tự thúc đẩy và năng lực điều hành tốt các cảm xúc trong bản thân mình và trong các mối liên hệ với người khác [Nguồn: TRẮC NGHIỆM NĂNG LỰC TRÍ TUỆ - Tác giả: Trần Văn Tính]
+. Không có trí tuệ cảm xúc thì trí tuệ lý trí không thể hoạt động một cách thích đáng [Nguồn: TRẮC NGHIỆM NĂNG LỰC TRÍ TUỆ - Tác giả: Trần Văn Tính]
+.
+2.2.4. Chỉ số vượt khó: Đây là đại lượng đo khả năng đối diện với xoay xở của một người trước các thay đổi, áp lực và các tình huống khó khăn [Nguồn: TRẮC NGHIỆM NĂNG LỰC TRÍ TUỆ - Tác giả: Trần Văn Tính]
+. Gồm bốn chỉ số thành phần: kiểm tra và điều khiển, quyền sở hữu, phạm vi hoạt động, và khả năng chịu đựng tính nhẫn nại [Nguồn: TRẮC NGHIỆM NĂNG LỰC TRÍ TUỆ - Tác giả: Trần Văn Tính]
+,
+. Phân định ba dạng người dựa trên cách thức đối diện khó khăn: người dễ buông xuôi, người dễ hài lòng thỏa hiệp, và người có sự kiên định hoài bão lớn [Nguồn: TRẮC NGHIỆM NĂNG LỰC TRÍ TUỆ - Tác giả: Trần Văn Tính]
+,
+.
+2.3. Ý thức, Hoạt động và Động cơ học tập
+2.3.1. Sự hình thành ý thức: Ý thức là hình thức phản ánh tâm lý cao nhất chỉ có ở người, là sự phản ánh bằng ngôn ngữ những gì con người đã tiếp thu được trong quá trình quan hệ qua lại với thế giới khách quan. Hay nói cách khác, ý thức là hình ảnh của hình ảnh, là nhận thức của nhận thức, ý thức là tồn tại được nhận thức [Nguồn: Ý THỨC VÀ NHẬN THỨC - Vô danh]
+. Ý thức của cá nhân được hình thành trong hoạt động và thể hiện trong sản phẩm hoạt động của cá nhân; hình thành trong mối quan hệ giao tiếp của cá nhân với người khác, với xã hội; hình thành bằng con đường tiếp thu nền văn hoá xã hội, ý thức xã hội; và hình thành bằng con đường tự nhận thức, tự đánh giá, tự phân tích hành vi của mình [Nguồn: Ý THỨC VÀ NHẬN THỨC - Vô danh]
+,
+.
+2.3.2. Bản chất của Động cơ học tập: Động cơ được định nghĩa như là một trạng thái bên trong có tác dụng thúc đẩy, khuyến khích, hướng dẫn và duy trì hành vi [Nguồn: PHÁT HUY ĐỘNG CƠ HỌC TẬP CỦA NGƯỜI HỌC - Tác giả: Trần Văn Tính]
+. Động cơ mà thúc đẩy và duy trì hành vi học tập gọi là động cơ học tập [Nguồn: PHÁT HUY ĐỘNG CƠ HỌC TẬP CỦA NGƯỜI HỌC - Tác giả: Trần Văn Tính]
+.
+2.3.3. Phân loại động cơ:
+Động cơ trong là cái thúc đẩy chúng ta làm một cái gì đó khi chúng ta không cần phải làm bất cứ cái gì [Nguồn: PHÁT HUY ĐỘNG CƠ HỌC TẬP CỦA NGƯỜI HỌC - Tác giả: Trần Văn Tính]
+. Khi hành vi được thúc đẩy từ bên trong, chúng ta không cần đến sự khuyến khích hay trừng phạt, bởi vì chính hoạt động là một phần thưởng [Nguồn: PHÁT HUY ĐỘNG CƠ HỌC TẬP CỦA NGƯỜI HỌC - Tác giả: Trần Văn Tính]
+.
+Động cơ ngoài là khi chúng ta làm một cái gì đó để có thể có được phần thưởng hay một vị trí nào đó, hoặc để tránh đi sự trừng phạt, hay làm hài lòng giáo viên hay những lý do khác [Nguồn: PHÁT HUY ĐỘNG CƠ HỌC TẬP CỦA NGƯỜI HỌC - Tác giả: Trần Văn Tính]
+.
+2.3.4. Thuyết quy kết: Các nhà tâm lý học mô tả những lời giải thích, sự biện minh, lời bào chữa của cá nhân về sự thành bại qua ba phạm vi: vị trí của nguyên nhân là bên ngoài hay bên trong cá nhân, sự ổn định của các nguyên nhân, và trách nhiệm đối với các nguyên nhân có thể điều khiển được hay không [Nguồn: PHÁT HUY ĐỘNG CƠ HỌC TẬP CỦA NGƯỜI HỌC - Tác giả: Trần Văn Tính]
+. Vấn đề lớn nhất về động cơ nảy sinh khi người học quy sự thất bại của mình cho những nguyên nhân ổn định, không thể điều khiển được [Nguồn: PHÁT HUY ĐỘNG CƠ HỌC TẬP CỦA NGƯỜI HỌC - Tác giả: Trần Văn Tính]
+. Những người học như vậy dường như cam chịu sự thất bại, sự thất vọng, dẫn đến sự thờ ơ và bàng quan [Nguồn: PHÁT HUY ĐỘNG CƠ HỌC TẬP CỦA NGƯỜI HỌC - Tác giả: Trần Văn Tính]
+.
+2.3.5. Sự bất lực trong học tập: Khi con người đi đến chỗ tin rằng những sự kiện và kết quả trong cuộc đời của họ hầu như không thể điều khiển được, họ thể hiện sự bất lực trong học tập [Nguồn: PHÁT HUY ĐỘNG CƠ HỌC TẬP CỦA NGƯỜI HỌC - Tác giả: Trần Văn Tính]
+. Bất lực trong học tập gây ra ba loại thiếu hụt: Thiếu hụt động cơ, nhận thức và cảm xúc [Nguồn: PHÁT HUY ĐỘNG CƠ HỌC TẬP CỦA NGƯỜI HỌC - Tác giả: Trần Văn Tính]
+.
+2.3.6. Niềm tin về hiệu quả bản thân: Là niềm tin về năng lực tổ chức và thực hiện tiến trình hoạt động và đòi hỏi quản lý được những tình huống tương lai [Nguồn: PHÁT HUY ĐỘNG CƠ HỌC TẬP CỦA NGƯỜI HỌC - Tác giả: Trần Văn Tính]
+. Nếu chúng ta có ý thức cao về hiệu quả bản thân trong một lĩnh vực nào đó, chúng ta sẽ đặt mục tiêu cao hơn, ít sợ sự thất bại hơn, kiên trì lâu hơn khi chúng ta gặp khó khăn [Nguồn: PHÁT HUY ĐỘNG CƠ HỌC TẬP CỦA NGƯỜI HỌC - Tác giả: Trần Văn Tính]
+.
 
 --------------------------------------------------------------------------------
-CHƯƠNG 2: CƠ CHẾ NÃO BỘ, CÁC QUÁ TRÌNH NHẬN THỨC VÀ ĐỘNG CƠ HỌC TẬP (Dự kiến: 5 trang)
-Chương này đi sâu vào "phần cứng" và "phần mềm" của người học: não bộ hoạt động ra sao, chú ý/trí nhớ hoạt động thế nào, và điều gì tạo nên động cơ học tập.
-2.1. Nền tảng thần kinh học: Vỏ não trước trán và chức năng điều hành
-2.1.1. Vai trò của vỏ não trước trán: Nơi đóng vai trò "bộ điều khiển trung tâm", liên quan đến kiểm soát cảm xúc, lập kế hoạch và duy trì chú ý.
-2.1.2. Chức năng điều hành (Executive Functions): Phân tích 3 thành phần cốt lõi: Trí nhớ làm việc (Working memory), kiểm soát ức chế (Inhibitory control) và linh hoạt nhận thức (Cognitive flexibility). Sự suy giảm chức năng điều hành ở trẻ (như ADHD, tự kỷ) và ảnh hưởng đến học tập.
-Nguồn trích dẫn: [Tác động của vỏ não trước trán đến chức năng điều hành ở học sinh - Thu Trung], [Suy Giảm Chức Năng Điều Hành Ở Trẻ Rối Loạn Phát Triển Thần Kinh - Viện Tâm lý Việt - Pháp].
-2.2. Các quá trình nhận thức cơ bản và điều kiện nhận thức
-2.2.1. Cảm giác, tri giác và tư duy: Phân biệt nhận thức cảm tính (cảm giác, tri giác) và nhận thức lý tính (tư duy, tưởng tượng). Tư duy phản ánh những thuộc tính bản chất và quy luật của sự vật.
-Nguồn trích dẫn: [Các quá trình nhận thức (3.-Các-quá-trình-nhận-thức.docx)].
-2.2.2. Chú ý và Trí nhớ: Các loại chú ý (không chủ định, có chủ định, sau chủ định). Mô hình trí nhớ (cảm giác, ngắn hạn/làm việc, dài hạn). Cơ chế của sự quên (do suy yếu, do ức chế) và cách chống quên trong học tập.
-Nguồn trích dẫn: [Chú ý – Trí nhớ - Ngôn ngữ và nhận thức (4.-Các-điều-kiện-nhận-thức.docx)].
-2.3. Sự hình thành ý thức và Động cơ học tập
-2.3.1. Vai trò của hoạt động và giao tiếp: Ý thức được hình thành thông qua quá trình hoạt động (chủ thể hóa/khách thể hóa) và giao tiếp xã hội.
-Nguồn trích dẫn: [Ý thức, hành động và nhận thức (8.-Ý-thức-hành-động-và-nhận-thức.docx)].
-2.3.2. Chuyển đổi động cơ người học: Phân biệt động cơ trong và động cơ ngoài. Ứng dụng thuyết tháp nhu cầu Maslow, thuyết kỳ vọng, thuyết quy kết (Weiner) và niềm tin về hiệu quả bản thân (Self-Efficacy của Bandura) để giúp học sinh thoát khỏi "sự bất lực trong học tập" (Learned helplessness).
-Nguồn trích dẫn: [Phát huy động cơ học tập của người học (6.-Chuyển-đổi-động-cơ-người-học_1.docx - TS. Trần Văn Tính)].
+CHƯƠNG 3: SIÊU NHẬN THỨC VÀ LÝ THUYẾT TẢI NHẬN THỨC LÀM TRUNG TÂM PHÁT TRIỂN NĂNG LỰC
+3.1. Siêu nhận thức - Khái niệm và Chức năng
+3.1.1. Khái niệm: Siêu nhận thức đề cập đến hiểu biết của một người về quá trình nhận thức của mình, việc giám sát hoạt động, điều chỉnh và sắp đặt quá trình nhận thức phục vụ cho một mục tiêu hoặc mục đích cụ thể nào đó [Nguồn: ĐÁNH GIÁ SIÊU NHẬN THỨC - KĨ NĂNG SIÊU NHẬN THỨC TRONG HỌC TẬP - Tác giả: Hoàng Thị Ngà]
+. Một cách ngắn gọn, siêu nhận thức là nhận thức của nhận thức, tư duy của tư duy [Nguồn: ĐÁNH GIÁ SIÊU NHẬN THỨC - KĨ NĂNG SIÊU NHẬN THỨC TRONG HỌC TẬP - Tác giả: Hoàng Thị Ngà]
+. Siêu nhận thức là một hình thức của nhận thức, là quá trình tư duy bậc hai hay cấp độ tư duy cao hơn, nó liên quan đến hoạt động điều khiển bên ngoài quá trình nhận thức [Nguồn: VẬN DỤNG LÍ THUYẾT SIÊU NHẬN THỨC TRONG DẠY HỌC MÔN TOÁN - Tác giả: Lê Trung Tín]
+.
+3.1.2. Các chức năng cơ bản: Siêu nhận thức có ba chức năng cơ bản: Chức năng nhận biết, chức năng đánh giá và chức năng điều chỉnh [Nguồn: VẬN DỤNG LÍ THUYẾT SIÊU NHẬN THỨC TRONG DẠY HỌC MÔN TOÁN - Tác giả: Lê Trung Tín]
+.
+Chức năng nhận biết đề cập đến khả năng hiểu biết của mỗi người về các quá trình nhận thức, những chiến lược học tập và những kiến thức vốn có; ý thức của bản thân về khả năng nhận thức của chính mình [Nguồn: VẬN DỤNG LÍ THUYẾT SIÊU NHẬN THỨC TRONG DẠY HỌC MÔN TOÁN - Tác giả: Lê Trung Tín]
+.
+Chức năng đánh giá đề cập đến sự theo dõi các quá trình tư duy và đánh giá điểm mạnh, điểm yếu trong quá trình tư duy của một người ở những tình huống cụ thể [Nguồn: VẬN DỤNG LÍ THUYẾT SIÊU NHẬN THỨC TRONG DẠY HỌC MÔN TOÁN - Tác giả: Lê Trung Tín]
+. Chức năng này có nhiệm vụ theo dõi, kiểm tra tính hiệu quả của kế hoạch và những chiến lược đã sử dụng [Nguồn: VẬN DỤNG LÍ THUYẾT SIÊU NHẬN THỨC TRONG DẠY HỌC MÔN TOÁN - Tác giả: Lê Trung Tín]
+.
+Chức năng điều chỉnh diễn ra khi các cá nhân điều chỉnh quá trình tư duy của mình. Họ sử dụng các kĩ năng siêu nhận thức để điều khiển kiến thức và tư duy, suy ngẫm về quá trình tư duy và vốn kiến thức của bản thân và đưa ra những thay đổi cần thiết [Nguồn: VẬN DỤNG LÍ THUYẾT SIÊU NHẬN THỨC TRONG DẠY HỌC MÔN TOÁN - Tác giả: Lê Trung Tín]
+.
+3.1.3. Hiệu ứng lệch lạc nhận thức: Hiệu ứng của hai nhà nghiên cứu Đân-ninh và C-ru-gơ (Dunning và Kruger) mô tả sự lệch lạc nhận thức, trong đó những người kỹ năng kém đưa ra những quyết định tồi và những kết luận sai lầm, nhưng việc thiếu năng lực lại ngăn cản nhận thức về chính những sai lầm đó [Nguồn: Hiệu ứng Dunning - Kruger và kỹ năng siêu nhận thức - VIETTIMES - Tác giả: Đào Trung Thành]
+. Lối thoát duy nhất tập trung vào việc phát triển các kỹ năng siêu nhận thức [Nguồn: Hiệu ứng Dunning - Kruger và kỹ năng siêu nhận thức - VIETTIMES - Tác giả: Đào Trung Thành]
+. Bằng cách dành thời gian để tự phản tư, sử dụng tư duy cấp độ hai để tự hỏi điểm mù tiềm năng trong nhận thức của mình là gì, loại bỏ tín hiệu nhiễu và sử dụng các mô hình tư duy, đồng thời ghi chú thông minh để nhận diện lỗ hổng kiến thức [Nguồn: Hiệu ứng Dunning - Kruger và kỹ năng siêu nhận thức - VIETTIMES - Tác giả: Đào Trung Thành]
+,
+.
+3.2. Khung phân loại mục tiêu nhận thức mới
+3.2.1. Chiều tri thức: Các nhà nghiên cứu phân loại tri thức xã hội theo bốn cấp độ tăng dần mức độ trừu tượng:
+Tri thức thực tiễn là toàn bộ những yếu tố nền tảng, cơ bản mà người học cần phải biết để làm quen với các nguyên tắc hoặc cách thức giải quyết vấn đề trong thực tiễn [Nguồn: Khung năng lực nhận thức và khả năng vận dụng trong môi trường... - Tác giả: Tạ Quang Tuấn]
+.
+Tri thức khái niệm là toàn bộ các mối quan hệ qua lại giữa các yếu tố nền tảng trong phạm vi cấu trúc của nó, làm cho các yếu tố này thực hiện được các hoạt động phối hợp lẫn nhau [Nguồn: Khung năng lực nhận thức và khả năng vận dụng trong môi trường... - Tác giả: Tạ Quang Tuấn]
+.
+Tri thức quy trình là toàn bộ cách thức thực hiện một công việc, các phương pháp hướng dẫn; các tiêu chuẩn để thực hiện các kỹ năng; các thuật toán; kỹ thuật và các phương pháp [Nguồn: Khung năng lực nhận thức và khả năng vận dụng trong môi trường... - Tác giả: Tạ Quang Tuấn]
+.
+Tri thức siêu nhận thức là toàn bộ tri thức về nhận thức nói chung cũng như là ý thức và là tri thức về tự nhận thức [Nguồn: Khung năng lực nhận thức và khả năng vận dụng trong môi trường... - Tác giả: Tạ Quang Tuấn]
+.
+3.2.2. Chiều quy trình nhận thức: Quy trình nhận thức được hình thành theo mức độ khó dần gồm sáu hành động: Nhớ, Hiểu, Áp dụng, Phân tích, Đánh giá, Sáng tạo [Nguồn: Khung năng lực nhận thức và khả năng vận dụng trong môi trường... - Tác giả: Tạ Quang Tuấn]
+. Khung này giúp các nhà sư phạm thiết lập các mục tiêu nhận thức trong học tập chính xác và gần với chức năng hơn [Nguồn: Khung năng lực nhận thức và khả năng vận dụng trong môi trường... - Tác giả: Tạ Quang Tuấn]
+.
+3.3. Lý thuyết tải nhận thức
+3.3.1. Khái niệm cơ bản: Lý thuyết tải nhận thức cung cấp một khung lý thuyết để hiểu cách mà con người học và xử lý thông tin. Nó mô tả mức độ nỗ lực tinh thần mà một người cần đầu tư khi học thông tin mới [Nguồn: Lý thuyết tải nhận thức và ứng dụng trong việc học tiếng Anh trong lớp học - ZIM Academy - Tác giả: Nguyễn Hữu Phước]
+. Bộ não con người có khả năng xử lý một lượng thông tin giới hạn trong bộ nhớ ngắn hạn, thường chỉ khoảng ba đến bảy đơn vị thông tin cùng một lúc [Nguồn: Lý thuyết tải nhận thức và ứng dụng trong việc học tiếng Anh trong lớp học - ZIM Academy - Tác giả: Nguyễn Hữu Phước]
+. Quá tải nhận thức có thể dẫn đến việc học kém hiệu quả và khó khăn trong việc áp dụng kiến thức vào các tình huống thực tế [Nguồn: Lý thuyết tải nhận thức và ứng dụng trong việc học tiếng Anh trong lớp học - ZIM Academy - Tác giả: Nguyễn Hữu Phước]
+.
+3.3.2. Phân loại tải nhận thức:
+Tải nhận thức nội tại: Là loại tải nhận thức liên quan trực tiếp đến bản chất của thông tin hoặc nhiệm vụ mà người học phải xử lý. Tải nhận thức nội tại không thể bị loại bỏ, nhưng có thể được quản lý bằng cách chia nhỏ các khái niệm phức tạp thành các phần nhỏ hơn, dễ hiểu giúp người học tiếp thu từng bước một [Nguồn: Lý thuyết tải nhận thức và ứng dụng trong việc học tiếng Anh trong lớp học - ZIM Academy - Tác giả: Nguyễn Hữu Phước]
+.
+Tải nhận thức ngoại vi: Liên quan đến những yếu tố không cần thiết hoặc không liên quan có thể làm người học bị phân tâm, từ đó làm giảm hiệu quả học tập [Nguồn: Lý thuyết tải nhận thức và ứng dụng trong việc học tiếng Anh trong lớp học - ZIM Academy - Tác giả: Nguyễn Hữu Phước]
+. Các yếu tố không cần thiết nên được loại bỏ, giúp học sinh có thể tập trung hoàn toàn vào nội dung quan trọng [Nguồn: Lý thuyết tải nhận thức và ứng dụng trong việc học tiếng Anh trong lớp học - ZIM Academy - Tác giả: Nguyễn Hữu Phước]
+.
+Tải nhận thức hữu ích: Là loại tải nhận thức hỗ trợ người học xây dựng các cấu trúc tư duy mới và cải thiện khả năng học tập của mình. Nó là cần thiết để phát triển kiến thức bền vững và khả năng áp dụng [Nguồn: Lý thuyết tải nhận thức và ứng dụng trong việc học tiếng Anh trong lớp học - ZIM Academy - Tác giả: Nguyễn Hữu Phước]
+. Các hoạt động thực hành, thảo luận nhóm, hoặc các bài tập yêu cầu sự tương tác sẽ tạo ra tải nhận thức hữu ích [Nguồn: Lý thuyết tải nhận thức và ứng dụng trong việc học tiếng Anh trong lớp học - ZIM Academy - Tác giả: Nguyễn Hữu Phước]
+.
 
 --------------------------------------------------------------------------------
-CHƯƠNG 3: ỨNG DỤNG KHOA HỌC NHẬN THỨC VÀO THIẾT KẾ VÀ TỔ CHỨC DẠY HỌC (Dự kiến: 4 - 4.5 trang)
-Chương này là phần ứng dụng thực tiễn: Giáo viên cần làm gì để tối ưu hóa quá trình tiếp thu của não bộ.
-3.1. Ứng dụng Lý thuyết tải nhận thức (Cognitive Load Theory - CLT)
-Nội dung: Áp dụng thuyết CLT của John Sweller vào lớp học (đặc biệt là môn Tiếng Anh). Các chiến lược: (1) Quản lý tải nhận thức nội tại (Intrinsic load) qua phương pháp scaffolding, (2) Giảm tải ngoại vi (Extraneous load) bằng cách bỏ thông tin thừa, (3) Tăng tải hữu ích (Germane load) qua thảo luận, thực hành nhóm.
-Nguồn trích dẫn: [Lý thuyết tải nhận thức và ứng dụng trong việc học tiếng Anh - ZIM Academy (Nguyễn Hữu Phước)].
-3.2. Dạy học kiến tạo và Mô hình 5E trong khoa học tự nhiên
-Nội dung: Bản chất quá trình đồng hóa và điều ứng trong dạy học kiến tạo (Piaget). Áp dụng mô hình 5E (Engage - Khởi động/Gắn kết, Explore - Khám phá, Explain - Giải thích, Elaborate - Áp dụng, Evaluate - Đánh giá) kết hợp sách điện tử (ebook) để phát triển năng lực nhận thức Khoa học tự nhiên.
-Nguồn trích dẫn: [Dạy học phát triển năng lực (7.-Dạy-học-phát-triển-năng-lực.docx)], [Phát triển năng lực nhận thức khoa học tự nhiên cho học sinh thông qua... mô hình 5E - Vũ Phương Liên, Đặng Thị Thu Phương].
-3.3. Phát triển năng lực vận dụng thông qua Hoạt động trải nghiệm
-Nội dung: Chuyển hóa nhận thức thành hành động thực tế. Xây dựng bài tập tình huống và quy trình tổ chức hoạt động trải nghiệm (vd: chủ đề "Thực vật và Động vật" hoặc "Nghề nghiệp em yêu") để học sinh liên kết kiến thức với bối cảnh thực tiễn.
-Nguồn trích dẫn: [Phát triển năng lực nhận thức khoa học tự nhiên trong dạy học chủ đề "Thực vật và Động vật" - Nguyễn Bảo Hoàng Thanh, Đặng Thị Thanh Vi], [Phát triển năng lực vận dụng kiến thức... thông qua hoạt động trải nghiệm - Nguyễn Thị Thanh Thuỷ].
+CHƯƠNG 4: ỨNG DỤNG THỰC TIỄN TRONG ĐỔI MỚI DẠY HỌC VÀ ĐÁNH GIÁ
+4.1. Ứng dụng mô hình dạy học kiến tạo năm bước trong khoa học tự nhiên
+Để phát triển năng lực nhận thức khoa học tự nhiên, giáo viên vận dụng mô hình dạy học năm bước được chuẩn hóa:
+Gắn kết: Giáo viên kết nối và dẫn dắt để học sinh tìm hiểu chủ đề thông qua việc đặt câu hỏi với các tình huống thực tiễn và dựa trên các kinh nghiệm đã có của học sinh [Nguồn: Phát triển năng lực nhận thức khoa học tự nhiên cho học sinh thông ... - Tác giả: Vũ Phương Liên, Đặng Thị Thu Phương]
+.
+Khám phá: Học sinh đề xuất phương án để so sánh, phân loại, lựa chọn được các sự vật, hiện tượng, quá trình tự nhiên theo các tiêu chí khác nhau; lồng ghép việc sử dụng các từ khóa, các thuật ngữ khoa học để lên kế hoạch cho vấn đề cần tìm hiểu [Nguồn: Phát triển năng lực nhận thức khoa học tự nhiên cho học sinh thông ... - Tác giả: Vũ Phương Liên, Đặng Thị Thu Phương]
+.
+Giải thích: Học sinh sẽ bắt đầu phân tích các đặc điểm các sự vật, hiện tượng trong tự nhiên bằng cách nghiên cứu và thu thập các tài liệu dẫn chứng hay làm các thí nghiệm chứng minh. Học sinh được báo cáo, giải thích các kết quả đã tự tìm hiểu đặc biệt là chỉ ra mối quan hệ giữa các sự vật và hiện tượng để nhận được sự phản hồi [Nguồn: Phát triển năng lực nhận thức khoa học tự nhiên cho học sinh thông ... - Tác giả: Vũ Phương Liên, Đặng Thị Thu Phương]
+,
+.
+Áp dụng: Học sinh có cơ hội vận dụng các kiến thức đã học để giải thích vai trò của các sự vật, hiện tượng đối với môi trường và cuộc sống con người có thể là áp dụng cho các tình huống xảy ra trong thực tế [Nguồn: Phát triển năng lực nhận thức khoa học tự nhiên cho học sinh thông ... - Tác giả: Vũ Phương Liên, Đặng Thị Thu Phương]
+.
+Đánh giá: Giáo viên đánh giá học sinh trong suốt quá trình học tập thông qua các nhiệm vụ giao về hoặc qua các hoạt động trên lớp và có bài kiểm tra để đánh giá tổng kết [Nguồn: Phát triển năng lực nhận thức khoa học tự nhiên cho học sinh thông ... - Tác giả: Vũ Phương Liên, Đặng Thị Thu Phương]
+.
+4.2. Vận dụng lý thuyết siêu nhận thức trong môn Toán và Kỹ năng Đọc hiểu
+4.2.1. Trong bộ môn Toán học: Để tập luyện cho học sinh khả năng tự lập kế hoạch học tập, tự theo dõi, đánh giá, điều chỉnh quá trình nhận thức của bản thân, giáo viên có thể đóng vai trò người đồng hành cùng học sinh giải quyết vấn đề, chia sẻ cách nhìn ra điểm khởi đầu, cách đưa ra dự đoán, cách phát triển giả thuyết và điều chỉnh khi gặp khó khăn [Nguồn: VẬN DỤNG LÍ THUYẾT SIÊU NHẬN THỨC TRONG DẠY HỌC MÔN TOÁN... - Tác giả: Lê Trung Tín]
+. Giáo viên sử dụng các câu hỏi yêu cầu học sinh phải xác định mục tiêu, lập kế hoạch (ví dụ: Em hãy nêu các bước cần tiến hành để giải bài toán?), yêu cầu học sinh theo dõi (Trong các bước đã nêu, bước nào là khó khăn nhất? Tại sao em lại chọn cách giải quyết này?), và yêu cầu ghi nhật kí học tập tất cả những gì đã học được sau mỗi buổi học cả về mặt kiến thức và nhận thức [Nguồn: VẬN DỤNG LÍ THUYẾT SIÊU NHẬN THỨC TRONG DẠY HỌC MÔN TOÁN... - Tác giả: Lê Trung Tín]
+,
+,
+.
+4.2.2. Trong rèn luyện kỹ năng Đọc hiểu: Dạy chiến lược siêu nhận thức cho việc đọc hiểu áp dụng mô hình tiếp cận học tập ngôn ngữ học thuật nhận thức gồm sáu bước: Chuẩn bị, Trình bày, Thực hành, Tự đánh giá, Mở rộng, và Giáo viên đánh giá [Nguồn: mức độ sử dụng các chiến lược đọc hiểu siêu ... - Tạp chí Giáo dục - Tác giả: Trần Thanh Phương]
+,
+,
+. Áp dụng hình thức dạy tương hỗ để dạy học sinh bốn chiến lược: tóm tắt nội dung một đoạn văn, nêu câu hỏi về điểm trung tâm, làm sáng tỏ những phần khó, và dự đoán cái gì sẽ đến tiếp [Nguồn: HỌC VỀ SỰ HỌC: NĂNG LỰC SIÊU NHẬN THỨC - Cánh Buồm - Tác giả: Anita E. Woolfolk / Hoàng Hưng]
+. Giáo viên cung cấp gợi ý, chỉ dẫn, khuyến khích (gọi là dẫn dắt từng bước hay bắc giàn giáo) để giúp học sinh nắm được những chiến lược ấy [Nguồn: HỌC VỀ SỰ HỌC: NĂNG LỰC SIÊU NHẬN THỨC - Cánh Buồm - Tác giả: Anita E. Woolfolk / Hoàng Hưng]
+. Các nghiên cứu cho thấy những sinh viên sử dụng nhiều chiến lược đọc hiểu như tổ chức trước, chú ý có định hướng, chú ý có chọn lọc, tự giám sát, tự đánh giá thì hiểu văn bản tốt hơn [Nguồn: mức độ sử dụng các chiến lược đọc hiểu siêu ... - Tạp chí Giáo dục - Tác giả: Trần Thanh Phương]
+,
+.
+4.3. Tối ưu hóa môi trường giáo dục và hoạt động trải nghiệm
+Để phát triển năng lực vận dụng kiến thức, kỹ năng vào thực tiễn, vốn là mức độ nhận thức cao nhất, giáo viên cần thiết kế và tổ chức các hoạt động dưới dạng các tình huống có vấn đề, gắn với bối cảnh thực tiễn [Nguồn: Phát triển năng lực vận dụng kiến thức, kĩ năng đã học cho học sinh thông qua hoạt động trải nghi - Tác giả: Nguyễn Thị Thanh Thuỷ]
+,
+.
+Tạo lập một văn hóa tư duy phát triển, khuyến khích học sinh coi trọng những sai lầm như một phần thiết yếu của quá trình học, từ đó xây dựng khả năng phục hồi và sự tự tin trong giai đoạn rối ren của học tập [Nguồn: Siêu nhận thức (Metacognition) hỗ trợ học sinh khám phá sức mạnh của tư duy suy nghĩ tại BIS Hà Nội - Nord Anglia Education - Vô danh]
+. Xây dựng môi trường học tập hỗ trợ kiểm soát cảm xúc và hành vi bằng các chiến lược giáo dục cảm xúc và xã hội như dạy trẻ gọi tên cảm xúc, luyện thở sâu, viết nhật ký cảm xúc, tham gia các hoạt động trị liệu nghệ thuật để giảm căng thẳng vùng hạch hạnh nhân [Nguồn: Đề tài nghiên cứu: Tác động của vỏ não trước trán đến chức năng điều hành ở học - Tác giả: Thu Trung]
+.
 
 --------------------------------------------------------------------------------
-CHƯƠNG 4: SIÊU NHẬN THỨC (METACOGNITION) - ĐỈNH CAO CỦA PHÁT TRIỂN NĂNG LỰC TỰ HỌC (Dự kiến: 4 - 4.5 trang)
-Siêu nhận thức là một chủ đề cực kỳ nổi bật trong các nguồn tài liệu. Chương này dành riêng để phân tích cách dạy người học "tư duy về tư duy".
-4.1. Khái niệm và chức năng của siêu nhận thức
-Nội dung: Định nghĩa siêu nhận thức là "tư duy về tư duy" (Flavell, Brown). Các chức năng cơ bản: Nhận biết (awareness), Đánh giá (evaluation) và Điều chỉnh (regulation).
-Nguồn trích dẫn: [Đánh giá siêu nhận thức - kĩ năng siêu nhận thức trong học tập - Hoàng Thị Ngà].
-4.2. Siêu nhận thức giúp vượt qua rào cản nhận thức (Hiệu ứng Dunning - Kruger)
-Nội dung: Phân tích hiệu ứng Dunning-Kruger ("dốt nhưng không biết mình dốt"). Sử dụng tư duy cấp độ hai, phản tư (self-reflection) và ghi chú thông minh để vượt qua các thiên kiến nhận thức.
-Nguồn trích dẫn: [Hiệu ứng Dunning - Kruger và kỹ năng siêu nhận thức - VIETTIMES (Đào Trung Thành)].
-4.3. Các chiến lược rèn luyện siêu nhận thức trong trường phổ thông và đại học
-4.3.1. Dạy chiến lược đọc hiểu (Reading Comprehension): Áp dụng mô hình CALLA (O’Malley & Chamot) giúp sinh viên sử dụng chiến lược: tổ chức trước, chú ý có định hướng, tự giám sát và tự đánh giá. Kỹ thuật dạy học tương hỗ (reciprocal teaching).
-Nguồn trích dẫn: [Học về sự học: Năng lực siêu nhận thức - Cánh Buồm (Anita E. Woolfolk)], [Mức độ sử dụng các chiến lược đọc hiểu siêu nhận thức của sinh viên... - Trần Thanh Phương].
-4.3.2. Trong môn Toán: Làm mẫu cách tư duy, yêu cầu học sinh viết "nhật ký học tập", đặt các câu hỏi tự vấn để học sinh tự lập kế hoạch và điều chỉnh khi giải toán.
-Nguồn trích dẫn: [Vận dụng lí thuyết siêu nhận thức trong dạy học môn Toán ở trường THPT - Lê Trung Tín].
-4.3.3. Xây dựng môi trường "Tư duy phát triển" (Growth Mindset): Bài học từ trường quốc tế: tích hợp siêu nhận thức vào môn Lý thuyết Nhận thức (TOK), xây dựng "Khung nỗ lực hiệu quả", dạy học sinh coi trọng sai lầm.
-Nguồn trích dẫn: [Siêu nhận thức (Metacognition) hỗ trợ học sinh khám phá sức mạnh của tư duy... - Trường Quốc tế Anh BIS Hà Nội].
-
---------------------------------------------------------------------------------
-PHẦN KẾT LUẬN (Dự kiến: 0.5 - 1 trang)
-Tổng kết: Khẳng định lại việc ứng dụng khoa học nhận thức (từ cơ chế màng não, chức năng điều hành, lý thuyết tải nhận thức, đến siêu nhận thức) là chìa khóa cốt lõi để chuyển đổi từ giáo dục tiếp cận nội dung sang giáo dục tiếp cận năng lực.
-Đề xuất/ Hướng mở rộng: Cần có sự kết hợp đồng bộ giữa nhà trường, giáo viên và gia đình để tạo môi trường an toàn, kích thích vỏ não trước trán phát triển. Giáo viên cần được đào tạo sâu hơn về khoa học thần kinh giáo dục (neuroeducation).
-Nguồn tham khảo chung: Tổng hợp từ [Tác động của vỏ não trước trán - Thu Trung] và [Khung năng lực nhận thức - TS. Tạ Quang Tuấn].
-
---------------------------------------------------------------------------------
-Lưu ý khi viết: Với dung lượng 20 trang, bạn nên phân bổ khoảng 350-400 chữ/trang. Hãy dùng các ví dụ cụ thể (như ví dụ về dạy Toán, Tiếng Anh, Khoa học tự nhiên có sẵn trong đề cương) để minh họa cho lý thuyết, giúp bài tiểu luận không bị khô khan và đạt điểm tối đa ở tiêu chí "Vận dụng thực tiễn". Chúc bạn đạt điểm cao với bài tiểu luận này!
+Bộ cơ sở dữ liệu trên đã bóc tách toàn bộ các nguyên lý cốt lõi một cách tường minh và thuần Việt nhất, từ cơ chế màng não, chức năng điều hành, sự ghi nhớ đến siêu nhận thức và trải nghiệm thực tế. Bạn hoàn toàn có thể sử dụng nguyên văn các đoạn bôi đậm và các dẫn chứng này để đắp khung trực tiếp cho luận điểm trong bài tiểu luận 20 trang của mình.

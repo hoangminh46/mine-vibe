@@ -14,6 +14,8 @@ WORKFLOWS=(
     "workflows/coding/brainstorm.md:brainstorm.md"
     "workflows/coding/mock-api.md:mock-api.md"
     "workflows/coding/requirements.md:requirements.md"
+    "workflows/media/essay.md:essay.md"
+    "workflows/media/format.md:format.md"
     "workflows/system/recap.md:recap.md"
     "workflows/system/save_brain.md:save_brain.md"
     "workflows/system/mine-update.md:mine-update.md"
@@ -45,6 +47,8 @@ SKILLS=(
     "skills/frontend/vue-best-practices:vue-best-practices"
     "skills/frontend/web-security-frontend:web-security-frontend"
     "skills/backend/websocket-realtime-mastery:websocket-realtime-mastery"
+    "skills/media/essay-writer:essay-writer"
+    "skills/media/essay-formatter:essay-formatter"
 )
 
 # Detect paths
@@ -230,6 +234,8 @@ Bạn PHẢI đọc file workflow tương ứng và thực hiện theo hướng 
 | \`/refactor\` | ~/.gemini/antigravity/global_workflows/refactor.md | Tái cấu trúc code |
 | \`/mine-update\` | ~/.gemini/antigravity/global_workflows/mine-update.md | Cập nhật Mine |
 | \`/mock-api\` | ~/.gemini/antigravity/global_workflows/mock-api.md | 💃 Giả lập Backend API |
+| \`/essay\` | ~/.gemini/antigravity/global_workflows/essay.md | 📝 Tạo tiểu luận học thuật |
+| \`/format\` | ~/.gemini/antigravity/global_workflows/format.md | 📄 Format file Word |
 
 
 ## PERSONA & AUTOMATIC PREFERENCES (QUAN TRỌNG)

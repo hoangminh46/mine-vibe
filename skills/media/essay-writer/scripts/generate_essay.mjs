@@ -1,25 +1,16 @@
 /**
  * generate_essay.mjs — Tạo file .docx tiểu luận theo format ĐH Giáo Dục
  *
- * Usage: node generate_essay.mjs <input.json> <output.docx>
+ * Usage: node generate_essay.mjs <input.json> <output.docx> [--dry-run]
  *
- * input.json schema:
- * {
- *   "meta": { "student_name", "student_id", "birth_date", "cohort", "class_name", "major", "instructor", "subject_name", "subject_code", "year" },
- *   "title": "Tên chủ đề",
- *   "assignment_type": "TIỂU LUẬN CUỐI KÌ" | "BÀI THI HẾT HỌC PHẦN",
- *   "preface": "Lời mở đầu...",
- *   "sections": [
- *     { "heading": "...", "level": 1, "content": "..." },
- *     { "heading": "...", "level": 2, "content": "..." }
- *   ],
- *   "references": [
- *     { "stt": 1, "author": "...", "year": 2020, "title": "...", "publisher": "...", "pages": "..." }
- *   ]
- * }
+ * Flags:
+ *   --dry-run  Validate input and estimate word count without generating .docx
+ *
+ * input.json schema: See references/input-schema.json
  */
 
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync, rmSync } from "fs";
+import { dirname } from "path";
 import {
   Document,
   Packer,
@@ -28,13 +19,10 @@ import {
   AlignmentType,
   HeadingLevel,
   PageBreak,
-  Header,
   Footer,
   PageNumber,
   NumberFormat,
   LineRuleType,
-  TabStopPosition,
-  TabStopType,
   SectionType,
   TableOfContents,
 } from "docx";
@@ -42,6 +30,7 @@ import {
 const FONT = "Times New Roman";
 const BODY_SIZE = 28; // 14pt in half-points
 const LINE_SPACING = 360; // 1.5 spacing
+const WORDS_PER_PAGE = 300; // At 14pt/1.5 spacing
 
 // Twips conversion: 1cm = 567 twips
 const MARGINS = {
@@ -51,21 +40,130 @@ const MARGINS = {
   right: 1418,  // 2.5cm
 };
 
-const PAGE_WIDTH = 12240;
-const PAGE_HEIGHT = 15840;
+// A4: 210mm x 297mm
+const PAGE_WIDTH = 11906;  // 210mm in twips
+const PAGE_HEIGHT = 16838; // 297mm in twips
+
+// ─── CLI ────────────────────────────────────────────────────────────────────────
 
 function parseArgs() {
   const args = process.argv.slice(2);
-  if (args.length < 2) {
-    console.error("Usage: node generate_essay.mjs <input.json> <output.docx>");
+  const dryRun = args.includes("--dry-run");
+  const positional = args.filter((a) => a !== "--dry-run");
+
+  if (positional.length < 1 || (!dryRun && positional.length < 2)) {
+    console.error("Usage: node generate_essay.mjs <input.json> <output.docx> [--dry-run]");
     process.exit(1);
   }
-  return { inputPath: args[0], outputPath: args[1] };
+  return { inputPath: positional[0], outputPath: positional[1], dryRun };
 }
 
 function loadInput(inputPath) {
-  const raw = readFileSync(inputPath, "utf-8");
-  return JSON.parse(raw);
+  let raw;
+  try {
+    raw = readFileSync(inputPath, "utf-8");
+  } catch (err) {
+    console.error(`❌ Cannot read input file: ${inputPath}`);
+    console.error(`   ${err.message}`);
+    process.exit(1);
+  }
+
+  try {
+    return JSON.parse(raw);
+  } catch (err) {
+    console.error(`❌ Invalid JSON in: ${inputPath}`);
+    console.error(`   ${err.message}`);
+    process.exit(1);
+  }
+}
+
+// ─── Input Validation ───────────────────────────────────────────────────────────
+
+function validateInput(data) {
+  const errors = [];
+
+  if (!data.meta || typeof data.meta !== "object") {
+    errors.push('Missing or invalid "meta" object');
+  } else {
+    if (!data.meta.subject_name) errors.push('meta.subject_name is required');
+    if (!data.meta.subject_code) errors.push('meta.subject_code is required');
+  }
+
+  if (!data.title || typeof data.title !== "string") {
+    errors.push('Missing or invalid "title" string');
+  }
+
+  if (data.assignment_type &&
+      !["TIỂU LUẬN CUỐI KÌ", "BÀI THI HẾT HỌC PHẦN"].includes(data.assignment_type)) {
+    errors.push('"assignment_type" must be "TIỂU LUẬN CUỐI KÌ" or "BÀI THI HẾT HỌC PHẦN"');
+  }
+
+  if (!Array.isArray(data.sections) || data.sections.length === 0) {
+    errors.push('"sections" must be a non-empty array');
+  } else {
+    data.sections.forEach((s, i) => {
+      if (!s.heading) errors.push(`sections[${i}]: missing "heading"`);
+      if (![1, 2, 3].includes(s.level)) errors.push(`sections[${i}]: "level" must be 1, 2, or 3`);
+    });
+  }
+
+  if (data.references !== undefined) {
+    if (!Array.isArray(data.references)) {
+      errors.push('"references" must be an array');
+    } else if (data.references.length < 3) {
+      errors.push('"references" must have at least 3 entries');
+    } else {
+      data.references.forEach((r, i) => {
+        if (!r.author) errors.push(`references[${i}]: missing "author"`);
+        if (!r.title) errors.push(`references[${i}]: missing "title"`);
+        if (!r.publisher) errors.push(`references[${i}]: missing "publisher"`);
+        if (r.year === undefined) errors.push(`references[${i}]: missing "year"`);
+      });
+    }
+  }
+
+  if (errors.length > 0) {
+    console.error("❌ Input validation failed:");
+    errors.forEach((e) => console.error(`   • ${e}`));
+    process.exit(1);
+  }
+
+  console.log("✅ Input validation passed");
+}
+
+// ─── Word Count ─────────────────────────────────────────────────────────────────
+
+function estimateWordCount(data) {
+  let count = 0;
+  if (data.preface) count += data.preface.split(/\s+/).filter(Boolean).length;
+  if (data.sections) {
+    for (const s of data.sections) {
+      if (s.content) count += s.content.split(/\s+/).filter(Boolean).length;
+    }
+  }
+  return count;
+}
+
+function reportWordCount(data) {
+  const wordCount = estimateWordCount(data);
+  const estimatedPages = Math.round(wordCount / WORDS_PER_PAGE);
+  const targetPages = data.page_count || null;
+
+  console.log(`📊 Estimated: ~${wordCount.toLocaleString()} words / ~${estimatedPages} pages`);
+
+  if (targetPages && estimatedPages < targetPages) {
+    console.warn(`⚠️  Warning: Content may be under target (${targetPages} pages). Estimated: ${estimatedPages} pages.`);
+    console.warn(`   Consider expanding "Nội dung chủ đề" section with more sub-sections.`);
+  }
+
+  return { wordCount, estimatedPages };
+}
+
+// ─── Utility ────────────────────────────────────────────────────────────────────
+
+/** Normalize Vietnamese text to NFC form to prevent encoding issues from PDF copy-paste */
+function normalizeVietnamese(text) {
+  return typeof text === "string" ? text.normalize("NFC") : text;
 }
 
 function createEmptyParagraph(size = BODY_SIZE) {
@@ -74,6 +172,8 @@ function createEmptyParagraph(size = BODY_SIZE) {
     children: [new TextRun({ font: FONT, size, text: "" })],
   });
 }
+
+// ─── Document Builders ──────────────────────────────────────────────────────────
 
 function buildCoverPage(data) {
   const meta = data.meta || {};
@@ -119,7 +219,7 @@ function buildCoverPage(data) {
           font: FONT,
           size: 36,
           bold: true,
-          text: (meta.subject_name || "TÊN HỌC PHẦN").toUpperCase(),
+          text: normalizeVietnamese(meta.subject_name || "TÊN HỌC PHẦN").toUpperCase(),
         }),
       ],
     }),
@@ -141,17 +241,18 @@ function buildCoverPage(data) {
     createEmptyParagraph(),
   ];
 
-  // Info block (left aligned)
+  // Info block — only render fields that have real values
   const infoLines = [
-    { label: "Giảng viên", value: meta.instructor || "........................." },
-    { label: "Học viên", value: meta.student_name || "........................." },
-    { label: "Ngày sinh", value: meta.birth_date || "........................." },
-    { label: "Mã học viên", value: meta.student_id || "........................." },
-    { label: "Khoá", value: meta.cohort || "........................." },
-    { label: "Ngành", value: meta.major || "........................." },
+    { label: "Giảng viên", value: meta.instructor },
+    { label: "Học viên", value: meta.student_name },
+    { label: "Ngày sinh", value: meta.birth_date },
+    { label: "Mã học viên", value: meta.student_id },
+    { label: "Khoá", value: meta.cohort },
+    { label: "Ngành", value: meta.major },
   ];
 
   for (const info of infoLines) {
+    const displayValue = info.value || ".........................";
     paragraphs.push(
       new Paragraph({
         alignment: AlignmentType.LEFT,
@@ -159,7 +260,7 @@ function buildCoverPage(data) {
         indent: { left: 2268 }, // ~4cm indent
         children: [
           new TextRun({ font: FONT, size: BODY_SIZE, bold: true, text: `${info.label}: ` }),
-          new TextRun({ font: FONT, size: BODY_SIZE, bold: true, text: info.value }),
+          new TextRun({ font: FONT, size: BODY_SIZE, bold: true, text: normalizeVietnamese(displayValue) }),
         ],
       })
     );
@@ -169,7 +270,7 @@ function buildCoverPage(data) {
   paragraphs.push(createEmptyParagraph());
   paragraphs.push(createEmptyParagraph());
 
-  // Footer: Hà Nội – Year
+  // Hà Nội – Year
   paragraphs.push(
     new Paragraph({
       alignment: AlignmentType.CENTER,
@@ -212,7 +313,7 @@ function buildPreface(data) {
     }),
   ];
 
-  const prefaceText = data.preface || "";
+  const prefaceText = normalizeVietnamese(data.preface || "");
   const prefaceParagraphs = prefaceText.split("\n").filter((p) => p.trim());
 
   for (const para of prefaceParagraphs) {
@@ -249,7 +350,6 @@ function buildContent(data) {
   for (const section of data.sections) {
     const isH1 = section.level === 1;
     const isH2 = section.level === 2;
-    const isH3 = section.level === 3;
 
     // Section heading
     const headingLvl = isH1 ? HeadingLevel.HEADING_1 : isH2 ? HeadingLevel.HEADING_2 : HeadingLevel.HEADING_3;
@@ -264,14 +364,15 @@ function buildContent(data) {
           lineRule: LineRuleType.AUTO,
         },
         children: [
-          new TextRun({ text: section.heading }),
+          new TextRun({ text: normalizeVietnamese(section.heading) }),
         ],
       })
     );
 
     // Section content paragraphs
     if (section.content) {
-      const contentParagraphs = section.content.split("\n").filter((p) => p.trim());
+      const normalizedContent = normalizeVietnamese(section.content);
+      const contentParagraphs = normalizedContent.split("\n").filter((p) => p.trim());
       for (const para of contentParagraphs) {
         paragraphs.push(
           new Paragraph({
@@ -316,10 +417,10 @@ function buildReferences(data) {
         indent: { left: 567, hanging: 567 }, // Hanging indent for reference entries
         children: [
           new TextRun({ font: FONT, size: BODY_SIZE, text: `[${stt}]. ` }),
-          new TextRun({ font: FONT, size: BODY_SIZE, text: `${ref.author} ` }),
+          new TextRun({ font: FONT, size: BODY_SIZE, text: `${normalizeVietnamese(ref.author)} ` }),
           new TextRun({ font: FONT, size: BODY_SIZE, text: `(${ref.year}). ` }),
-          new TextRun({ font: FONT, size: BODY_SIZE, italics: true, text: `${ref.title}` }),
-          new TextRun({ font: FONT, size: BODY_SIZE, text: `. ${ref.publisher}` }),
+          new TextRun({ font: FONT, size: BODY_SIZE, italics: true, text: `${normalizeVietnamese(ref.title)}` }),
+          new TextRun({ font: FONT, size: BODY_SIZE, text: `. ${normalizeVietnamese(ref.publisher)}` }),
           new TextRun({
             font: FONT,
             size: BODY_SIZE,
@@ -333,146 +434,205 @@ function buildReferences(data) {
   return paragraphs;
 }
 
+// ─── Cleanup ────────────────────────────────────────────────────────────────────
+
+function selfCleanup(inputPath) {
+  const tempDir = dirname(inputPath);
+  // Safety check: only delete if the directory name matches the expected temp folder
+  if (tempDir.endsWith("essay_temp")) {
+    try {
+      rmSync(tempDir, { recursive: true, force: true });
+      console.log(`🧹 Cleaned up temp directory: ${tempDir}`);
+    } catch (cleanupErr) {
+      console.warn(`⚠️  Could not clean up ${tempDir}: ${cleanupErr.message}`);
+    }
+  }
+}
+
+// ─── Main ───────────────────────────────────────────────────────────────────────
+
 async function main() {
-  const { inputPath, outputPath } = parseArgs();
+  const { inputPath, outputPath, dryRun } = parseArgs();
+
+  console.log(`📖 Reading input: ${inputPath}`);
   const data = loadInput(inputPath);
 
-  const coverChildren = buildCoverPage(data);
-  const tocChildren = buildTOC(data);
-  const prefaceChildren = buildPreface(data);
-  const contentChildren = buildContent(data);
-  const refChildren = buildReferences(data);
+  // Step 1: Validate
+  validateInput(data);
 
-  const sectionProperties = {
-    page: {
-      size: { width: PAGE_WIDTH, height: PAGE_HEIGHT },
-      margin: MARGINS,
-    },
-  };
+  // Step 2: Word count estimation
+  const { wordCount, estimatedPages } = reportWordCount(data);
 
-  const doc = new Document({
-    styles: {
-      default: {
-        document: {
-          run: { font: FONT, size: BODY_SIZE },
-          paragraph: {
-            spacing: { line: LINE_SPACING, lineRule: LineRuleType.AUTO },
-          },
-        },
+  // Dry-run exits here
+  if (dryRun) {
+    console.log("\n🔍 Dry run complete — no .docx generated.");
+    console.log(`   Sections: ${data.sections?.length || 0}`);
+    console.log(`   References: ${data.references?.length || 0}`);
+    console.log(`   Words: ~${wordCount.toLocaleString()}`);
+    console.log(`   Est. Pages: ~${estimatedPages}`);
+    return;
+  }
+
+  try {
+    // Step 3: Build document sections
+    console.log("📄 Building cover page...");
+    const coverChildren = buildCoverPage(data);
+
+    console.log("📑 Building table of contents...");
+    const tocChildren = buildTOC(data);
+
+    console.log("✏️  Building preface...");
+    const prefaceChildren = buildPreface(data);
+
+    console.log(`📝 Building content (${data.sections?.length || 0} sections)...`);
+    const contentChildren = buildContent(data);
+
+    console.log(`📚 Building references (${data.references?.length || 0} sources)...`);
+    const refChildren = buildReferences(data);
+
+    // Step 4: Assemble document
+    console.log("📦 Packaging document...");
+
+    const sectionProperties = {
+      page: {
+        size: { width: PAGE_WIDTH, height: PAGE_HEIGHT },
+        margin: MARGINS,
       },
-      paragraphStyles: [
-        {
-          id: "Heading1",
-          name: "Heading 1",
-          basedOn: "Normal",
-          next: "Normal",
-          quickFormat: true,
-          run: { size: BODY_SIZE, bold: true, font: FONT, color: "000000" },
-          paragraph: { spacing: { before: 240, after: 120, line: LINE_SPACING, lineRule: LineRuleType.AUTO } },
-        },
-        {
-          id: "Heading2",
-          name: "Heading 2",
-          basedOn: "Normal",
-          next: "Normal",
-          quickFormat: true,
-          run: { size: BODY_SIZE, bold: true, font: FONT, color: "000000" },
-          paragraph: { spacing: { before: 120, after: 60, line: LINE_SPACING, lineRule: LineRuleType.AUTO } },
-        },
-        {
-          id: "Heading3",
-          name: "Heading 3",
-          basedOn: "Normal",
-          next: "Normal",
-          quickFormat: true,
-          run: { size: BODY_SIZE, bold: true, italics: true, font: FONT, color: "000000" },
-          paragraph: { spacing: { before: 60, after: 60, line: LINE_SPACING, lineRule: LineRuleType.AUTO } },
-        },
-        {
-          id: "TOC1",
-          name: "toc 1",
-          basedOn: "Normal",
-          next: "Normal",
-          run: { size: BODY_SIZE, font: FONT, bold: false },
-          paragraph: { spacing: { after: 60, line: 276, lineRule: LineRuleType.AUTO } },
-        },
-        {
-          id: "TOC2",
-          name: "toc 2",
-          basedOn: "Normal",
-          next: "Normal",
-          run: { size: BODY_SIZE, font: FONT, bold: false },
-          paragraph: { indent: { left: 567 }, spacing: { after: 60, line: 276, lineRule: LineRuleType.AUTO } },
-        },
-        {
-          id: "TOC3",
-          name: "toc 3",
-          basedOn: "Normal",
-          next: "Normal",
-          run: { size: BODY_SIZE, font: FONT, bold: false },
-          paragraph: { indent: { left: 1134 }, spacing: { after: 60, line: 276, lineRule: LineRuleType.AUTO } },
-        }
-      ],
-    },
-    sections: [
-      // Section 1: Cover page — no page number
-      {
-        properties: {
-          ...sectionProperties,
-          page: {
-            ...sectionProperties.page,
-            pageNumbers: { formatType: NumberFormat.DECIMAL },
+    };
+
+    const doc = new Document({
+      styles: {
+        default: {
+          document: {
+            run: { font: FONT, size: BODY_SIZE },
+            paragraph: {
+              spacing: { line: LINE_SPACING, lineRule: LineRuleType.AUTO },
+            },
           },
-          type: SectionType.NEXT_PAGE,
         },
-        children: coverChildren,
-      },
-      // Section 2: TOC + Preface + Content + References — with page numbers
-      {
-        properties: {
-          ...sectionProperties,
-          page: {
-            ...sectionProperties.page,
-            pageNumbers: { start: 2, formatType: NumberFormat.DECIMAL },
+        paragraphStyles: [
+          {
+            id: "Heading1",
+            name: "Heading 1",
+            basedOn: "Normal",
+            next: "Normal",
+            quickFormat: true,
+            run: { size: BODY_SIZE, bold: true, font: FONT, color: "000000" },
+            paragraph: { spacing: { before: 240, after: 120, line: LINE_SPACING, lineRule: LineRuleType.AUTO } },
           },
-          type: SectionType.NEXT_PAGE,
-        },
-        footers: {
-          default: new Footer({
-            children: [
-              new Paragraph({
-                alignment: AlignmentType.CENTER,
-                children: [
-                  new TextRun({
-                    font: FONT,
-                    size: BODY_SIZE,
-                    children: [PageNumber.CURRENT],
-                  }),
-                ],
-              }),
-            ],
-          }),
-        },
-        children: [
-          ...tocChildren,
-          // Page break after TOC
-          new Paragraph({ children: [new PageBreak()] }),
-          ...prefaceChildren,
-          // Page break after preface
-          new Paragraph({ children: [new PageBreak()] }),
-          ...contentChildren,
-          ...refChildren,
+          {
+            id: "Heading2",
+            name: "Heading 2",
+            basedOn: "Normal",
+            next: "Normal",
+            quickFormat: true,
+            run: { size: BODY_SIZE, bold: true, font: FONT, color: "000000" },
+            paragraph: { spacing: { before: 120, after: 60, line: LINE_SPACING, lineRule: LineRuleType.AUTO } },
+          },
+          {
+            id: "Heading3",
+            name: "Heading 3",
+            basedOn: "Normal",
+            next: "Normal",
+            quickFormat: true,
+            run: { size: BODY_SIZE, bold: true, italics: true, font: FONT, color: "000000" },
+            paragraph: { spacing: { before: 60, after: 60, line: LINE_SPACING, lineRule: LineRuleType.AUTO } },
+          },
+          {
+            id: "TOC1",
+            name: "toc 1",
+            basedOn: "Normal",
+            next: "Normal",
+            run: { size: BODY_SIZE, font: FONT, bold: false },
+            paragraph: { spacing: { after: 60, line: 276, lineRule: LineRuleType.AUTO } },
+          },
+          {
+            id: "TOC2",
+            name: "toc 2",
+            basedOn: "Normal",
+            next: "Normal",
+            run: { size: BODY_SIZE, font: FONT, bold: false },
+            paragraph: { indent: { left: 567 }, spacing: { after: 60, line: 276, lineRule: LineRuleType.AUTO } },
+          },
+          {
+            id: "TOC3",
+            name: "toc 3",
+            basedOn: "Normal",
+            next: "Normal",
+            run: { size: BODY_SIZE, font: FONT, bold: false },
+            paragraph: { indent: { left: 1134 }, spacing: { after: 60, line: 276, lineRule: LineRuleType.AUTO } },
+          }
         ],
       },
-    ],
-  });
+      sections: [
+        // Section 1: Cover page — no page number
+        {
+          properties: {
+            ...sectionProperties,
+            page: {
+              ...sectionProperties.page,
+              pageNumbers: { formatType: NumberFormat.DECIMAL },
+            },
+            type: SectionType.NEXT_PAGE,
+          },
+          children: coverChildren,
+        },
+        // Section 2: TOC + Preface + Content + References — with page numbers
+        {
+          properties: {
+            ...sectionProperties,
+            page: {
+              ...sectionProperties.page,
+              pageNumbers: { start: 2, formatType: NumberFormat.DECIMAL },
+            },
+            type: SectionType.NEXT_PAGE,
+          },
+          footers: {
+            default: new Footer({
+              children: [
+                new Paragraph({
+                  alignment: AlignmentType.CENTER,
+                  children: [
+                    new TextRun({
+                      font: FONT,
+                      size: BODY_SIZE,
+                      children: [PageNumber.CURRENT],
+                    }),
+                  ],
+                }),
+              ],
+            }),
+          },
+          children: [
+            ...tocChildren,
+            // Page break after TOC
+            new Paragraph({ children: [new PageBreak()] }),
+            ...prefaceChildren,
+            // Page break after preface
+            new Paragraph({ children: [new PageBreak()] }),
+            ...contentChildren,
+            ...refChildren,
+          ],
+        },
+      ],
+    });
 
-  const buffer = await Packer.toBuffer(doc);
-  writeFileSync(outputPath, buffer);
-  console.log(`Essay generated: ${outputPath}`);
+    // Step 5: Write to file
+    const buffer = await Packer.toBuffer(doc);
+    writeFileSync(outputPath, buffer);
+
+    console.log(`\n✅ Essay generated successfully!`);
+    console.log(`   📄 Output: ${outputPath}`);
+    console.log(`   📝 Sections: ${data.sections?.length || 0}`);
+    console.log(`   📚 References: ${data.references?.length || 0}`);
+    console.log(`   📊 ~${wordCount.toLocaleString()} words / ~${estimatedPages} pages`);
+  } finally {
+    // Self-cleanup: always attempt to clean essay_temp regardless of success/failure
+    selfCleanup(inputPath);
+  }
 }
 
 main().catch((err) => {
-  console.error("Error generating essay:", err.message);
+  console.error("❌ Error generating essay:", err.message);
   process.exit(1);
 });

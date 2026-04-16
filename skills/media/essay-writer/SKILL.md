@@ -1,6 +1,6 @@
 ---
 name: essay-writer
-description: Generate complete academic essays (.docx) for Trường Đại học Giáo dục (VNU University of Education) graduate programs. Use when the user needs to create, write, or generate a thesis/essay/tiểu luận document with proper formatting, cover page, table of contents, and academic structure. Triggers on requests involving: (1) Writing essays or tiểu luận, (2) Creating .docx academic documents, (3) Generating formatted thesis papers, (4) Any mention of "bài tiểu luận", "bài thu hoạch", "chuyên đề" for ĐH Giáo dục.
+description: Generate complete academic essays (.docx) for Trường Đại học Giáo dục (VNU University of Education) graduate programs. Use when the user needs to create, write, or generate a thesis/essay/tiểu luận document with proper formatting, cover page, table of contents, and academic structure. Triggers on requests involving: (1) Writing essays or tiểu luận, bài thu hoạch, bài cuối kì, (2) Creating .docx/.word academic documents, (3) Generating formatted thesis papers with cover page and TOC, (4) Any mention of "bài tiểu luận", "bài thu hoạch", "chuyên đề", "viết bài", "xuất docx", "tạo file word" for ĐH Giáo Dục programs.
 ---
 
 # Essay Writer - Trường ĐH Giáo Dục
@@ -27,10 +27,14 @@ Optional (can be placeholder):
 - class_name: Class name
 - major: Major/specialization (ngành)
 - instructor: Instructor name + title
-- page_count: Target pages (default: 20+)
+- page_count: Target pages (ask user, no fixed default)
 ```
 
 ### Step 2: Generate Essay Content
+
+Before writing content, read these references:
+- **Content structure & word count targets**: See [references/content-guidelines.md](references/content-guidelines.md)
+- **Input JSON contract**: See [references/input-schema.json](references/input-schema.json)
 
 Structure the content following this exact outline:
 
@@ -55,47 +59,52 @@ When running the essay creation process, you MUST observe the following strict c
 1. **Isolated Working Directory**: Create a temporary folder named `essay_temp` at the root of the current project workspace.
 2. **Intermediate Files**: All generated `data.json`, `input.json`, and `.mjs` builder files MUST be written and executed exclusively inside this `essay_temp` folder.
 3. **Output Location**: Output the final `.docx` file DIRECTLY to the root of the project workspace (at the same level as the `essay_temp` folder).
-4. **Cleanup**: As soon as the `.docx` file is generated successfully, you MUST strictly run a command to delete the entire `essay_temp` folder. Ensure absolutely NO residual intermediate files remain in the workspace; only the final `.docx` file should be left at the root of the project.
+4. **Cleanup**: The script will automatically self-cleanup the `essay_temp` folder after generating the `.docx`. If the script fails, manually delete the folder.
 
-## Content Guidelines
+#### Running the Script
 
-- Write in Vietnamese academic style
-- Cite real, verifiable Vietnamese academic sources
-- Each section must have substantive content (no placeholders)
-- "Đặt vấn đề" must explain relevance and urgency
-- "Nội dung chủ đề" is the core section — expand with sub-headings as needed
-- References must follow format: STT, Author, Year, Title, Publisher, Pages
-- Sort references alphabetically by author's first name (Vietnamese convention)
-- **STRICT RULE: PURE VIETNAMESE ONLY**. When generating the content, absolutely DO NOT use English terms in parentheses next to Vietnamese terms (e.g., do NOT write "Siêu nhận thức (Metacognition)" or "Mô hình 5E (Engage - Explore...)"). You MUST translate everything fully into Vietnamese and omit the English terms entirely.
-- When the user provides a NotebookLM outline, use it as the definitive factual source but strictly apply the "NO ENGLISH" rule above when expanding into the full essay.
+```bash
+# Full generation
+node generate_essay.mjs <input.json> <output.docx>
 
-### Achieving 20+ Pages (Critical)
+# Validate input + estimate word count without generating .docx
+node generate_essay.mjs <input.json> --dry-run
+```
 
-Each page ≈ 300 words at 14pt/1.5 spacing → 20 pages ≈ 6,000 words minimum.
-
-Target word count per section:
-- Đặt vấn đề: ~500 words (1-1.5 pages)
-- Mục đích viết chủ đề: ~500 words (1-1.5 pages)
-- Phương pháp hoàn thiện: ~400 words (1 page)
-- Nội dung chủ đề (5.1 → 5.x): ~4,000-5,000 words (13-16 pages) — THIS IS THE CORE
-- Kết luận / Định hướng: ~600 words (2 pages)
-
-Strategy for the "Nội dung" section:
-1. Create at least 5-7 sub-sections (5.1, 5.2, ..., 5.7)
-2. Each sub-section should have 2-3 sub-sub-sections (5.1.1, 5.1.2, etc.)
-3. Include theoretical frameworks, practical examples, case studies
-4. Add analysis of Vietnamese educational context
-5. Include comparison with international practices
-
-If input JSON is too large for a single generation, split content creation across multiple writes and merge into one JSON before running the script.
+Use `--dry-run` first to verify the input JSON is valid and estimate page count before the full build.
 
 ## Important Rules
 
-- Total essay length: minimum 20 pages (excluding cover + TOC)
+- Total essay length: determined by user's `page_count` (excluding cover + TOC). Always ask user how many pages they need.
 - Font: Times New Roman, 14pt for body text
 - Line spacing: 1.5
 - Margins: Left 3cm, Right 2.5cm, Top 2cm, Bottom 2cm
-- Cover page follows the template in references/cover-template.md
+- Cover page follows the template in [references/cover-template.md](references/cover-template.md)
+- Full format spec in [references/format-spec.md](references/format-spec.md)
 - All headings bold, section numbers use format: 1., 1.1., 1.1.1.
 - Body text alignment: Justify
 - Heading alignment: Left (section headings), Center (cover page)
+
+## Error Recovery
+
+### Script crash (non-zero exit code)
+1. Read the error message from stderr — the script provides descriptive error messages
+2. Fix the `input.json` based on the error (missing field, invalid type, etc.)
+3. Re-run the script. Do NOT regenerate the entire content.
+
+### JSON too large for single generation
+1. Split generation into 2-3 batches (each covering a subset of sections)
+2. Each batch must be a valid JSON array of section objects
+3. Merge all arrays into one `input.json` before running the script
+4. Ensure section numbering remains consistent across batches
+
+### Generated DOCX has formatting issues
+1. Re-read `references/format-spec.md` to verify compliance
+2. Re-generate only the affected section in `input.json`
+3. Re-run the script
+
+### Validation fails on dry-run
+1. The script will list all validation errors with field paths
+2. Fix only the reported fields
+3. Re-run `--dry-run` until all errors are resolved
+4. Then run the full generation

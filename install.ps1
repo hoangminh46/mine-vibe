@@ -13,6 +13,8 @@ $Workflows = @(
     @{ Source = "workflows/coding/brainstorm.md"; Target = "brainstorm.md" },
     @{ Source = "workflows/coding/mock-api.md"; Target = "mock-api.md" },
     @{ Source = "workflows/coding/requirements.md"; Target = "requirements.md" },
+    @{ Source = "workflows/media/essay.md"; Target = "essay.md" },
+    @{ Source = "workflows/media/format.md"; Target = "format.md" },
     @{ Source = "workflows/system/recap.md"; Target = "recap.md" },
     @{ Source = "workflows/system/save_brain.md"; Target = "save_brain.md" },
     @{ Source = "workflows/system/mine-update.md"; Target = "mine-update.md" },
@@ -43,7 +45,9 @@ $Skills = @(
     @{ Source = "skills/frontend/vercel-react-best-practices"; Target = "vercel-react-best-practices" },
     @{ Source = "skills/frontend/vue-best-practices"; Target = "vue-best-practices" },
     @{ Source = "skills/frontend/web-security-frontend"; Target = "web-security-frontend" },
-    @{ Source = "skills/backend/websocket-realtime-mastery"; Target = "websocket-realtime-mastery" }
+    @{ Source = "skills/backend/websocket-realtime-mastery"; Target = "websocket-realtime-mastery" },
+    @{ Source = "skills/media/essay-writer"; Target = "essay-writer" },
+    @{ Source = "skills/media/essay-formatter"; Target = "essay-formatter" }
 )
 
 # Detect Antigravity Global Path
@@ -250,6 +254,8 @@ Bạn PHẢI đọc file workflow tương ứng và thực hiện theo hướng 
 | ``/refactor`` | ~/.gemini/antigravity/global_workflows/refactor.md | Tái cấu trúc code |
 | ``/mine-update`` | ~/.gemini/antigravity/global_workflows/mine-update.md | Cập nhật Mine |
 | ``/mock-api`` | ~/.gemini/antigravity/global_workflows/mock-api.md | 💃 Giả lập Backend API |
+| ``/essay`` | ~/.gemini/antigravity/global_workflows/essay.md | 📝 Tạo tiểu luận học thuật |
+| ``/format`` | ~/.gemini/antigravity/global_workflows/format.md | 📄 Format file Word |
 
 
 ## PERSONA & AUTOMATIC PREFERENCES (QUAN TRỌNG)

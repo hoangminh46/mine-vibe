@@ -3,7 +3,7 @@
 ## Page Setup
 | Property | Value | OOXML |
 |---|---|---|
-| Page size | Letter (8.5" x 11") | w:w="12240" w:h="15840" |
+| Page size | A4 (210mm x 297mm) | w:w="11906" w:h="16838" |
 | Left margin | 3cm | 1701 twips |
 | Right margin | 2.5cm | 1418 twips |
 | Top margin | 2cm | 1134 twips |

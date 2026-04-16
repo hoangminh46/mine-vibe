@@ -1,0 +1,10 @@
+{
+  "name": "essay-formatter",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Format existing .docx files to ĐH Giáo Dục academic standards without modifying content",
+  "dependencies": {
+    "jszip": "^3.10.1",
+    "fast-xml-parser": "^4.3.0"
+  }
+}

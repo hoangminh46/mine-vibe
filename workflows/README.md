@@ -2,9 +2,10 @@
 
 ## Overview
 
-Thư mục `workflows/` hiện được tổ chức theo 2 thư mục con:
+Thư mục `workflows/` hiện được tổ chức theo 3 thư mục con:
 - `workflows/coding/`: workflow phục vụ discovery, implementation, validation
 - `workflows/system/`: workflow phục vụ memory và utility
+- `workflows/media/`: workflow tạo tài liệu và nội dung
 
 Tổng thể workflow vẫn chia thành 4 nhóm workflow chính:
 - discovery & requirements
@@ -32,6 +33,10 @@ Các workflow lõi đã được nâng cấp theo hướng:
 - `/mock-api`: dựng mock API thực dụng cho dev/test, có mode, verification, và anti-drift rules
 - `/refactor`: refactor an toàn, giữ behavior, validate theo safety baseline
 
+### Media & Document
+- `/essay`: tạo bài tiểu luận học thuật (.docx) theo chuẩn ĐH Giáo Dục — hướng dẫn từng bước, không cần biết code
+- `/format`: format file Word (.docx) theo chuẩn học thuật — tự chọn font, cỡ chữ, giãn dòng, lề
+
 ### Validation & Recovery
 - `/test`: chọn validation phù hợp, kiểm tra acceptance criteria và mức confidence hiện tại
 - `/debug`: triage, reproduce, isolate, fix, verify
@@ -48,7 +53,7 @@ Các workflow lõi đã được nâng cấp theo hướng:
 
 ## Workflow Cốt Lõi
 
-Nếu cần nhìn nhanh các workflow “xương sống” của Mine, ưu tiên:
+Nếu cần nhìn nhanh các workflow "xương sống" của Mine, ưu tiên:
 - `/brainstorm`
 - `/requirements`
 - `/plan`
@@ -130,9 +135,15 @@ Nguyên tắc:
 /save-brain
 ```
 
+### Viết Tiểu Luận / Bài Thu Hoạch
+
+```text
+/essay -> cung cấp thông tin -> nhận file .docx
+```
+
 ---
 
 ## Ghi Chú
 
-- Không phải workflow nào cũng cần cùng mức “chuẩn hóa”. Các workflow tiện ích như `/customize` và `/mine-update` được giữ nhẹ để giảm ma sát sử dụng.
+- Không phải workflow nào cũng cần cùng mức "chuẩn hóa". Các workflow tiện ích như `/customize` và `/mine-update` được giữ nhẹ để giảm ma sát sử dụng.
 - Các workflow lõi nên được coi là nguồn điều phối chính cho cách Mine làm việc trong repo này.
