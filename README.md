@@ -89,6 +89,48 @@ iex "& { $(irm https://raw.githubusercontent.com/hoangminh46/mine-vibe/main/inst
 curl -fsSL https://raw.githubusercontent.com/hoangminh46/mine-vibe/main/install.sh | sh
 ```
 
+## Cài Codex local cho một project
+
+Cài Codex local sẽ copy Mine vào `.codex/mine/` và thêm mapping workflow vào `AGENTS.md` của project. Installer không tạo `.brain/`; memory templates nằm sẵn trong `.codex/mine/templates/` để workflow dùng khi cần.
+
+### Windows
+
+Dung nhanh khi dang dung trong thu muc project:
+
+```powershell
+iex "& { $(irm https://raw.githubusercontent.com/hoangminh46/mine-vibe/main/install-codex-local.ps1) }"
+```
+
+Neu da co san file `install-codex-local.ps1` trong thu muc hien tai:
+
+```powershell
+.\install-codex-local.ps1
+```
+
+Van co the chi dinh project khac neu can:
+
+```powershell
+.\install-codex-local.ps1 -ProjectPath "C:\path\to\your-project"
+```
+
+Muốn ghi đè framework local đã có:
+
+```powershell
+iex "& { $(irm https://raw.githubusercontent.com/hoangminh46/mine-vibe/main/install-codex-local.ps1) } -Force"
+```
+
+### Mac / Linux
+
+```bash
+./install-codex-local.sh /path/to/your-project
+```
+
+Muốn ghi đè framework local đã có:
+
+```bash
+MINE_FORCE=1 ./install-codex-local.sh /path/to/your-project
+```
+
 ## Gỡ cài đặt
 
 ### Windows
