@@ -2,7 +2,8 @@
 # Gỡ bỏ toàn bộ Antigravity Global Workflows và cấu hình
 
 $AntigravityBase = "$env:USERPROFILE\.gemini\antigravity"
-$SubDirs = @("global_workflows", "schemas", "templates", "global_skills")
+$SubDirs = @("global_workflows", "schemas", "templates", "global_skills", "skills")
+$ConfigWorkflowsDir = "$env:USERPROFILE\.gemini\config\global_workflows"
 $PrefsFile = "$env:USERPROFILE\.gemini\antigravity\preferences.json"
 $GeminiMd = "$env:USERPROFILE\.gemini\GEMINI.md"
 $MineVersionFile = "$env:USERPROFILE\.gemini\mine_version"
@@ -36,6 +37,12 @@ foreach ($dir in $SubDirs) {
 if (Test-Path $PrefsFile) {
     Remove-Item -Path $PrefsFile -Force
     Write-Host "   ✅ Đã xoá config: preferences.json" -ForegroundColor Green
+}
+
+# Xoá workflows tại config/global_workflows (path mới từ v3.6.0)
+if (Test-Path $ConfigWorkflowsDir) {
+    Remove-Item -Path $ConfigWorkflowsDir -Recurse -Force
+    Write-Host "   ✅ Đã xoá: config/global_workflows" -ForegroundColor Green
 }
 
 # 3. Xoá file phiên bản

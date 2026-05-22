@@ -10,6 +10,22 @@ All notable changes to Mine will be documented in this file.
 
 ---
 
+## [3.6.0] - 2026-05-22
+
+### Changed — Antigravity 2.0 Path Migration
+- **Workflows path**: `~/.gemini/antigravity/global_workflows/` → `~/.gemini/config/global_workflows/` (theo docs Antigravity 2.0)
+- **Skills path**: `~/.gemini/antigravity/global_skills/` → `~/.gemini/antigravity/skills/` (theo docs Antigravity 2.0)
+- **GEMINI.md template**: Cập nhật command mapping table với paths mới
+- **Installer migration logic**: Tự động dọn paths cũ khi nâng cấp, tránh conflict giữa 2 bộ workflows
+
+### Updated
+- **install.ps1 & install.sh**: Target paths mới + migration logic
+- **uninstall.ps1 & uninstall.sh**: Dọn cả paths cũ (backward compat) lẫn paths mới
+
+### Breaking
+- Users chạy Mine trước v3.6.0 cần chạy lại installer để migrate sang paths mới
+- Workflows ở path cũ sẽ bị xóa tự động khi install/update
+
 ## [3.5.3] - 2026-01-28
 
 ### Added

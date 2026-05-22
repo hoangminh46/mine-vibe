@@ -48,12 +48,24 @@ SKILLS=(
 )
 
 # Detect paths
-ANTIGRAVITY_GLOBAL="$HOME/.gemini/antigravity/global_workflows"
+ANTIGRAVITY_GLOBAL="$HOME/.gemini/config/global_workflows"
 SCHEMAS_DIR="$HOME/.gemini/antigravity/schemas"
 TEMPLATES_DIR="$HOME/.gemini/antigravity/templates"
 GEMINI_MD="$HOME/.gemini/GEMINI.md"
 MINE_VERSION_FILE="$HOME/.gemini/mine_version"
 GLOBAL_PREFS_FILE="$HOME/.gemini/antigravity/preferences.json"
+
+# Migration: dọn paths cũ để tránh conflict
+OLD_WORKFLOWS_DIR="$HOME/.gemini/antigravity/global_workflows"
+OLD_SKILLS_DIR="$HOME/.gemini/antigravity/global_skills"
+if [ -d "$OLD_WORKFLOWS_DIR" ]; then
+    rm -rf "$OLD_WORKFLOWS_DIR"
+    echo "🔄 Đã dọn workflows cũ tại: antigravity/global_workflows/"
+fi
+if [ -d "$OLD_SKILLS_DIR" ]; then
+    rm -rf "$OLD_SKILLS_DIR"
+    echo "🔄 Đã dọn skills cũ tại: antigravity/global_skills/"
+fi
 
 # Get version from repo
 CURRENT_VERSION=$(curl -s "$REPO_BASE/VERSION" 2>/dev/null || echo "3.4.0")
@@ -114,8 +126,8 @@ for template in "${TEMPLATES[@]}"; do
 done
 
 # 4. Install Skills
-mkdir -p "$HOME/.gemini/antigravity/global_skills"
-SKILLS_DIR="$HOME/.gemini/antigravity/global_skills"
+mkdir -p "$HOME/.gemini/antigravity/skills"
+SKILLS_DIR="$HOME/.gemini/antigravity/skills"
 echo "⏳ Đang tải skills..."
 for skill in "${SKILLS[@]}"; do
     source_path="${skill%%:*}"
@@ -215,21 +227,21 @@ Bạn PHẢI đọc file workflow tương ứng và thực hiện theo hướng 
 ## Command Mapping (QUAN TRỌNG):
 | Command | Workflow File | Mô tả |
 |---------|--------------|-------|
-| \`/brainstorm\` | ~/.gemini/antigravity/global_workflows/brainstorm.md | 💡 Bàn ý tưởng, research thị trường |
-| \`/requirements\` | ~/.gemini/antigravity/global_workflows/requirements.md | 📋 Phân tích & Đặc tả Yêu cầu |
-| \`/plan\` | ~/.gemini/antigravity/global_workflows/plan.md | Thiết kế tính năng |
-| \`/code\` | ~/.gemini/antigravity/global_workflows/code.md | Viết code an toàn |
-| \`/visualize\` | ~/.gemini/antigravity/global_workflows/visualize.md | Tạo UI/UX |
-| \`/debug\` | ~/.gemini/antigravity/global_workflows/debug.md | Sửa lỗi sâu |
-| \`/test\` | ~/.gemini/antigravity/global_workflows/test.md | Kiểm thử |
-| \`/recap\` | ~/.gemini/antigravity/global_workflows/recap.md | Khôi phục ngữ cảnh |
-| \`/next\` | ~/.gemini/antigravity/global_workflows/next.md | Gợi ý bước tiếp theo |
-| \`/customize\` | ~/.gemini/antigravity/global_workflows/customize.md | ⚙️ Cá nhân hóa AI |
-| \`/save-brain\` | ~/.gemini/antigravity/global_workflows/save_brain.md | Lưu kiến thức |
-| \`/audit\` | ~/.gemini/antigravity/global_workflows/audit.md | Kiểm tra bảo mật |
-| \`/refactor\` | ~/.gemini/antigravity/global_workflows/refactor.md | Tái cấu trúc code |
-| \`/mine-update\` | ~/.gemini/antigravity/global_workflows/mine-update.md | Cập nhật Mine |
-| \`/mock-api\` | ~/.gemini/antigravity/global_workflows/mock-api.md | 💃 Giả lập Backend API |
+| \`/brainstorm\` | ~/.gemini/config/global_workflows/brainstorm.md | 💡 Bàn ý tưởng, research thị trường |
+| \`/requirements\` | ~/.gemini/config/global_workflows/requirements.md | 📋 Phân tích & Đặc tả Yêu cầu |
+| \`/plan\` | ~/.gemini/config/global_workflows/plan.md | Thiết kế tính năng |
+| \`/code\` | ~/.gemini/config/global_workflows/code.md | Viết code an toàn |
+| \`/visualize\` | ~/.gemini/config/global_workflows/visualize.md | Tạo UI/UX |
+| \`/debug\` | ~/.gemini/config/global_workflows/debug.md | Sửa lỗi sâu |
+| \`/test\` | ~/.gemini/config/global_workflows/test.md | Kiểm thử |
+| \`/recap\` | ~/.gemini/config/global_workflows/recap.md | Khôi phục ngữ cảnh |
+| \`/next\` | ~/.gemini/config/global_workflows/next.md | Gợi ý bước tiếp theo |
+| \`/customize\` | ~/.gemini/config/global_workflows/customize.md | ⚙️ Cá nhân hóa AI |
+| \`/save-brain\` | ~/.gemini/config/global_workflows/save_brain.md | Lưu kiến thức |
+| \`/audit\` | ~/.gemini/config/global_workflows/audit.md | Kiểm tra bảo mật |
+| \`/refactor\` | ~/.gemini/config/global_workflows/refactor.md | Tái cấu trúc code |
+| \`/mine-update\` | ~/.gemini/config/global_workflows/mine-update.md | Cập nhật Mine |
+| \`/mock-api\` | ~/.gemini/config/global_workflows/mock-api.md | 💃 Giả lập Backend API |
 
 
 ## PERSONA & AUTOMATIC PREFERENCES (QUAN TRỌNG)

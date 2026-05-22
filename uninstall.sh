@@ -3,7 +3,8 @@
 # Gỡ bỏ toàn bộ Antigravity Global Workflows và cấu hình
 
 ANTIGRAVITY_BASE="$HOME/.gemini/antigravity"
-SUB_DIRS=("global_workflows" "schemas" "templates" "global_skills")
+SUB_DIRS=("global_workflows" "schemas" "templates" "global_skills" "skills")
+CONFIG_WORKFLOWS_DIR="$HOME/.gemini/config/global_workflows"
 PREFS_FILE="$HOME/.gemini/antigravity/preferences.json"
 GEMINI_MD="$HOME/.gemini/GEMINI.md"
 MINE_VERSION_FILE="$HOME/.gemini/mine_version"
@@ -37,6 +38,12 @@ done
 if [ -f "$PREFS_FILE" ]; then
     rm "$PREFS_FILE"
     echo -e "\033[0;32m   ✅ Đã xoá config: preferences.json\033[0m"
+fi
+
+# Xoá workflows tại config/global_workflows (path mới từ v3.6.0)
+if [ -d "$CONFIG_WORKFLOWS_DIR" ]; then
+    rm -rf "$CONFIG_WORKFLOWS_DIR"
+    echo -e "\033[0;32m   ✅ Đã xoá: config/global_workflows\033[0m"
 fi
 
 # 3. Xoá file phiên bản

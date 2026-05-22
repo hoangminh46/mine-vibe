@@ -47,13 +47,25 @@ $Skills = @(
 )
 
 # Detect Antigravity Global Path
-$AntigravityGlobal = "$env:USERPROFILE\.gemini\antigravity\global_workflows"
+$AntigravityGlobal = "$env:USERPROFILE\.gemini\config\global_workflows"
 $SchemasDir = "$env:USERPROFILE\.gemini\antigravity\schemas"
 $TemplatesDir = "$env:USERPROFILE\.gemini\antigravity\templates"
-$SkillsDir = "$env:USERPROFILE\.gemini\antigravity\global_skills"
+$SkillsDir = "$env:USERPROFILE\.gemini\antigravity\skills"
 $GeminiMd = "$env:USERPROFILE\.gemini\GEMINI.md"
 $MineVersionFile = "$env:USERPROFILE\.gemini\mine_version"
 $GlobalPrefsFile = "$env:USERPROFILE\.gemini\antigravity\preferences.json"
+
+# Migration: dọn paths cũ để tránh conflict
+$OldWorkflowsDir = "$env:USERPROFILE\.gemini\antigravity\global_workflows"
+$OldSkillsDir = "$env:USERPROFILE\.gemini\antigravity\global_skills"
+if (Test-Path $OldWorkflowsDir) {
+    Remove-Item -Path $OldWorkflowsDir -Recurse -Force
+    Write-Host "🔄 Đã dọn workflows cũ tại: antigravity/global_workflows/" -ForegroundColor Yellow
+}
+if (Test-Path $OldSkillsDir) {
+    Remove-Item -Path $OldSkillsDir -Recurse -Force
+    Write-Host "🔄 Đã dọn skills cũ tại: antigravity/global_skills/" -ForegroundColor Yellow
+}
 
 # Get version from repo
 try {
@@ -235,21 +247,21 @@ Bạn PHẢI đọc file workflow tương ứng và thực hiện theo hướng 
 ## Command Mapping (QUAN TRỌNG):
 | Command | Workflow File | Mô tả |
 |---------|--------------|-------|
-| ``/brainstorm`` | ~/.gemini/antigravity/global_workflows/brainstorm.md | 💡 Bàn ý tưởng, research thị trường |
-| ``/requirements`` | ~/.gemini/antigravity/global_workflows/requirements.md | 📋 Phân tích & Đặc tả Yêu cầu |
-| ``/plan`` | ~/.gemini/antigravity/global_workflows/plan.md | Thiết kế tính năng |
-| ``/code`` | ~/.gemini/antigravity/global_workflows/code.md | Viết code an toàn |
-| ``/visualize`` | ~/.gemini/antigravity/global_workflows/visualize.md | Tạo UI/UX |
-| ``/debug`` | ~/.gemini/antigravity/global_workflows/debug.md | Sửa lỗi sâu |
-| ``/test`` | ~/.gemini/antigravity/global_workflows/test.md | Kiểm thử |
-| ``/recap`` | ~/.gemini/antigravity/global_workflows/recap.md | Khôi phục ngữ cảnh |
-| ``/next`` | ~/.gemini/antigravity/global_workflows/next.md | Gợi ý bước tiếp theo |
-| ``/customize`` | ~/.gemini/antigravity/global_workflows/customize.md | ⚙️ Cá nhân hóa AI |
-| ``/save-brain`` | ~/.gemini/antigravity/global_workflows/save_brain.md | Lưu kiến thức |
-| ``/audit`` | ~/.gemini/antigravity/global_workflows/audit.md | Kiểm tra bảo mật |
-| ``/refactor`` | ~/.gemini/antigravity/global_workflows/refactor.md | Tái cấu trúc code |
-| ``/mine-update`` | ~/.gemini/antigravity/global_workflows/mine-update.md | Cập nhật Mine |
-| ``/mock-api`` | ~/.gemini/antigravity/global_workflows/mock-api.md | 💃 Giả lập Backend API |
+| ``/brainstorm`` | ~/.gemini/config/global_workflows/brainstorm.md | 💡 Bàn ý tưởng, research thị trường |
+| ``/requirements`` | ~/.gemini/config/global_workflows/requirements.md | 📋 Phân tích & Đặc tả Yêu cầu |
+| ``/plan`` | ~/.gemini/config/global_workflows/plan.md | Thiết kế tính năng |
+| ``/code`` | ~/.gemini/config/global_workflows/code.md | Viết code an toàn |
+| ``/visualize`` | ~/.gemini/config/global_workflows/visualize.md | Tạo UI/UX |
+| ``/debug`` | ~/.gemini/config/global_workflows/debug.md | Sửa lỗi sâu |
+| ``/test`` | ~/.gemini/config/global_workflows/test.md | Kiểm thử |
+| ``/recap`` | ~/.gemini/config/global_workflows/recap.md | Khôi phục ngữ cảnh |
+| ``/next`` | ~/.gemini/config/global_workflows/next.md | Gợi ý bước tiếp theo |
+| ``/customize`` | ~/.gemini/config/global_workflows/customize.md | ⚙️ Cá nhân hóa AI |
+| ``/save-brain`` | ~/.gemini/config/global_workflows/save_brain.md | Lưu kiến thức |
+| ``/audit`` | ~/.gemini/config/global_workflows/audit.md | Kiểm tra bảo mật |
+| ``/refactor`` | ~/.gemini/config/global_workflows/refactor.md | Tái cấu trúc code |
+| ``/mine-update`` | ~/.gemini/config/global_workflows/mine-update.md | Cập nhật Mine |
+| ``/mock-api`` | ~/.gemini/config/global_workflows/mock-api.md | 💃 Giả lập Backend API |
 
 
 ## PERSONA & AUTOMATIC PREFERENCES (QUAN TRỌNG)
