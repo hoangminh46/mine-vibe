@@ -43,7 +43,20 @@ $Skills = @(
     @{ Source = "skills/frontend/vercel-react-best-practices"; Target = "vercel-react-best-practices" },
     @{ Source = "skills/frontend/vue-best-practices"; Target = "vue-best-practices" },
     @{ Source = "skills/frontend/web-security-frontend"; Target = "web-security-frontend" },
-    @{ Source = "skills/backend/websocket-realtime-mastery"; Target = "websocket-realtime-mastery" }
+    @{ Source = "skills/backend/websocket-realtime-mastery"; Target = "websocket-realtime-mastery" },
+    @{ Source = "skills/frontend/frontend-design"; Target = "frontend-design" },
+    @{ Source = "skills/frontend/canvas-design"; Target = "canvas-design" },
+    @{ Source = "skills/quality/doc-coauthoring"; Target = "doc-coauthoring" },
+    @{ Source = "skills/media/docx"; Target = "docx" },
+    @{ Source = "skills/media/pptx"; Target = "pptx" },
+    @{ Source = "skills/media/pdf"; Target = "pdf" },
+    @{ Source = "skills/media/xlsx"; Target = "xlsx" },
+    @{ Source = "skills/backend/supabase-postgres-best-practices"; Target = "supabase-postgres-best-practices" },
+    @{ Source = "skills/frontend/react-native-skills"; Target = "react-native-skills" },
+    @{ Source = "skills/marketing/copywriting"; Target = "copywriting" },
+    @{ Source = "skills/marketing/social-content"; Target = "social-content" },
+    @{ Source = "skills/marketing/product-marketing-context"; Target = "product-marketing-context" },
+    @{ Source = "skills/marketing/seo-audit"; Target = "seo-audit" }
 )
 
 # Detect Antigravity Global Path

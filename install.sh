@@ -45,6 +45,19 @@ SKILLS=(
     "skills/frontend/vue-best-practices:vue-best-practices"
     "skills/frontend/web-security-frontend:web-security-frontend"
     "skills/backend/websocket-realtime-mastery:websocket-realtime-mastery"
+    "skills/frontend/frontend-design:frontend-design"
+    "skills/frontend/canvas-design:canvas-design"
+    "skills/quality/doc-coauthoring:doc-coauthoring"
+    "skills/media/docx:docx"
+    "skills/media/pptx:pptx"
+    "skills/media/pdf:pdf"
+    "skills/media/xlsx:xlsx"
+    "skills/backend/supabase-postgres-best-practices:supabase-postgres-best-practices"
+    "skills/frontend/react-native-skills:react-native-skills"
+    "skills/marketing/copywriting:copywriting"
+    "skills/marketing/social-content:social-content"
+    "skills/marketing/product-marketing-context:product-marketing-context"
+    "skills/marketing/seo-audit:seo-audit"
 )
 
 # Detect paths
